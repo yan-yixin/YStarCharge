@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YStarCharge", "YStarCharge\YStarCharge.csproj", "{81F1A6A0-7487-4BF6-802B-AC3D89570207}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AC69CF43-4862-45F5-AB4A-5C69C24FD82C}
+	EndGlobalSection
+EndGlobal
