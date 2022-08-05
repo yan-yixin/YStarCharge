@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YStarCharge"
         mc:Ignorable="d"
-        Title="一心记账" Height="450" Width="800"
-        WindowState="Maximized">
+        Title="点记账本" Height="450" Width="800" FontFamily="宋体"
+        WindowState="Maximized"
+        Icon="Images/login.png">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="5,10"/>

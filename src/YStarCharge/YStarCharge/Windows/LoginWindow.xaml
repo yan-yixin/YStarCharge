@@ -9,7 +9,9 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Icon="../Images/login.png"
-        FontFamily="宋体">
+        FontFamily="宋体" 
+        IsEnabled="{Binding IsWindowClose,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+        IsEnabledChanged="Window_IsEnabledChanged">
     <Window.Resources>
         <Style TargetType="Border" x:Key="BorderStyle">
             <Setter Property="CornerRadius" Value="3"/>

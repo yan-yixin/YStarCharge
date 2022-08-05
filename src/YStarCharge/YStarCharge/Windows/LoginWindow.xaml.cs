@@ -27,5 +27,13 @@ namespace YStarCharge.Windows
             ViewModel = new LoginWindowViewModel();
             DataContext = ViewModel;
         }
+
+        private void Window_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(!(bool)e.NewValue)
+            {
+                Close();
+            }
+        }
     }
 }

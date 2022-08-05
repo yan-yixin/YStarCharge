@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
 using YStarCharge.Common;
-using YStarCharge.Model;
 using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
@@ -51,6 +46,24 @@ namespace YStarCharge.ViewModel
             }
         }
 
+        private bool isWindowClose = true;
+        public bool IsWindowClose
+        {
+            get
+            {
+                return isWindowClose;
+            }
+            set
+            {
+                if(isWindowClose == value)
+                {
+                    return;
+                }
+                isWindowClose = value;
+                OnPropertyChanged("IsWindowClose");
+            }
+        }
+
         public ICommand Login
         {
             get
@@ -71,6 +84,9 @@ namespace YStarCharge.ViewModel
                         //显示主界面
                         MainWindow window = new MainWindow();
                         window.Show();
+
+                        //这个界面关闭
+                        IsWindowClose = false;
                         return;
                     }
                     Util.NoticeMessageBox("用户名或密码不正确");
@@ -100,7 +116,6 @@ namespace YStarCharge.ViewModel
                 });
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
