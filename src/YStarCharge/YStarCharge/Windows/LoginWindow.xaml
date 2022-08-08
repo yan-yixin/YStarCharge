@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YStarCharge.Windows"
+        xmlns:local="clr-namespace:YStarCharge.Windows" xmlns:customcontrol="clr-namespace:YStarCharge.CustomControl"
         mc:Ignorable="d"
         Title="登录" Height="450" Width="750"
         ResizeMode="CanMinimize"
@@ -25,7 +25,11 @@
                 <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
+       
     </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Login}" Key="Return"/>
+    </Window.InputBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -78,30 +82,11 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/password.png" Stretch="Uniform" Width="20" Height="20"/>
-                    <TextBox Grid.Column="1" Text="{Binding Password,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                    <PasswordBox Name="pwdPasswordBox" Grid.Column="1" PasswordChar="*" 
                      VerticalContentAlignment="Center" 
                      FontWeight="Black" 
-                     BorderThickness="0" >
-                    <TextBox.Resources>
-                            <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left">
-                                <VisualBrush.Visual>
-                                    <TextBlock FontStyle="Italic" Text="请输入密码"/>
-                                </VisualBrush.Visual>
-                            </VisualBrush>
-                        </TextBox.Resources>
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Style.Triggers>
-                                    <Trigger Property="Text" Value="{x:Null}">
-                                        <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
-                                    </Trigger>
-                                    <Trigger Property="Text" Value="">
-                                        <Setter Property="Background" Value="{StaticResource HelpBrush}"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                     BorderThickness="0" 
+                     PasswordChanged="PasswordBox_PasswordChanged"/>
                 </Grid>
 
             </Border>

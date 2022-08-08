@@ -130,6 +130,7 @@
     <Resource Include="Images\user.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CustomControl\" />
     <Folder Include="Document\" />
     <Folder Include="Resource\" />
   </ItemGroup>

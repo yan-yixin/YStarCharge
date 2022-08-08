@@ -35,5 +35,10 @@ namespace YStarCharge.Windows
                 Close();
             }
         }
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Password = pwdPasswordBox.Password;
+        }
     }
 }
