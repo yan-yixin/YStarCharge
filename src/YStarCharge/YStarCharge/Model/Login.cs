@@ -2,5 +2,5 @@
 
 namespace YStarCharge.Model
 {
-
+    
 }

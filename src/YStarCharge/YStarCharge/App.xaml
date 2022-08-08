@@ -8,6 +8,5 @@
     <Application.Resources>
         <SolidColorBrush x:Key="AppBackground" Color="#ccc"/>
         <SolidColorBrush x:Key="Foreground" Color="#1C86EE"/>
-        
     </Application.Resources>
 </Application>

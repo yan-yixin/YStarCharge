@@ -8,7 +8,7 @@ namespace YStarCharge.ViewModel
 {
     public sealed class LoginWindowViewModel: INotifyPropertyChanged
     {
-        private string username;
+        private string username = "admin";
         public string UserName
         {
             get
@@ -26,7 +26,7 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        private string password;
+        private string password; 
 
         public string Password
         {
@@ -79,7 +79,7 @@ namespace YStarCharge.ViewModel
                         Util.NoticeMessageBox("密码不能为空");
                         return;
                     }
-                    if(username == "yixin" && password == "123")
+                    if(username == AppConfigHelper.Username && password == AppConfigHelper.Password)
                     {
                         //显示主界面
                         MainWindow window = new MainWindow();
