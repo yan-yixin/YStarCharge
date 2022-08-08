@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using YStarCharge.Windows;
+using YStarCharge.ViewModel;
 
 namespace YStarCharge
 {
@@ -8,15 +8,16 @@ namespace YStarCharge
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MainWindowViewModel viewModel;
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            EditChargeWindow addChargeWindow = new EditChargeWindow();
-            addChargeWindow.ShowDialog();
+            viewModel = new MainWindowViewModel();
+            DataContext = viewModel;
+            viewModel.ContentGrid = contenGrid;
+
+
         }
     }
 }

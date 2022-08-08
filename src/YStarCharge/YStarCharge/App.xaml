@@ -6,7 +6,7 @@
              ShutdownMode="OnLastWindowClose"
              >
     <Application.Resources>
-        <SolidColorBrush x:Key="AppBackground" Color="#ccc"/>
+        <SolidColorBrush x:Key="AppBackground" Color="#163450"/>
         <SolidColorBrush x:Key="Foreground" Color="#1C86EE"/>
     </Application.Resources>
 </Application>

@@ -27,17 +27,23 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="#87ce">
             <!--用户模块-->
-            <Button Click="Button_Click">
+            <Button ToolTip="用户管理" Command="{Binding User}">
                 <Image Source="Images/user.png"/>
             </Button>
+            <Button ToolTip="收支明细" Command="{Binding Income}">
+                <Image Source="Images/charge.png"/>
+            </Button>
             <!--统计模块-->
-            <Button>
+            <Button ToolTip="报表统计" Command="{Binding Report}">
                 <Image Source="Images/report.png"/>
             </Button>
             <!--系统设置模块-->
-            <Button>
+            <Button ToolTip="系统设置" Command="{Binding Setting}">
                 <Image Source="Images/setting.png"/>
             </Button>
         </StackPanel>
+        <Grid Grid.Column="1" x:Name="contenGrid">
+            
+        </Grid>
     </Grid>
 </Window>
