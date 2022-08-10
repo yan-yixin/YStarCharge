@@ -9,7 +9,7 @@ namespace YStarCharge.Model
     {
         public int Number { get; set; }
 
-        public DateTime CreateAt { get; set; }
+        public string CreateAt { get; set; }
 
         public float Money { get; set; }
 
