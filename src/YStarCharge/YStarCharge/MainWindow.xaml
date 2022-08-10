@@ -30,7 +30,7 @@
             <Button ToolTip="用户管理" Command="{Binding User}">
                 <Image Source="Images/user.png"/>
             </Button>
-            <Button ToolTip="收支明细" Command="{Binding Income}">
+            <Button ToolTip="收支明细" Command="{Binding Expend}">
                 <Image Source="Images/charge.png"/>
             </Button>
             <!--统计模块-->
