@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="YStarCharge.Document.ExpendUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:assembly="clr-namespace:System;assembly=mscorlib"
+             xmlns:model="clr-namespace:YStarCharge.Model"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <!--按钮样式-->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Margin" Value="10,0,5,0"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border BorderBrush="{StaticResource Foreground}" BorderThickness="1" CornerRadius="3" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource Foreground}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--TextBox样式-->
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+        </Style>
+        <!--TextBlocx样式-->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#657a9e"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <!--枚举绑定器-->
+        <ObjectDataProvider x:Key="Project" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="model:Project"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+
+    </UserControl.Resources>
+    <Grid Background="#eff2f7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5" Background="White" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" >
+                <StackPanel Orientation="Horizontal"  Margin="10,5">
+                    <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" 
+                            DisplayDateStart="1999/1/1"
+                            Text="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,5">
+                    <TextBlock Text="结束日期：" />
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" 
+                            DisplayDateStart="1999/1/1"
+                            Text="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel  Grid.Column="1" >
+                <StackPanel Orientation="Horizontal" Margin="10,5">
+                    <TextBlock Text="金额范围："/>
+                    <TextBox x:Name="minMoneyTextBox" 
+                             Text="{Binding Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="20"/>
+                    <TextBox x:Name="maxMoneyTextBox" 
+                             Text="{Binding Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="10,5">
+                    <TextBlock Text="消费场景：" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource Project}}"
+                          Width="150" Height="30" 
+                          SelectedIndex="0" VerticalContentAlignment="Center"
+                          SelectedItem="{Binding Where,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+            </StackPanel>
+            <Button Content="查询" Grid.Column="2"
+                    HorizontalAlignment="Left" Width ="80" Height ="30"
+                    Background="#3a81cd" Foreground="White"
+                    Command="{Binding Query}" Margin="5,45,0,12"/>
+        </Grid>
+        <Grid  Grid.Row="1" Background="White" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" >
+                <!--新增按钮-->
+                <Button Content="新增" Command="{Binding Add}"/>
+                <Button Content="修改" Command="{Binding Edit}"/>
+                <Button Content="删除" Command="{Binding Delete}"/>
+            </StackPanel>
+            <DataGrid x:Name="expendDataGrid" Margin="10,5,10,50"
+                          AutoGenerateColumns="False" ItemsSource="{Binding Expends}" 
+                          Grid.Row="1" CanUserAddRows="False" >
+                <DataGrid.Columns >
+                    <DataGridCheckBoxColumn Width="40">
+                        <DataGridCheckBoxColumn.Header>
+                            <CheckBox x:Name="allSelectCheckBox" Checked="AllSelectCheckBox_Checked"/>
+                        </DataGridCheckBoxColumn.Header>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="金额" Width="120" Binding="{Binding Money}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="项目" Width="120" Binding="{Binding Project}" 
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"   />
+                    <DataGridTextColumn Header="备注" Width="240" Binding="{Binding Remark}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -15,13 +15,25 @@ using System.Windows.Shapes;
 namespace YStarCharge.Document
 {
     /// <summary>
-    /// UserInfoControl.xaml 的交互逻辑
+    /// ExpendAndIncomeDocument.xaml 的交互逻辑
     /// </summary>
-    public partial class UserInfoControl : UserControl
+    public partial class ExpendAndIncomeDocument : UserControl
     {
-        public UserInfoControl()
+        public ExpendAndIncomeDocument()
         {
             InitializeComponent();
+        }
+
+        private void ExpendButton_Click(object sender, RoutedEventArgs e)
+        {
+            ExpendUserControl euc = new ExpendUserControl();
+            contentGrid.Children.Clear();
+            contentGrid.Children.Add(euc);
+        }
+
+        private void IncomeButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
