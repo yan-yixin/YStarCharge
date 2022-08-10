@@ -30,23 +30,22 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0">
-                <Button x:Name="expendButton" Click="ExpendButton_Click"
-                        >
+                <Button x:Name="expendButton" Click="ExpendButton_Click" Foreground="#c5d1df">
                     <Button.Template>
                         <ControlTemplate>
                             <TextBlock Text="支出明细" 
                                         Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
-                                        FontSize="20"  Foreground="#c5d1df" 
+                                        FontSize="20"  Foreground="{TemplateBinding Foreground}" 
                                         FontFamily="宋体" FontWeight="Black"
                                         Margin="20"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="incomeButton" Click="IncomeButton_Click">
+                <Button x:Name="incomeButton" Click="IncomeButton_Click" Foreground="#c5d1df">
                     <Button.Template>
                         <ControlTemplate>
                             <TextBlock Text="收入明细"
-                                        FontSize="20"  Foreground="#c5d1df" 
+                                        FontSize="20" Foreground="{TemplateBinding Foreground}" 
                                         FontFamily="宋体" FontWeight="Black"
                                         Margin="20"/>
                         </ControlTemplate>

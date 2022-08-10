@@ -19,6 +19,9 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class ExpendAndIncomeDocument : UserControl
     {
+        private readonly Color SelectedColor = Color.FromRgb(91, 150, 219);
+        private readonly Color DefaultColor = Color.FromRgb(177,189,203);
+        private ExpendUserControl expendUserControl = new ExpendUserControl();
         public ExpendAndIncomeDocument()
         {
             InitializeComponent();
@@ -26,13 +29,27 @@ namespace YStarCharge.Document
 
         private void ExpendButton_Click(object sender, RoutedEventArgs e)
         {
-            ExpendUserControl euc = new ExpendUserControl();
+            if (sender is Button button)
+            {
+                button.Foreground = new SolidColorBrush(SelectedColor);
+            }
+            incomeButton.Foreground = new SolidColorBrush(DefaultColor);
+
+            if (contentGrid.Children.Contains(expendUserControl))
+            {
+                return;
+            }
             contentGrid.Children.Clear();
-            contentGrid.Children.Add(euc);
+            contentGrid.Children.Add(expendUserControl);
         }
 
         private void IncomeButton_Click(object sender, RoutedEventArgs e)
         {
+            if (sender is Button button)
+            {
+                button.Foreground = new SolidColorBrush(SelectedColor);
+            }
+            expendButton.Foreground = new SolidColorBrush(DefaultColor);
 
         }
     }
