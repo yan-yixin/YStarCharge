@@ -74,22 +74,31 @@ namespace YStarCharge.ViewModel
                         Util.NoticeMessageBox("用户名不能为空");
                         return;
                     }
-                    if (string.IsNullOrWhiteSpace(password))
-                    {
-                        Util.NoticeMessageBox("密码不能为空");
-                        return;
-                    }
-                    if(username == AppConfigHelper.Username && password == AppConfigHelper.Password)
-                    {
-                        //显示主界面
-                        MainWindow window = new MainWindow();
-                        window.Show();
 
-                        //这个界面关闭
-                        IsWindowClose = false;
-                        return;
-                    }
-                    Util.NoticeMessageBox("用户名或密码不正确");
+                    //显示主界面
+                    MainWindow window = new MainWindow();
+                    window.Show();
+
+                    //这个界面关闭
+                    IsWindowClose = false;
+
+                    //if (string.IsNullOrWhiteSpace(password))
+                    //{
+                    //    Util.NoticeMessageBox("密码不能为空");
+                    //    return;
+                    //}
+
+                    //if (username == AppConfigHelper.Username && password == AppConfigHelper.Password)
+                    //{
+                    //    //显示主界面
+                    //    MainWindow window = new MainWindow();
+                    //    window.Show();
+
+                    //    //这个界面关闭
+                    //    IsWindowClose = false;
+                    //    return;
+                    //}
+                    //Util.NoticeMessageBox("用户名或密码不正确");
                     //TODO
                 });
             }

@@ -23,12 +23,12 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        public ICommand Income
+        public ICommand Expend
         {
             get
             {
                 return new RelayCommand(obj => {
-                    IncomeUserControl iuc = new IncomeUserControl();
+                    ExpendAndIncomeDocument iuc = new ExpendAndIncomeDocument();
                     ContentGrid.Children.Clear();
                     ContentGrid.Children.Add(iuc);
                 });
