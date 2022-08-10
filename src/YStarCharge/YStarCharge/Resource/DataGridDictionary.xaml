@@ -8,22 +8,19 @@
     <SolidColorBrush x:Key="MouseOverColor" Color="#ccc"/>
 
     <Style TargetType="DataGrid">
-        <Setter Property="VerticalGridLinesBrush" Value="#ccc"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="#ccc"/>
+        <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="#34457d"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
     </Style>
     <!--DataGridHeader样式-->
     <Style TargetType="DataGridColumnHeader">
         <Setter Property="Height" Value="35"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="#213371"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontWeight" Value="Black"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
-                    <Border BorderBrush="#ccc" BorderThickness="1" Background="{TemplateBinding Background}">
-                        <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
+                    <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
