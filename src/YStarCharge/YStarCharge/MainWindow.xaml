@@ -11,34 +11,26 @@
         WindowStartupLocation="CenterScreen"
         AllowsTransparency="True">
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
-        </Style>
-        <SolidColorBrush x:Key="WindowBackground" Color="#162038"/>
-
-        <ControlTemplate TargetType="custom:ImageAndTextButton" x:Key="ImageButtonTemplete">
-            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
-                <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="40,0,10,0"/>
-                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </StackPanel>
-            <ControlTemplate.Triggers>
-                <Trigger Property="custom:ImageAndTextButton.IsMouseOver" Value="True">
-                    <Setter Property="custom:ImageAndTextButton.Background" Value="#1a6aa9"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-
-        <Style TargetType="custom:ImageAndTextButton" >
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Foreground" Value="#bfcce2"/>
-            <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/ImageButtonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="Button">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Width" Value="25"/>
+                <Setter Property="Height" Value="25"/>
+            </Style>
+            <SolidColorBrush x:Key="WindowBackground" Color="#162038"/>
+            <Style TargetType="custom:ImageAndTextButton" >
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="#bfcce2"/>
+                <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
+            </Style>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

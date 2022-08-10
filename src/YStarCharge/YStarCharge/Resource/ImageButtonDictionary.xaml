@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:custom ="clr-namespace:YStarCharge.CustomControl">
+    <ControlTemplate TargetType="custom:ImageAndTextButton" x:Key="ImageButtonTemplete">
+        <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+            <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="40,0,10,0"/>
+            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </StackPanel>
+        <ControlTemplate.Triggers>
+            <Trigger Property="custom:ImageAndTextButton.IsMouseOver" Value="True">
+                <Setter Property="custom:ImageAndTextButton.Background" Value="#1a6aa9"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+</ResourceDictionary>

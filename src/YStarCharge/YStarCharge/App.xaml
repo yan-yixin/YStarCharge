@@ -6,7 +6,7 @@
              ShutdownMode="OnLastWindowClose"
              >
     <Application.Resources>
-
+     
         <SolidColorBrush x:Key="AppBackground" Color="White"/>
         <SolidColorBrush x:Key="Foreground" Color="#3a81cd"/>
 
@@ -18,51 +18,5 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
         
-        <Style TargetType="DataGrid">
-            <Setter Property="VerticalGridLinesBrush" Value="#ccc"/>
-            <Setter Property="HorizontalGridLinesBrush" Value="#ccc"/>
-            <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
-        </Style>
-        <!--DataGridHeader样式-->
-        <Style TargetType="DataGridColumnHeader">
-            <Setter Property="Height" Value="35"/>
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="Black"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="DataGridColumnHeader">
-                        <Border BorderBrush="#ccc" BorderThickness="1" Background="{TemplateBinding Background}">
-                            <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <!--数据行-->
-        <Style TargetType="DataGridRow">
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="Background" Value="White"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
-                </Trigger>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <!--单元格-->
-        <Style TargetType="DataGridCell">
-            <Style.Triggers >
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
-                    <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
     </Application.Resources>
 </Application>

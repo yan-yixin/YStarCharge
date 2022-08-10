@@ -3,56 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:YStarCharge.Document"
+             xmlns:local="clr-namespace:YStarCharge.Document" 
+             xmlns:customcontrol="clr-namespace:YStarCharge.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="{StaticResource AppBackground}">
+             d:DesignHeight="690" d:DesignWidth="1080">
+    <UserControl.Resources>
+
+        <ControlTemplate TargetType="customcontrol:ImageAndTextButton" x:Key="ImageButtonTemplete">
+                <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                    <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="20,0,10,0"/>
+                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                <Trigger Property="customcontrol:ImageAndTextButton.IsMouseOver" Value="True">
+                    <Setter Property="customcontrol:ImageAndTextButton.Background" Value="#1a6aa9"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+            
+            <Style TargetType="customcontrol:ImageAndTextButton" >
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="#93bdf6"/>
+                <Setter Property="FontFamily" Value="黑体"/>
+            <Setter Property="Width" Value="110"/>
+            <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
+            </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#253a5b" Offset="0.1"/>
+                <GradientStop Color="#011a34" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition/>
+            <RowDefinition />
+            <RowDefinition Height="105"/>
         </Grid.RowDefinitions>
-        <Grid  Grid.Row="0">
-            <Grid.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                    <GradientStop Color="#018ceb" Offset="0.3"/>
-                    <GradientStop Color="White" Offset="1"/>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <TextBlock Text="收支明细" 
-                       FontSize="32"  Foreground="White" 
-                       FontFamily="宋体" FontWeight="Black"
-                       VerticalAlignment="Center"
-                       Margin="10,0"/>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="140"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <Button x:Name="expendButton" Click="ExpendButton_Click" Foreground="#c5d1df">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="支出明细" 
-                                        Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
-                                        FontSize="20"  Foreground="{TemplateBinding Foreground}" 
-                                        FontFamily="宋体" FontWeight="Black"
-                                        Margin="20"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="incomeButton" Click="IncomeButton_Click" Foreground="#c5d1df">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <TextBlock Text="收入明细"
-                                        FontSize="20" Foreground="{TemplateBinding Foreground}" 
-                                        FontFamily="宋体" FontWeight="Black"
-                                        Margin="20"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-            </StackPanel>
-            <Grid x:Name="contentGrid" Grid.Column="1"/>
-        </Grid>
+        <Grid x:Name="contentGrid" Grid.Row="0"/>
+
+        <TextBlock Grid.Row="1" Text="Copyright ©  2022 yanyixin" Foreground="White" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 </UserControl>

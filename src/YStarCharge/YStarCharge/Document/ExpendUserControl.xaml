@@ -5,10 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:assembly="clr-namespace:System;assembly=mscorlib"
              xmlns:model="clr-namespace:YStarCharge.Model"
+             xmlns:customcontrol="clr-namespace:YStarCharge.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="690" d:DesignWidth="1080"
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/DataGridDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
         <!--按钮样式-->
         <Style TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
@@ -51,13 +57,42 @@
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
 
+            <ControlTemplate TargetType="customcontrol:ImageAndTextButton" x:Key="ImageButtonTemplete">
+                <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                    <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="20,0,10,0"/>
+                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="customcontrol:ImageAndTextButton.IsMouseOver" Value="True">
+                        <Setter Property="customcontrol:ImageAndTextButton.Background" Value="#1a6aa9"/>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <Style TargetType="customcontrol:ImageAndTextButton" >
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="#93bdf6"/>
+                <Setter Property="FontFamily" Value="黑体"/>
+                <Setter Property="Width" Value="110"/>
+                <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="#eff2f7">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#253a5b" Offset="0.1"/>
+                <GradientStop Color="#011a34" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="105"/>
+            <RowDefinition Height="490"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Margin="5" Background="White" >
+        <Grid Grid.Row="0" Margin="5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
                 <ColumnDefinition Width="240"/>
@@ -102,17 +137,27 @@
                     Background="#3a81cd" Foreground="White"
                     Command="{Binding Query}" Margin="5,45,0,12"/>
         </Grid>
-        <Grid  Grid.Row="1" Background="White" Margin="5">
+        <Grid Grid.Row="1"  Margin="20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" >
-                <!--新增按钮-->
-                <Button Content="新增" Command="{Binding Add}"/>
-                <Button Content="修改" Command="{Binding Edit}"/>
-                <Button Content="删除" Command="{Binding Delete}"/>
-            </StackPanel>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#35588a" Offset="0.1"/>
+                    <GradientStop Color="#011a34" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <customcontrol:ImageAndTextButton Content="新增" ImageSource="../Images/add.png" />
+                    <customcontrol:ImageAndTextButton Content="编辑" ImageSource="../Images/edit.png" />
+                    <customcontrol:ImageAndTextButton Content="删除" ImageSource="../Images/delete.png"/>
+                </StackPanel>
+
+                <customcontrol:ImageAndTextButton Content="导出" ImageSource="../Images/export.png" 
+                                                  HorizontalAlignment="Right" />
+            </Grid>
             <DataGrid x:Name="expendDataGrid" Margin="10,5,10,50"
                           AutoGenerateColumns="False" ItemsSource="{Binding Expends}" 
                           Grid.Row="1" CanUserAddRows="False" >

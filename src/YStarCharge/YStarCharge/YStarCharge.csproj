@@ -70,6 +70,7 @@
     <Compile Include="Model\Login.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\EditChargeWindowViewModel.cs" />
+    <Compile Include="ViewModel\ExpendAndIncomeDocumentViewModel.cs" />
     <Compile Include="ViewModel\ExpendUserControlViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -92,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\DataGridDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\ImageButtonDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,9 +158,6 @@
     <Resource Include="Images\report.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\setting.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\user.png" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +178,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\edit.png" />
+    <Resource Include="Images\export.png" />
+    <Resource Include="Images\Info.png" />
+    <Resource Include="Images\seek.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
