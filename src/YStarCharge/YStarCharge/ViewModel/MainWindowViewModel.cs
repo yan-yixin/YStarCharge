@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YStarCharge.Document;
@@ -45,14 +46,12 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        public ICommand Setting
-        {
-            get
-            {
-                return new RelayCommand(obj => {
 
-                });
-            }
+        public ICommand Close
+        {
+            get => new RelayCommand(obj=> {
+                Application.Current.Shutdown();
+            });
         }
     }
 }

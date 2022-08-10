@@ -4,46 +4,87 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YStarCharge"
+        xmlns:custom ="clr-namespace:YStarCharge.CustomControl"
         mc:Ignorable="d"
-        Title="点记账本" Height="450" Width="800" FontFamily="宋体"
-        WindowState="Maximized"
-        Icon="Images/login.png">
+        Title="点记账本" Height="768" Width="1280" FontFamily="宋体"
+        WindowStyle="None"  
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True">
     <Window.Resources>
         <Style TargetType="Button">
-            <Setter Property="Margin" Value="5,10"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#dd87ccee"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Width" Value="25"/>
+            <Setter Property="Height" Value="25"/>
+        </Style>
+        <SolidColorBrush x:Key="WindowBackground" Color="#162038"/>
+
+        <ControlTemplate TargetType="custom:ImageAndTextButton" x:Key="ImageButtonTemplete">
+            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="40,0,10,0"/>
+                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="custom:ImageAndTextButton.IsMouseOver" Value="True">
+                    <Setter Property="custom:ImageAndTextButton.Background" Value="#1a6aa9"/>
                 </Trigger>
-            </Style.Triggers>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="custom:ImageAndTextButton" >
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Foreground" Value="#bfcce2"/>
+            <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Background="#87ce">
-            <!--用户模块-->
-            <Button ToolTip="用户管理" Command="{Binding User}">
-                <Image Source="Images/user.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource WindowBackground}" SnapsToDevicePixels="True">
+            <Image Source="Images/login.png" Width="30" Height="30" HorizontalAlignment="Left" Margin="50,0"/>
+            <TextBlock Text="点记账本" Foreground="White" Margin="95,15,600,18" VerticalAlignment="Center" FontSize="24"/>
+            <Button ToolTip="用户管理" Command="{Binding User}" Margin="100,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Images/user.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
-            <Button ToolTip="收支明细" Command="{Binding Expend}">
-                <Image Source="Images/charge.png"/>
+            <Button ToolTip="退出" Command="{Binding Close}" Margin="50,0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="Images/close.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
+                    </ControlTemplate>
+                </Button.Template>
             </Button>
-            <!--统计模块-->
-            <Button ToolTip="报表统计" Command="{Binding Report}">
-                <Image Source="Images/report.png"/>
-            </Button>
-            <!--系统设置模块-->
-            <Button ToolTip="系统设置" Command="{Binding Setting}">
-                <Image Source="Images/setting.png"/>
-            </Button>
-        </StackPanel>
-        <Grid Grid.Column="1" x:Name="contenGrid">
-            
         </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Background="#1e2839">
+                <StackPanel Height="120"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Image Source="Images/user.png" Width="60" Height="60" Margin="0,20,0,2"/>
+                    <TextBlock Text="admin" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <custom:ImageAndTextButton Content="首页"  ToolTip="首页" ImageSource="Images/home.png"/>
+
+                <custom:ImageAndTextButton Content="收支明细" ToolTip="收支明细" ImageSource="Images/charge.png"
+                                           Command="{Binding Expend}"/>
+
+                <custom:ImageAndTextButton Content="统计报表" ToolTip="统计报表" ImageSource="Images/report.png"
+                                           Command="{Binding Report}"/>
+            </StackPanel>
+            <Grid Grid.Column="1" x:Name="contenGrid">
+
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>
