@@ -83,7 +83,7 @@
                     <Image Grid.Column="0" Source="../Images/password.png" Stretch="Uniform" Width="20" Height="20"/>
                     <PasswordBox Name="pwdPasswordBox" Grid.Column="1" PasswordChar="*" 
                      VerticalContentAlignment="Center" 
-                     FontWeight="Black" 
+                     FontWeight="Black"  Password="admin"
                      BorderThickness="0" 
                      PasswordChanged="PasswordBox_PasswordChanged"/>
                 </Grid>

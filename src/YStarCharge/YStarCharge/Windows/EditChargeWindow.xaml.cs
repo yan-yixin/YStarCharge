@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,18 +15,19 @@ using System.Windows.Shapes;
 namespace YStarCharge.Windows
 {
     /// <summary>
-    /// RegisterWindow.xaml 的交互逻辑
+    /// AddChargeWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class RegisterWindow : Window
+    public partial class EditChargeWindow : Window
     {
-        public RegisterWindow()
+        public EditChargeWindow()
         {
             InitializeComponent();
         }
 
-        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
     }
 }
