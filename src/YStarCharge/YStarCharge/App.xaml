@@ -8,10 +8,7 @@
     <Application.Resources>
      
         <SolidColorBrush x:Key="AppBackground" Color="White"/>
-        <SolidColorBrush x:Key="Foreground" Color="#3a81cd"/>
-
-        <SolidColorBrush x:Key="SelectedColor" Color="#CCC"/>
-        <SolidColorBrush x:Key="MouseOverColor" Color="#ccc"/>
+        <SolidColorBrush x:Key="Foreground" Color="#93bdf6"/>
 
         <Style TargetType="TextBlock" x:Key="CenterTextBlockStyle">
             <Setter Property="TextAlignment" Value="Center"/>

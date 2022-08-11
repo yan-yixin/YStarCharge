@@ -15,29 +15,6 @@
                 <ResourceDictionary Source="/YStarCharge;component/Resource/DataGridDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-        <!--按钮样式-->
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Margin" Value="10,0,5,0"/>
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border BorderBrush="{StaticResource Foreground}" BorderThickness="1" CornerRadius="3" Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="{StaticResource Foreground}"/>
-                                <Setter Property="Foreground" Value="White"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <!--TextBox样式-->
         <Style TargetType="TextBox">
             <Setter Property="Width" Value="60"/>

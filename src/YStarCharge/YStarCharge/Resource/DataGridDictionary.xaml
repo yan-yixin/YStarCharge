@@ -4,40 +4,47 @@
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
-    <SolidColorBrush x:Key="SelectedColor" Color="#CCC"/>
-    <SolidColorBrush x:Key="MouseOverColor" Color="#ccc"/>
+    <SolidColorBrush x:Key="SelectedColor" Color="#34458d"/>
+    <SolidColorBrush x:Key="MouseOverColor" Color="#34458d"/>
 
     <Style TargetType="DataGrid">
         <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
         <Setter Property="HorizontalGridLinesBrush" Value="#34457d"/>
         <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        
     </Style>
     <!--DataGridHeader样式-->
     <Style TargetType="DataGridColumnHeader">
         <Setter Property="Height" Value="35"/>
-        <Setter Property="Background" Value="#213371"/>
+        <Setter Property="Background" Value="#213357"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridColumnHeader">
-                    <ContentPresenter  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
     <Style TargetType="DataGridRow">
-        <Setter Property="Height" Value="25"/>
+        <Setter Property="Height" Value="40"/>
         <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Background" Value="White"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
+                <Setter Property="Background" Value="{StaticResource MouseOverColor}"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
             </Trigger>
         </Style.Triggers>
+        
     </Style>
 
     <Style TargetType="DataGridCell">
