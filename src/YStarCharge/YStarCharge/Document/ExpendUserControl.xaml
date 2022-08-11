@@ -127,22 +127,28 @@
             </Grid.Background>
             <Grid Grid.Row="0">
                 <StackPanel Orientation="Horizontal">
-                    <customcontrol:ImageAndTextButton Content="新增" ImageSource="../Images/add.png" />
-                    <customcontrol:ImageAndTextButton Content="编辑" ImageSource="../Images/edit.png" />
-                    <customcontrol:ImageAndTextButton Content="删除" ImageSource="../Images/delete.png"/>
+                    <customcontrol:ImageAndTextButton Content="新增" ImageSource="../Images/add.png" Command="{Binding Add}"/>
+                    <customcontrol:ImageAndTextButton Content="编辑" ImageSource="../Images/edit.png" Command="{Binding Edit}"/>
+                    <customcontrol:ImageAndTextButton Content="删除" ImageSource="../Images/delete.png" Command="{Binding Delete}"/>
                 </StackPanel>
 
                 <customcontrol:ImageAndTextButton Content="导出" ImageSource="../Images/export.png" 
-                                                  HorizontalAlignment="Right" />
+                                                  HorizontalAlignment="Right" Command="{Binding Export}"/>
             </Grid>
             <DataGrid x:Name="expendDataGrid" Margin="10,5,10,50"
                           AutoGenerateColumns="False" ItemsSource="{Binding Expends}" 
                           Grid.Row="1" CanUserAddRows="False" >
                 <DataGrid.Columns >
-                    <DataGridCheckBoxColumn Width="40">
+                    <DataGridCheckBoxColumn Width="40" Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                         <DataGridCheckBoxColumn.Header>
-                            <CheckBox x:Name="allSelectCheckBox" Checked="AllSelectCheckBox_Checked"/>
+                            <CheckBox x:Name="allSelectCheckBox" Checked="AllSelectCheckBox_Checked" Unchecked="AllSelectCheckBox_Unchecked"/>
                         </DataGridCheckBoxColumn.Header>
+                        <DataGridCheckBoxColumn.ElementStyle>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridCheckBoxColumn.ElementStyle>
                     </DataGridCheckBoxColumn>
                     <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>

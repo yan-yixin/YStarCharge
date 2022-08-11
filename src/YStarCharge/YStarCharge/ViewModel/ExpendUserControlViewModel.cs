@@ -128,6 +128,23 @@ namespace YStarCharge.ViewModel
 
         public ICommand Delete => new RelayCommand(obj =>
         {
+            MessageBoxResult result = MessageBox.Show("确定要删除记录", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+            //无法直接删除，因为会删除不干净
+            var tempExpends = Expends.ToList();
+            tempExpends.RemoveAll( te =>te.IsSelected);
+            Expends.Clear();
+            foreach(var ex in tempExpends)
+            {
+                Expends.Add(ex);
+            }
+        });
+
+        public ICommand Export => new RelayCommand(obj => {
+            MessageBox.Show("导出数据");
 
         });
 

@@ -27,7 +27,6 @@ namespace YStarCharge.Document
             InitializeComponent();
             viewModel = new ExpendUserControlViewModel();
             DataContext = viewModel;
-            //viewModel.ContentListView = expendListView;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -56,8 +55,9 @@ namespace YStarCharge.Document
                 Project = Project.Other,
                 Remark = "忘了怎么花的"
             };
-            Expend expend3= new Expend()
+            Expend expend3 = new Expend()
             {
+                IsSelected = true,
                 Number = 4,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
@@ -70,36 +70,26 @@ namespace YStarCharge.Document
             viewModel.Expends.Add(expend3);
         }
 
-        private void DeleteTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("确定要删除记录", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Cancel)
-            {
-                return;
-            }
-            var button = sender as Button;
-            if (button == null)
-            {
-                return;
-            }
-            int num = Convert.ToInt32(button.Tag);
-
-            var expend = viewModel.Expends.FirstOrDefault(ex => ex.Number == num);
-            if (expend != null)
-            {
-                viewModel.Expends.Remove(expend);
-            }
-            
-        }
-
-        private void EditTextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            expendDataGrid.IsReadOnly = false;
-        }
 
         private void AllSelectCheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            SetCheckBoxChecked(true);
+        }
 
+        private void AllSelectCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SetCheckBoxChecked(false);
+        }
+
+        private void SetCheckBoxChecked(bool isCheck)
+        {
+            var tempExpends = viewModel.Expends.ToList();
+            tempExpends.ForEach(te => te.IsSelected = isCheck);
+            viewModel.Expends.Clear();
+            foreach (var ex in tempExpends)
+            {
+                viewModel.Expends.Add(ex);
+            }
         }
     }
 }

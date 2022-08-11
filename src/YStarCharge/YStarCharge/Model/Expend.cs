@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace YStarCharge.Model
+﻿namespace YStarCharge.Model
 {
     public class Expend
     {
+        public bool IsSelected { get; set; }
+
         public int Number { get; set; }
 
         public string CreateAt { get; set; }

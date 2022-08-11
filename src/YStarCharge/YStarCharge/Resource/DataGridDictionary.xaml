@@ -26,7 +26,6 @@
                     <Border Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                     </Border>
-                    
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -44,9 +43,9 @@
                 <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
             </Trigger>
         </Style.Triggers>
-        
     </Style>
 
+    
     <Style TargetType="DataGridCell">
         <Style.Triggers >
             <Trigger Property="IsSelected" Value="True">
