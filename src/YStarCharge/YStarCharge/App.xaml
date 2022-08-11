@@ -6,14 +6,17 @@
              ShutdownMode="OnLastWindowClose"
              >
     <Application.Resources>
-     
-        <SolidColorBrush x:Key="AppBackground" Color="White"/>
-        <SolidColorBrush x:Key="Foreground" Color="#93bdf6"/>
 
-        <Style TargetType="TextBlock" x:Key="CenterTextBlockStyle">
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/ColorDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="TextBlock">
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
-        
+                <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -7,31 +7,6 @@
              xmlns:customcontrol="clr-namespace:YStarCharge.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="690" d:DesignWidth="1080">
-    <UserControl.Resources>
-
-        <ControlTemplate TargetType="customcontrol:ImageAndTextButton" x:Key="ImageButtonTemplete">
-                <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
-                    <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="20,0,10,0"/>
-                    <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </StackPanel>
-                <ControlTemplate.Triggers>
-                <Trigger Property="customcontrol:ImageAndTextButton.IsMouseOver" Value="True">
-                    <Setter Property="customcontrol:ImageAndTextButton.Background" Value="#1a6aa9"/>
-                    </Trigger>
-                </ControlTemplate.Triggers>
-            </ControlTemplate>
-            
-            <Style TargetType="customcontrol:ImageAndTextButton" >
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Height" Value="40"/>
-                <Setter Property="FontSize" Value="16"/>
-                <Setter Property="Foreground" Value="#93bdf6"/>
-                <Setter Property="FontFamily" Value="黑体"/>
-            <Setter Property="Width" Value="110"/>
-            <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
-            </Style>
-
-    </UserControl.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">

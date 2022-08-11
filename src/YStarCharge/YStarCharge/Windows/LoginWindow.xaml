@@ -20,7 +20,7 @@
         </Style>
 
         <ControlTemplate TargetType="Button" x:Key="ButtonTemplate">
-            <Border Style="{StaticResource BorderStyle}" BorderBrush="{StaticResource Foreground}" Background="{TemplateBinding Background}">
+            <Border Style="{StaticResource BorderStyle}" BorderBrush="{StaticResource AppForeground}" Background="{TemplateBinding Background}">
                 <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Border>
         </ControlTemplate>
@@ -34,7 +34,7 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="{StaticResource Foreground}">
+        <Grid Grid.Column="0" Background="{StaticResource AppForeground}">
             <Image Source="../Images/login.png" Width="200" Height="200"/>
         </Grid>
         <StackPanel Grid.Column="1" Margin="20,40">
@@ -91,7 +91,7 @@
             </Border>
 
             <Button x:Name="loginButton" Content="登录" 
-                    BorderThickness="0" Background="{StaticResource Foreground}"
+                    BorderThickness="0" Background="{StaticResource AppForeground}"
                     Margin="20,15,20,10"
                     Template="{StaticResource ButtonTemplate}"
                     Command="{Binding Login}"/>
@@ -111,7 +111,7 @@
                         <ControlTemplate TargetType="Button">
                             <TextBlock Text="忘记密码？" 
                                      TextDecorations="Underline" 
-                                     Foreground="{StaticResource Foreground}"/>
+                                     Foreground="{StaticResource AppForeground}"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>

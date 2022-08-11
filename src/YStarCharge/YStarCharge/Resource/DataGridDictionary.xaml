@@ -10,7 +10,7 @@
     <Style TargetType="DataGrid">
         <Setter Property="VerticalGridLinesBrush" Value="Transparent"/>
         <Setter Property="HorizontalGridLinesBrush" Value="#34457d"/>
-        <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+        <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="IsReadOnly" Value="True"/>
         
@@ -51,7 +51,7 @@
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="{StaticResource SelectedColor}"/>
                 <Setter Property="BorderThickness" Value="0"/>
-                <Setter Property="Foreground" Value="{StaticResource Foreground}"/>
+                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

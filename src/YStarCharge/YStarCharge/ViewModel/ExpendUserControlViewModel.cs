@@ -149,7 +149,7 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            MessageBox.Show($"金额：{maxMoney},日期：{startDate},用于：{where}");
+            MessageBox.Show($"金额范围：{minMoney}-{maxMoney},日期：{startDate}-{endDate},用于：{where}");
             
         });
 

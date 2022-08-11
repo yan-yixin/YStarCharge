@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="AppBackground" Color="White"/>
+
+    <SolidColorBrush x:Key="ButtonForegroun" Color="#1c1a65"/>
+    <SolidColorBrush x:Key="MouseOverBackground" Color="#34458d"/>
+
+    <SolidColorBrush x:Key="AppForeground" Color="#93bdf6"/>
+
+    <SolidColorBrush x:Key="TextBoxBackground" Color="#1a7aa9"/>
+
+    <SolidColorBrush x:Key="DataGridSelectedColor" Color="#34458d"/>
+
+    <SolidColorBrush x:Key="TextBlockForeground" Color="#657a9e"/>
+</ResourceDictionary>
