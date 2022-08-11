@@ -36,7 +36,7 @@ namespace YStarCharge.Document
                 Number = 1,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 153.45f,
-                Project = Project.Repast,
+                Project = Project.餐饮,
 
             };
             Expend expend1 = new Expend()
@@ -44,7 +44,7 @@ namespace YStarCharge.Document
                 Number = 2,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.Other,
+                Project = Project.其他,
                 Remark ="忘了怎么花的"
             };
             Expend expend2 = new Expend()
@@ -52,7 +52,7 @@ namespace YStarCharge.Document
                 Number = 3,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.Other,
+                Project = Project.旅游,
                 Remark = "忘了怎么花的"
             };
             Expend expend3 = new Expend()
@@ -61,7 +61,7 @@ namespace YStarCharge.Document
                 Number = 4,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.Other,
+                Project = Project.购物,
                 Remark = "忘了怎么花的"
             };
             viewModel.Expends.Add(expend);

@@ -17,9 +17,9 @@
 
     public enum Project
     {
-        Shopping,
-        Travel,
-        Repast,
-        Other
+        购物,
+        旅游,
+        餐饮,
+        其他
     }
 }
