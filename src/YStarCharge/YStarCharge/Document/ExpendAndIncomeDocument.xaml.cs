@@ -23,9 +23,13 @@ namespace YStarCharge.Document
         {
             InitializeComponent();
 
-            ExpendUserControl euc = new ExpendUserControl();
+            //ExpendUserControl euc = new ExpendUserControl();
+            //contentGrid.Children.Clear();
+            //contentGrid.Children.Add(euc);
+
+            IncomeUserControl iuc = new IncomeUserControl();
             contentGrid.Children.Clear();
-            contentGrid.Children.Add(euc);
+            contentGrid.Children.Add(iuc);
         }
     }
 }

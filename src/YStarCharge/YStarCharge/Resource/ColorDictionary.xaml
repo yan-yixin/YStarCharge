@@ -13,4 +13,6 @@
     <SolidColorBrush x:Key="DataGridSelectedColor" Color="#34458d"/>
 
     <SolidColorBrush x:Key="TextBlockForeground" Color="#657a9e"/>
+
+    <SolidColorBrush x:Key="WindowHeaderBackground" Color="#162038"/>
 </ResourceDictionary>

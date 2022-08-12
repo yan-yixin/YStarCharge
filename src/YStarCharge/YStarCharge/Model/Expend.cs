@@ -10,16 +10,18 @@
 
         public float Money { get; set; }
 
-        public Project Project { get; set; }
+        public ExpendTo To { get; set; }
 
         public string Remark { get; set; }
     }
 
-    public enum Project
+    public enum ExpendTo
     {
         购物,
         旅游,
         餐饮,
         其他
     }
+
+
 }

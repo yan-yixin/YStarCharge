@@ -15,8 +15,8 @@
             <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Background="#44ccff">
-            <TextBlock Name="titleTextBlock" Text="新增记账" Margin="20,10" Foreground="#ccffffff"/>
+        <Grid Grid.Row="0" Background="{StaticResource WindowHeaderBackground}">
+            <TextBlock Name="titleTextBlock" Text="{Binding Title}" Margin="20,10" Foreground="#ccffffff"/>
             <Button Name="closeButton" Click="CloseButton_Click">
                 <Button.Style>
                     <Style TargetType="Button">

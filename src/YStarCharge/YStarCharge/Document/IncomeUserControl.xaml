@@ -5,78 +5,196 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:assembly="clr-namespace:System;assembly=mscorlib"
              xmlns:model="clr-namespace:YStarCharge.Model"
+             xmlns:local="clr-namespace:YStarCharge.Document" 
+             xmlns:customcontrol="clr-namespace:YStarCharge.CustomControl"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             FontFamily="宋体" FontSize="16"
-             Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Margin" Value="0,20"/>
-            <Setter Property="FontSize" Value="24"/>
-        </Style>
-        <ObjectDataProvider x:Key="Project" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type Type="model:Project"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/DataGridDictionary.xaml"/>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/DatePickerDictionary.xaml"/>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/ImageButtonDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!--TextBox样式-->
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="60"/>
+                <Setter Property="Height" Value="30"/>
+                <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
+                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border Background="{TemplateBinding Background}" CornerRadius="3">
+                                <ContentPresenter Content="{TemplateBinding Text}"  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <!--枚举绑定器-->
+            <ObjectDataProvider x:Key="From" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type Type="model:IncomeFrom"/>
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <!--ImageAndTextButton样式-->
+            <Style TargetType="customcontrol:ImageAndTextButton" >
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
+                <Setter Property="FontFamily" Value="黑体"/>
+                <Setter Property="Width" Value="140"/>
+                <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
+            </Style>
+
+            <Style TargetType="ComboBoxItem" >
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBoxItem">
+                            <Border Height="25" Background="{TemplateBinding Background}">
+                                <ContentPresenter Content="{TemplateBinding Content}" VerticalAlignment="Center" Margin="5,0"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource MouseOverColor}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="StackPanel" x:Key="QueryStackPanelStyle">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Margin" Value="10,5"/>
+            </Style>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Background="#fff">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#253a5b" Offset="0.1"/>
+                <GradientStop Color="#011a34" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="105"/>
+            <RowDefinition Height="490"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <TextBlock Text="支出明细" Grid.Row="0"/>
-        <Grid  Grid.Row="1">
-            <Grid.ColumnDefinitions >
-                <ColumnDefinition Width="120"/>
+        <Grid Grid.Row="0" Margin="5" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="160"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <StackPanel Width="120" Grid.Column="0">
-                <Button Content="支出明细"/>
-                <Button Content="收入明细"/>
+            <StackPanel Grid.Column="0" >
+                <StackPanel Style="{StaticResource QueryStackPanelStyle}">
+                    <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30"  Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                    </DatePicker>
+                </StackPanel>
+                <StackPanel Style="{StaticResource QueryStackPanelStyle}">
+                    <TextBlock Text="结束日期：" />
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </DatePicker>
+                </StackPanel>
             </StackPanel>
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <DataGrid x:Name="expendDataGrid" 
-                          AutoGenerateColumns="False" ItemsSource="{Binding Expends}" 
-                          Grid.Row="1" IsReadOnly="True" CanUserAddRows="False">
-                    <DataGrid.Columns >
-                        <DataGridTextColumn Header="序号" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridTextColumn Header="日期" Width="120" Binding="{Binding CreateAt}"/>
-                        <DataGridTextColumn Header="金额" Width="120" Binding="{Binding Money}"/>
-                        <DataGridComboBoxColumn Header="项目" Width="120"  SelectedItemBinding="{Binding Project}" ItemsSource="{Binding Source={StaticResource Project}}"/>
-                        <DataGridTextColumn Header="备注" Width="120" Binding="{Binding Remark}"/>
-                        <DataGridTemplateColumn Header="操作" Width="120">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal" >
-                                        <Button Name="editButton" Tag="{Binding Number}" Click="EditButton_Click">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <TextBlock Text="编辑" Foreground="{StaticResource Foreground}" FontSize="12"/>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                        <Button Name="deleteButton" Tag="{Binding Number}" Click="DeleteButton_Click">
-                                            <Button.Template>
-                                                <ControlTemplate TargetType="Button">
-                                                    <TextBlock Text="删除"  Foreground="{StaticResource Foreground}" FontSize="12"/>
-                                                </ControlTemplate>
-                                            </Button.Template>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+            <StackPanel  Grid.Column="1" >
+                <StackPanel Style="{StaticResource QueryStackPanelStyle}">
+                    <TextBlock Text="金额范围："/>
+                    <TextBox x:Name="minMoneyTextBox" Height="25" 
+                             Text="{Binding MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="20"/>
+                    <TextBox x:Name="maxMoneyTextBox" Height="25" 
+                             Text="{Binding MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Style="{StaticResource QueryStackPanelStyle}">
+                    <TextBlock Text="收入来源：" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource From}}"
+                          Width="150" Height="25"
+                          SelectedIndex="0" VerticalContentAlignment="Center"    
+                          SelectedItem="{Binding Where,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <customcontrol:ImageAndTextButton Grid.Column="2" Content="查询" Foreground="#1c1a65"
+                                              ImageSource="../Images/delete.png" 
+                                              VerticalAlignment="Bottom" Margin="0,15"
+                                              Command="{Binding Query}">
+                <customcontrol:ImageAndTextButton.Template>
+                    <ControlTemplate TargetType="customcontrol:ImageAndTextButton">
+                        <Border   CornerRadius="3" BorderThickness="2" Background="{StaticResource BorderColor}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </customcontrol:ImageAndTextButton.Template>
+            </customcontrol:ImageAndTextButton>
+
         </Grid>
-        
+        <Grid Grid.Row="1"  Margin="20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#35588a" Offset="0.1"/>
+                    <GradientStop Color="#011a34" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal">
+                    <customcontrol:ImageAndTextButton Content="新增" ImageSource="../Images/add.png" Command="{Binding Add}"/>
+                    <customcontrol:ImageAndTextButton Content="编辑" ImageSource="../Images/edit.png" Command="{Binding Edit}"/>
+                    <customcontrol:ImageAndTextButton Content="删除" ImageSource="../Images/delete.png" Command="{Binding Delete}"/>
+                </StackPanel>
+
+                <customcontrol:ImageAndTextButton Content="导出" ImageSource="../Images/export.png" 
+                                                  HorizontalAlignment="Right" Command="{Binding Export}"/>
+            </Grid>
+            <DataGrid x:Name="expendDataGrid" Margin="10,5,10,50"
+                          AutoGenerateColumns="False" ItemsSource="{Binding Expends}" 
+                          Grid.Row="1" CanUserAddRows="False" >
+                <DataGrid.Columns >
+                    <DataGridCheckBoxColumn Width="40" Binding="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                        <DataGridCheckBoxColumn.Header>
+                            <CheckBox x:Name="allSelectCheckBox" Checked="AllSelectCheckBox_Checked" Unchecked="AllSelectCheckBox_Unchecked"/>
+                        </DataGridCheckBoxColumn.Header>
+                        <DataGridCheckBoxColumn.ElementStyle>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridCheckBoxColumn.ElementStyle>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="金额" Width="120" Binding="{Binding Money}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                    <DataGridTextColumn Header="来源" Width="120" Binding="{Binding From}" 
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"   />
+                    <DataGridTextColumn Header="备注" Width="240" Binding="{Binding Remark}"
+                                        ElementStyle="{StaticResource CenterTextBlockStyle}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </Grid>
 </UserControl>

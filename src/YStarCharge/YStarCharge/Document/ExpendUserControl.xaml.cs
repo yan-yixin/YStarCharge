@@ -21,11 +21,11 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class ExpendUserControl : UserControl
     {
-        private ExpendUserControlViewModel viewModel;
+        private ExpendAndIncomeViewModel viewModel;
         public ExpendUserControl()
         {
             InitializeComponent();
-            viewModel = new ExpendUserControlViewModel();
+            viewModel = new ExpendAndIncomeViewModel();
             DataContext = viewModel;
         }
 
@@ -36,7 +36,7 @@ namespace YStarCharge.Document
                 Number = 1,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 153.45f,
-                Project = Project.餐饮,
+                To = ExpendTo.餐饮,
 
             };
             Expend expend1 = new Expend()
@@ -44,7 +44,7 @@ namespace YStarCharge.Document
                 Number = 2,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.其他,
+                To = ExpendTo.其他,
                 Remark ="忘了怎么花的"
             };
             Expend expend2 = new Expend()
@@ -52,7 +52,7 @@ namespace YStarCharge.Document
                 Number = 3,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.旅游,
+                To = ExpendTo.旅游,
                 Remark = "忘了怎么花的"
             };
             Expend expend3 = new Expend()
@@ -61,7 +61,7 @@ namespace YStarCharge.Document
                 Number = 4,
                 CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
                 Money = 15,
-                Project = Project.购物,
+                To = ExpendTo.购物,
                 Remark = "忘了怎么花的"
             };
             viewModel.Expends.Add(expend);
@@ -73,23 +73,13 @@ namespace YStarCharge.Document
 
         private void AllSelectCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            SetCheckBoxChecked(true);
+            viewModel.SetCheckBoxChecked(true);
         }
 
         private void AllSelectCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            SetCheckBoxChecked(false);
+            viewModel.SetCheckBoxChecked(false);
         }
 
-        private void SetCheckBoxChecked(bool isCheck)
-        {
-            var tempExpends = viewModel.Expends.ToList();
-            tempExpends.ForEach(te => te.IsSelected = isCheck);
-            viewModel.Expends.Clear();
-            foreach (var ex in tempExpends)
-            {
-                viewModel.Expends.Add(ex);
-            }
-        }
     }
 }

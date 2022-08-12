@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YStarCharge.ViewModel;
 
 namespace YStarCharge.Windows
 {
@@ -19,9 +20,12 @@ namespace YStarCharge.Windows
     /// </summary>
     public partial class EditChargeWindow : Window
     {
+        public EditChargeWindowViewModel ViewModel;
         public EditChargeWindow()
         {
             InitializeComponent();
+            ViewModel = new EditChargeWindowViewModel();
+            DataContext = ViewModel;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
