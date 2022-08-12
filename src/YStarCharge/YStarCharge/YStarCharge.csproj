@@ -70,8 +70,10 @@
       <DependentUpon>UserInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Expend.cs" />
+    <Compile Include="Model\Fliter.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\Login.cs" />
+    <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\EditExpendWindowViewModel.cs" />
     <Compile Include="ViewModel\ExpendAndIncomeViewModel.cs" />

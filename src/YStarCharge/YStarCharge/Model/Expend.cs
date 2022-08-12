@@ -2,7 +2,7 @@
 
 namespace YStarCharge.Model
 {
-    public class Expend:INotifyPropertyChanged
+    public class Expend: NotifyPropertyChanged
     {
         private bool isSelected;
         public bool IsSelected
@@ -18,7 +18,7 @@ namespace YStarCharge.Model
                     return;
                 }
                 isSelected = value;
-                OnPropertyChanged("IsSeleted");
+                OnPropertyChanged(this,"IsSeleted");
             }
         }
 
@@ -36,7 +36,7 @@ namespace YStarCharge.Model
                     return;
                 }
                 number = value;
-                OnPropertyChanged("Number");
+                OnPropertyChanged(this,"Number");
             }
         }
 
@@ -54,7 +54,7 @@ namespace YStarCharge.Model
                     return;
                 }
                 createAt = value;
-                OnPropertyChanged("CreateAt");
+                OnPropertyChanged(this, "CreateAt");
             }
         }
 
@@ -72,7 +72,7 @@ namespace YStarCharge.Model
                     return;
                 }
                 money = value;
-                OnPropertyChanged("Money");
+                OnPropertyChanged(this, "Money");
             }
         }
 
@@ -90,7 +90,7 @@ namespace YStarCharge.Model
                     return;
                 }
                 to = value;
-                OnPropertyChanged("To");
+                OnPropertyChanged(this, "To");
             }
         }
 
@@ -105,15 +105,8 @@ namespace YStarCharge.Model
             {
                 if(remark == value) { return; }
                 remark = value;
-                OnPropertyChanged("Remark");
+                OnPropertyChanged(this, "Remark");
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
         }
     }
 

@@ -12,108 +12,13 @@ using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class ExpendAndIncomeViewModel: INotifyPropertyChanged
+    public sealed class ExpendAndIncomeViewModel: NotifyPropertyChanged
     {
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
         public ListView ContentListView { get; set; }
 
-        private float minMoney;
-
-        public float MinMoney
-        {
-            get
-            {
-                return minMoney;
-            }
-            set
-            {
-                if(minMoney == value)
-                {
-                    return;
-                }
-                minMoney = value;
-                OnPropertyChanged("MinMoney");
-            }
-        }
-
-        private float maxMoney;
-
-        public float MaxMoney
-        {
-            get
-            {
-                return maxMoney;
-            }
-            set
-            {
-                if (maxMoney == value)
-                {
-                    return;
-                }
-                maxMoney = value;
-                OnPropertyChanged("MaxMoney");
-            }
-        }
-
-        private string startDate;
-
-        public string StartDate
-        {
-            get
-            {
-                return startDate;
-            }
-            set
-            {
-                if(startDate == value)
-                {
-                    return;
-                }
-                startDate = value;
-                OnPropertyChanged("StartDate");
-            }
-        }
-
-        private string endDate;
-
-        public string EndDate
-        {
-            get
-            {
-                return endDate;
-            }
-            set
-            {
-                if (endDate == value)
-                {
-                    return;
-                }
-                endDate = value;
-                OnPropertyChanged("EndDate");
-            }
-        }
-
-        private ExpendTo where;
-
-        public ExpendTo Where
-        {
-            get
-            {
-                return where;
-            }
-            set
-            {
-                if (where == value)
-                {
-                    return;
-                }
-                where = value;
-                OnPropertyChanged("Where");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Fliter Fliter { get; set; } = new Fliter();
 
         public ICommand Add => new RelayCommand(obj => {
             EditExpendWindow editChargeWindow = new EditExpendWindow();
@@ -176,7 +81,7 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            MessageBox.Show($"金额范围：{minMoney}-{maxMoney},日期：{startDate}-{endDate},用于：{where}");
+            MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
             
         });
 
@@ -189,11 +94,6 @@ namespace YStarCharge.ViewModel
             {
                 Expends.Add(ex);
             }
-        }
-
-        private void OnPropertyChanged(string proertyName)
-        {
-            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(proertyName));
         }
     }
 }
