@@ -118,7 +118,11 @@ namespace YStarCharge.ViewModel
         public ICommand Add => new RelayCommand(obj => {
             EditExpendWindow editChargeWindow = new EditExpendWindow();
             editChargeWindow.ViewModel.Title = "新增";
-            editChargeWindow.Show();
+            if (editChargeWindow.ShowDialog() == true)
+            {
+                editChargeWindow.ViewModel.Expend.Number = Expends.Count + 1;
+                Expends.Add(editChargeWindow.ViewModel.Expend);
+            }
         });
 
         public ICommand Edit => new RelayCommand(obj =>

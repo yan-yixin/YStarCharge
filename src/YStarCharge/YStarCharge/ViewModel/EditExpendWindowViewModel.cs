@@ -25,7 +25,7 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        public Expend Expend { get; set; }
+        public Expend Expend { get; set; } = new Expend();
 
 
         public event PropertyChangedEventHandler PropertyChanged;
