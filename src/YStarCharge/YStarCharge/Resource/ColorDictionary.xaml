@@ -15,4 +15,7 @@
     <SolidColorBrush x:Key="TextBlockForeground" Color="#657a9e"/>
 
     <SolidColorBrush x:Key="WindowHeaderBackground" Color="#162038"/>
+
+    <SolidColorBrush x:Key="BorderColor" Color="#16c4f9"/>
+
 </ResourceDictionary>

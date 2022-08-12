@@ -18,21 +18,8 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--TextBox样式-->
-            <Style TargetType="TextBox">
+            <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
                 <Setter Property="Width" Value="60"/>
-                <Setter Property="Height" Value="30"/>
-                <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
-                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
-                <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="3">
-                                <ContentPresenter Content="{TemplateBinding Text}"  VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
             </Style>
             <!--枚举绑定器-->
             <ObjectDataProvider x:Key="Project" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">

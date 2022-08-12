@@ -116,16 +116,37 @@ namespace YStarCharge.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand Add => new RelayCommand(obj => {
-            EditChargeWindow editChargeWindow = new EditChargeWindow();
+            EditExpendWindow editChargeWindow = new EditExpendWindow();
             editChargeWindow.ViewModel.Title = "新增";
             editChargeWindow.Show();
         });
 
         public ICommand Edit => new RelayCommand(obj =>
         {
-            EditChargeWindow editChargeWindow = new EditChargeWindow();
+            var expend = Expends.FirstOrDefault(e=>e.IsSelected);
+            if(expend == null)
+            {
+                MessageBox.Show("请先选中一条数据。", "提示");
+                return;
+            }
+            EditExpendWindow editChargeWindow = new EditExpendWindow();
             editChargeWindow.ViewModel.Title = "编辑";
-            editChargeWindow.Show();
+            var temp = expend;
+            editChargeWindow.ViewModel.Expend = new Expend() { 
+                Number = temp.Number,
+                Money = temp.Money,
+                To = temp.To,
+                Remark = temp.Remark,
+                CreateAt = temp.CreateAt 
+            };
+            if (editChargeWindow.ShowDialog() == true)
+            {
+                int index = Expends.IndexOf(expend);
+
+                Expends.RemoveAt(index);
+                editChargeWindow.ViewModel.Expend.IsSelected = true;
+                Expends.Insert(index, editChargeWindow.ViewModel.Expend);
+            }
         });
 
         public ICommand Delete => new RelayCommand(obj =>
@@ -137,7 +158,7 @@ namespace YStarCharge.ViewModel
             }
             //无法直接删除，因为会删除不干净
             var tempExpends = Expends.ToList();
-            tempExpends.RemoveAll( te =>te.IsSelected);
+            tempExpends.RemoveAll(te =>te.IsSelected);
             Expends.Clear();
             foreach(var ex in tempExpends)
             {

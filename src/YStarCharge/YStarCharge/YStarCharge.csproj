@@ -73,7 +73,7 @@
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\Login.cs" />
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModel\EditChargeWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditExpendWindowViewModel.cs" />
     <Compile Include="ViewModel\ExpendAndIncomeViewModel.cs" />
     <Compile Include="ViewModel\LoginWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
@@ -115,7 +115,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditChargeWindow.xaml">
+    <Page Include="Windows\EditExpendWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -127,8 +127,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Windows\EditChargeWindow.xaml.cs">
-      <DependentUpon>EditChargeWindow.xaml</DependentUpon>
+    <Compile Include="Windows\EditExpendWindow.xaml.cs">
+      <DependentUpon>EditExpendWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

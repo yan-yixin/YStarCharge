@@ -1,0 +1,97 @@
+﻿<Window x:Class="YStarCharge.Windows.EditExpendWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:assembly="clr-namespace:System;assembly=mscorlib"
+        xmlns:model="clr-namespace:YStarCharge.Model"
+        xmlns:local="clr-namespace:YStarCharge.Windows"
+        mc:Ignorable="d"
+        Height="350" Width="530"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="宋体" FontSize="16">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3" 
+                                BorderThickness="2" BorderBrush="White">
+                            <ContentPresenter Content="{TemplateBinding Content}" 
+                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+            <Setter Property="Width" Value="140"/>
+        </Style>
+
+        <!--枚举绑定器-->
+        <ObjectDataProvider x:Key="To" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="model:ExpendTo"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource WindowHeaderBackground}">
+            <TextBlock Name="titleTextBlock" Text="{Binding Title}" HorizontalAlignment="Center" 
+                       Foreground="{StaticResource AppForeground}"
+                       FontSize="16"/>
+        </Grid>
+
+        <Grid Grid.Row ="1">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#253a5b" Offset="0.1"/>
+                    <GradientStop Color="#011a34" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <TextBlock Text="金额:"/>
+                    <TextBox Text="{Binding Expend.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <TextBlock Text="用途:"/>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource To}}" 
+                              Width="140" Height="35"
+                              SelectedItem="{Binding Expend.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <TextBlock Text="日期:" />
+                    <DatePicker Width="140" Height="35" Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <TextBlock Text="备注:"/>
+                    <TextBox Text="{Binding Expend.Remark,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                             Width="250" Height="60"
+                             TextWrapping="Wrap" VerticalContentAlignment="Top"
+                             AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid  Grid.Row="1" Width="260" HorizontalAlignment="Center">
+                <Button Content="取消【Esc】" HorizontalAlignment="Left" Click="CloseButton_Click"/>
+                <Button Content="确定【Enter】" HorizontalAlignment="Right" Click="OkButton_Click"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
