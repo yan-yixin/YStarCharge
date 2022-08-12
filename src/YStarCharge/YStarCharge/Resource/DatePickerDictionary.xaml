@@ -2,18 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
  
     <Style TargetType="DatePicker">
-        <Setter Property="Width" Value="150"/>
+        <Setter Property="Width" Value="140"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
+        <Setter Property="DisplayDateStart" Value="1999/1/1"/>
+        <Setter Property="IsTodayHighlighted" Value="True"/>
     </Style>
     
     <Style TargetType="DatePickerTextBox">
         <Setter Property="Height" Value="25"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePickerTextBox">
-                    <ContentPresenter Content="{TemplateBinding Text}" VerticalAlignment="Center"/>
+                    <ContentPresenter Content="{TemplateBinding Text}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

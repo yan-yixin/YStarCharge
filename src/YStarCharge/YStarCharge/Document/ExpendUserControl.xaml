@@ -85,35 +85,24 @@
             <StackPanel Grid.Column="0" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
-                    <DatePicker IsTodayHighlighted="True"
-                            Width="140" Height="30"  Foreground="{StaticResource AppForeground}" 
-                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
-                            Text="{Binding Fliter.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-
-                    </DatePicker>
+                    <DatePicker Text="{Binding Fliter.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <TextBlock Text="结束日期：" />
-                    <DatePicker IsTodayHighlighted="True"
-                            Width="140" Height="30" Foreground="{StaticResource AppForeground}" 
-                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
-                            Text="{Binding Fliter.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                    </DatePicker>
+                    <DatePicker Text="{Binding Fliter.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel  Grid.Column="1" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <TextBlock Text="金额范围："/>
-                    <TextBox x:Name="minMoneyTextBox" Height="25" 
-                             Text="{Binding Fliter.MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="20"/>
-                    <TextBox x:Name="maxMoneyTextBox" Height="25" 
-                             Text="{Binding Fliter.MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Text="{Binding Fliter.MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="24"/>
+                    <TextBox Text="{Binding Fliter.MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <TextBlock Text="消费场景：" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource Project}}"
-                          Width="150" Height="25"
+                          Width="154" Height="30" 
                           SelectedIndex="0" VerticalContentAlignment="Center"    
                           SelectedItem="{Binding Fliter.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>

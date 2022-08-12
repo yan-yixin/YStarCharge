@@ -21,18 +21,10 @@
 
             <Style TargetType="TextBox" x:Key="TextBoxStyle">
                 <Setter Property="Height" Value="30"/>
-               
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
+                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
                 <Setter Property="FontSize" Value="14"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <Border Background="{TemplateBinding Background}" CornerRadius="3">
-                                <ContentPresenter Content="{TemplateBinding Text}" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

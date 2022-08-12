@@ -67,7 +67,7 @@
             <StackPanel Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <TextBlock Text="金额:"/>
-                    <TextBox Text="{Binding Expend.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                    <TextBox Text="{Binding Expend.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <TextBlock Text="用途:"/>
@@ -78,7 +78,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <TextBlock Text="日期:" />
-                    <DatePicker Width="140" Height="35" Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <TextBlock Text="备注:"/>

@@ -6,7 +6,7 @@ using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class LoginWindowViewModel: INotifyPropertyChanged
+    public sealed class LoginWindowViewModel: NotifyPropertyChanged
     {
         private string username = "admin";
         public string UserName
@@ -22,7 +22,7 @@ namespace YStarCharge.ViewModel
                     return;
                 }
                 username = value;
-                OnPropertyChanged("UserName");
+                OnPropertyChanged(this, "UserName");
             }
         }
 
@@ -42,7 +42,7 @@ namespace YStarCharge.ViewModel
                     return;
                 }
                 password = value;
-                OnPropertyChanged("Password");
+                OnPropertyChanged(this, "Password");
             }
         }
 
@@ -60,7 +60,7 @@ namespace YStarCharge.ViewModel
                     return;
                 }
                 isWindowClose = value;
-                OnPropertyChanged("IsWindowClose");
+                OnPropertyChanged(this, "IsWindowClose");
             }
         }
 
@@ -124,13 +124,6 @@ namespace YStarCharge.ViewModel
                     //TODO
                 });
             }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
