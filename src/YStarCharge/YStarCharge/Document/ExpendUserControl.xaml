@@ -43,6 +43,15 @@
                 <Setter Property="Orientation" Value="Horizontal"/>
                 <Setter Property="Margin" Value="10,5"/>
             </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
@@ -60,29 +69,29 @@
         <Grid Grid.Row="0" Margin="5" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="240"/>
-                <ColumnDefinition Width="240"/>
+                <ColumnDefinition Width="260"/>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
-                    <TextBlock Text="开始日期：" VerticalAlignment="Center"/>
+                    <Label Content="开始日期：" VerticalAlignment="Center"/>
                     <DatePicker Text="{Binding Fliter.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
-                    <TextBlock Text="结束日期：" />
+                    <Label Content="结束日期：" />
                     <DatePicker Text="{Binding Fliter.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel  Grid.Column="1" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
-                    <TextBlock Text="金额范围："/>
+                    <Label Content="金额范围："/>
                     <TextBox Text="{Binding Fliter.MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="24"/>
+                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="24" Foreground="{StaticResource TextBlockForeground}"/>
                     <TextBox Text="{Binding Fliter.MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
-                    <TextBlock Text="消费场景：" />
+                    <Label Content="消费场景：" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource Project}}"
                           Width="154" Height="30" 
                           SelectedIndex="0" VerticalContentAlignment="Center"    

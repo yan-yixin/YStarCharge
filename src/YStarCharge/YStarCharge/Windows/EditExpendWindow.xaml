@@ -35,6 +35,14 @@
             <Setter Property="Width" Value="140"/>
         </Style>
 
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
+        </Style>
         <!--枚举绑定器-->
         <ObjectDataProvider x:Key="To" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
             <ObjectDataProvider.MethodParameters>
@@ -66,26 +74,26 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="40,10">
-                    <TextBlock Text="金额:"/>
+                    <Label Content="金额:"/>
                     <TextBox Text="{Binding Expend.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
-                    <TextBlock Text="用途:"/>
+                    <Label Content="用途:"/>
                     <ComboBox ItemsSource="{Binding Source={StaticResource To}}" 
                               Width="140" Height="35"
                               SelectedItem="{Binding Expend.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
-                    <TextBlock Text="日期:" />
+                    <Label Content="日期:" />
                     <DatePicker Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
-                    <TextBlock Text="备注:"/>
+                    <Label Content="备注:"/>
                     <TextBox Text="{Binding Expend.Remark,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                              Width="250" Height="60"
                              TextWrapping="Wrap" VerticalContentAlignment="Top"
-                             AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+                             AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                 </StackPanel>
             </StackPanel>
             <Grid  Grid.Row="1" Width="260" HorizontalAlignment="Center">

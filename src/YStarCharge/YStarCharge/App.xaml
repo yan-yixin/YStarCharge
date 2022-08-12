@@ -14,18 +14,18 @@
                 <ResourceDictionary Source="/YStarCharge;component/Resource/ComboBoxDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
-            <Style TargetType="TextBlock">
-                <Setter Property="TextAlignment" Value="Center"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
-            </Style>
-
             <Style TargetType="TextBox" x:Key="TextBoxStyle">
                 <Setter Property="Height" Value="30"/>
                 <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
                 <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="TextBlock">
+                <Setter Property="TextAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>
