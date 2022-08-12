@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/YStarCharge;component/Resource/ColorDictionary.xaml"/>
                 <ResourceDictionary Source="/YStarCharge;component/Resource/DatePickerDictionary.xaml"/>
+                <ResourceDictionary Source="/YStarCharge;component/Resource/ComboBoxDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="TextBlock">

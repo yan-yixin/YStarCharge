@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="AppBackground" Color="White"/>
 
     <SolidColorBrush x:Key="ButtonForegroun" Color="#1c1a65"/>
+    
     <SolidColorBrush x:Key="MouseOverBackground" Color="#34458d"/>
 
     <SolidColorBrush x:Key="AppForeground" Color="#93bdf6"/>

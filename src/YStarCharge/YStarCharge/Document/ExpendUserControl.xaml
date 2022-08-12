@@ -39,24 +39,6 @@
                 <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
             </Style>
 
-            <Style TargetType="ComboBoxItem" >
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="ComboBoxItem">
-                            <Border Height="25" Background="{TemplateBinding Background}">
-                                <ContentPresenter Content="{TemplateBinding Content}"  VerticalAlignment="Center" Margin="5,0"/>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="{StaticResource MouseOverBackground}"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
             <Style TargetType="StackPanel" x:Key="QueryStackPanelStyle">
                 <Setter Property="Orientation" Value="Horizontal"/>
                 <Setter Property="Margin" Value="10,5"/>
