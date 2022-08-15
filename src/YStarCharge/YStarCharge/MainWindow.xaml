@@ -75,6 +75,12 @@
                                            Command="{Binding Report}"/>
             </StackPanel>
             <Grid Grid.Column="1" x:Name="contenGrid">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#253a5b" Offset="0.1"/>
+                        <GradientStop Color="#011a34" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
 
             </Grid>
         </Grid>

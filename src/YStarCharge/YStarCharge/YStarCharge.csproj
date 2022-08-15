@@ -73,12 +73,14 @@
     <Compile Include="Model\Fliter.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\Login.cs" />
+    <Compile Include="Model\UserInfo.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModel\EditExpendWindowViewModel.cs" />
-    <Compile Include="ViewModel\ExpendAndIncomeViewModel.cs" />
-    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\EditExpendWindowVM.cs" />
+    <Compile Include="ViewModel\ExpendAndIncomeVM.cs" />
+    <Compile Include="ViewModel\LoginWindowVM.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\UserInfoVM.cs" />
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -207,6 +209,9 @@
     <Resource Include="Images\export.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\seek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HeadPortrait\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

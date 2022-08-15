@@ -8,12 +8,12 @@ namespace YStarCharge
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel viewModel;
+        private MainWindowVM viewModel;
         public MainWindow()
         {
             InitializeComponent();
 
-            viewModel = new MainWindowViewModel();
+            viewModel = new MainWindowVM();
             DataContext = viewModel;
             viewModel.ContentGrid = contenGrid;
 

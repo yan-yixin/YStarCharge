@@ -4,7 +4,7 @@ using YStarCharge.Model;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class EditExpendWindowViewModel: NotifyPropertyChanged
+    public sealed class EditExpendWindowVM: NotifyPropertyChanged
     {
 
         private string title;

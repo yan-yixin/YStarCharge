@@ -20,11 +20,11 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class IncomeUserControl : UserControl
     {
-        private readonly ExpendAndIncomeViewModel viewModel;
+        private readonly ExpendAndIncomeVM viewModel;
         public IncomeUserControl()
         {
             InitializeComponent();
-            viewModel = new ExpendAndIncomeViewModel();
+            viewModel = new ExpendAndIncomeVM();
             DataContext = viewModel;
         }
 

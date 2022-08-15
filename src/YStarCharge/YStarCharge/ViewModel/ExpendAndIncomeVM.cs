@@ -12,7 +12,7 @@ using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class ExpendAndIncomeViewModel: NotifyPropertyChanged
+    public sealed class ExpendAndIncomeVM: NotifyPropertyChanged
     {
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 

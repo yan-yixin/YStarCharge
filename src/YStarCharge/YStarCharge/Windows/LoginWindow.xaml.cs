@@ -19,12 +19,12 @@ namespace YStarCharge.Windows
     /// </summary>
     public partial class LoginWindow : Window
     {
-        private LoginWindowViewModel ViewModel;
+        private LoginWindowVM ViewModel;
         public LoginWindow()
         {
             InitializeComponent();
 
-            ViewModel = new LoginWindowViewModel();
+            ViewModel = new LoginWindowVM();
             DataContext = ViewModel;
         }
 

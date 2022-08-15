@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YStarCharge.ViewModel;
 
 namespace YStarCharge.Document
 {
@@ -22,6 +23,8 @@ namespace YStarCharge.Document
         public UserInfoControl()
         {
             InitializeComponent();
+
+            DataContext = new UserInfoVM();
         }
     }
 }
