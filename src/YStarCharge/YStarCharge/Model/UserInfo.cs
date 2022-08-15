@@ -44,8 +44,8 @@ namespace YStarCharge.Model
             
         }
 
-        public string age;
-        public string Age
+        public int age;
+        public int Age
         {
             get
             {
