@@ -51,7 +51,7 @@
             </Button>
             <Button ToolTip="退出" Command="{Binding Close}" Margin="50,0">
                 <Button.Template>
-                    <ControlTemplate>
+                    <ControlTemplate >
                         <Image Source="Images/close.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
                     </ControlTemplate>
                 </Button.Template>
@@ -68,9 +68,37 @@
                     <TextBlock Text="admin" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <custom:ImageAndTextButton Content="首页"  ToolTip="首页" ImageSource="Images/home.png"/>
+                <custom:ImageAndTextButton x:Name="expendButton" Content="收支明细" ToolTip="收支明细" ImageSource="Images/charge.png"
+                                           Command="{Binding Detail}">
+                    <custom:ImageAndTextButton.Template>
+                        <ControlTemplate TargetType="custom:ImageAndTextButton">
+                            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                                <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="40,0,10,0"/>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Path StrokeThickness="2" Stroke="{StaticResource TextBlockForeground}">
+                                    <Path.Data>
+                                        <GeometryGroup>
+                                            <LineGeometry StartPoint="15,16" EndPoint="21,21"></LineGeometry>
+                                            <LineGeometry StartPoint="21,21" EndPoint="15,26"></LineGeometry>
+                                        </GeometryGroup>
+                                    </Path.Data>
+                                </Path>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="custom:ImageAndTextButton.IsMouseOver" Value="True">
+                                    <Setter Property="custom:ImageAndTextButton.Background" Value="#1a6aa9"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </custom:ImageAndTextButton.Template>
+                </custom:ImageAndTextButton>
+                <StackPanel Margin="20,0" Background="Transparent" Visibility="{Binding Popup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <custom:ImageAndTextButton Content="支出明细" ToolTip="支出明细" ImageSource="Images/charge.png"
+                                           Command="{Binding ExpendDetial}"/>
+                    <custom:ImageAndTextButton Content="收入明细" ToolTip="收入明细" ImageSource="Images/charge.png"
+                                           Command="{Binding IncomeDetial}"/>
+                </StackPanel>
 
-                <custom:ImageAndTextButton Content="收支明细" ToolTip="收支明细" ImageSource="Images/charge.png"
-                                           Command="{Binding Expend}"/>
                 <custom:ImageAndTextButton Content="统计报表" ToolTip="统计报表" ImageSource="Images/report.png"
                                            Command="{Binding Report}"/>
             </StackPanel>

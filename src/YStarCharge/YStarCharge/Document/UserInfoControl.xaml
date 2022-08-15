@@ -22,15 +22,11 @@
             <Setter Property="Margin" Value="40,0"/>
         </Style>
         <!--TextBox样式-->
-        <Style TargetType="TextBox">
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Width" Value="150"/>
-            <Setter Property="Height" Value="30"/>
             <Setter Property="Margin" Value="10,0"/>
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="{StaticResource BorderColor}"/>
-            <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
             <Setter Property="BorderThickness" Value="{Binding Thickness,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             <Setter Property="IsReadOnly" Value="{Binding IsReadOnly,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </Style>
@@ -83,7 +79,7 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content="用户名:" Grid.Column="0" Grid.Row="0"/>
+                <Label Content="姓名:" Grid.Column="0" Grid.Row="0"/>
                 <TextBox Text="{Binding UserInformation.Username}" Grid.Column="1" Grid.Row="0"/>
                 <Label Content="性别:"  Grid.Column="0" Grid.Row="1"/>
                 <TextBox Text="{Binding UserInformation.Gender}" Grid.Column="1" Grid.Row="1"/>
@@ -91,7 +87,7 @@
                 <TextBox Text="{Binding UserInformation.Age}" Grid.Column="1" Grid.Row="2"/>
                 <Label Content="行业:"  Grid.Column="0" Grid.Row="3"/>
                 <TextBox Text="{Binding UserInformation.Industry}" Grid.Column="1" Grid.Row="3"/>
-                <Label Content="工作地:"  Grid.Column="0" Grid.Row="4"/>
+                <Label Content="居住地:"  Grid.Column="0" Grid.Row="4"/>
                 <TextBox Text="{Binding UserInformation.Address}" Grid.Column="1" Grid.Row="4"/>
                 <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"> 
                     <Button Content="编辑" Command="{Binding Edit}"/>

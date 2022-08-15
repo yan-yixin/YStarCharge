@@ -70,7 +70,13 @@ namespace YStarCharge.ViewModel
 
             if(UserInformation.Gender != "男" && UserInformation.Gender != "女")
             {
-                Util.NoticeMessageBox("性别格式不正确.");
+                Util.NoticeMessageBox("性别格式不正确，请输入男或者女。");
+                return;
+            }
+
+            if(UserInformation.Age <=0 || UserInformation.Age >= 120)
+            {
+                Util.NoticeMessageBox("超出年龄范围，请输入1到120之前的整数。");
                 return;
             }
             IsReadOnly = true;

@@ -9,10 +9,28 @@ using YStarCharge.Document;
 
 namespace YStarCharge.ViewModel
 {
-    internal sealed class MainWindowVM
+    internal sealed class MainWindowVM:NotifyPropertyChanged
     {
-
         public Grid ContentGrid { get; set; }
+
+        private Visibility popup = Visibility.Collapsed;
+        public Visibility Popup
+        {
+            get
+            {
+                return popup;
+            }
+            set
+            {
+                if(popup == value)
+                {
+                    return;
+                }
+                popup = value;
+                OnPropertyChanged(this, "Popup");
+            }
+        }
+
         public ICommand User
         {
             get
@@ -26,34 +44,31 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        public ICommand Expend
+        public ICommand Detail => new RelayCommand(obj => {
+            Popup = popup == Visibility.Collapsed ? Visibility.Hidden | Visibility.Collapsed : Visibility.Visible | Visibility.Collapsed;
+        });
+
+        public ICommand ExpendDetial => new RelayCommand(obj => {
+            ExpendUserControl euc = new ExpendUserControl();
+            ExpendAndIncomeDocument eaid = new ExpendAndIncomeDocument(euc);
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(eaid);
+        });
+
+        public ICommand IncomeDetial => new RelayCommand(obj =>
         {
-            get
-            {
-                return new RelayCommand(obj => {
-                    ExpendAndIncomeDocument iuc = new ExpendAndIncomeDocument();
-                    ContentGrid.Children.Clear();
-                    ContentGrid.Children.Add(iuc);
-                });
-            }
-        }
+            IncomeUserControl iuc = new IncomeUserControl();
+            ExpendAndIncomeDocument eaid = new ExpendAndIncomeDocument(iuc);
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(eaid);
+        });
 
-        public ICommand Report
-        {
-            get
-            {
-                return new RelayCommand(obj => {
+        public ICommand Report => new RelayCommand(obj => {
 
-                });
-            }
-        }
+        });
 
-
-        public ICommand Close
-        {
-            get => new RelayCommand(obj=> {
-                Application.Current.Shutdown();
-            });
-        }
+        public ICommand Close => new RelayCommand(obj => {
+            Application.Current.Shutdown();
+        });
     }
 }
