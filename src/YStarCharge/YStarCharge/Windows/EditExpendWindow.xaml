@@ -13,24 +13,6 @@
         WindowStartupLocation="CenterScreen"
         FontFamily="宋体" FontSize="16">
     <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" CornerRadius="3" 
-                                BorderThickness="1" BorderBrush="White">
-                            <ContentPresenter Content="{TemplateBinding Content}" 
-                                              HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
         <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
             <Setter Property="Width" Value="140"/>
         </Style>
@@ -97,8 +79,8 @@
                 </StackPanel>
             </StackPanel>
             <Grid  Grid.Row="1" Width="260" HorizontalAlignment="Center">
-                <Button Content="取消【Esc】" HorizontalAlignment="Left" Click="CloseButton_Click"/>
-                <Button Content="确定【Enter】" HorizontalAlignment="Right" Click="OkButton_Click"/>
+                <Button Content="取消【Esc】" Style="{StaticResource WindowButton}" HorizontalAlignment="Left" Click="CloseButton_Click"/>
+                <Button Content="确定【Enter】" Style="{StaticResource WindowButton}" HorizontalAlignment="Right" Click="OkButton_Click"/>
             </Grid>
         </Grid>
     </Grid>

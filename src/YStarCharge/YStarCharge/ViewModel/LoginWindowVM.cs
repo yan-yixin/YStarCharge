@@ -120,8 +120,9 @@ namespace YStarCharge.ViewModel
             get
             {
                 return new RelayCommand(param=> {
-                    MessageBox.Show("显示密码找回");
                     //TODO
+                    ChangePassowrdWindow cpw = new ChangePassowrdWindow();
+                    cpw.ShowDialog();
                 });
             }
         }

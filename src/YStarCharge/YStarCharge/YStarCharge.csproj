@@ -72,15 +72,20 @@
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
     <Compile Include="Model\Income.cs" />
-    <Compile Include="Model\Login.cs" />
+    <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModel\ChangePasswordVM.cs" />
     <Compile Include="ViewModel\EditExpendWindowVM.cs" />
     <Compile Include="ViewModel\ExpendAndIncomeVM.cs" />
     <Compile Include="ViewModel\LoginWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\OKCancelVM.cs" />
     <Compile Include="ViewModel\UserInfoVM.cs" />
+    <Compile Include="Windows\ChangePassowrdWindow.xaml.cs">
+      <DependentUpon>ChangePassowrdWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -120,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\ImageButtonDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangePassowrdWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
