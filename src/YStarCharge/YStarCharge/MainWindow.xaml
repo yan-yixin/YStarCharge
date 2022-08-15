@@ -29,7 +29,9 @@
                 <Setter Property="Foreground" Value="#bfcce2"/>
                 <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
             </Style>
-
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#fff"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -42,9 +44,10 @@
             <TextBlock Text="点记账本" Foreground="White" Width="100"  FontSize="24"
                        HorizontalAlignment="Left"  VerticalAlignment="Center"
                        Margin="95,0"/>
-            <Button ToolTip="用户管理" Command="{Binding User}" Margin="100,0">
+            <Button ToolTip="用户管理" Command="{Binding UserManager}" Margin="100,0" 
+                    x:Name="userButton">
                 <Button.Template>
-                    <ControlTemplate>
+                    <ControlTemplate TargetType="Button">
                         <Image Source="Images/user.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
                     </ControlTemplate>
                 </Button.Template>
@@ -56,6 +59,16 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+
+            <Popup IsOpen="{Binding IsOpen}" PlacementTarget="{Binding ElementName=userButton}" HorizontalOffset="-35" >
+                <Border CornerRadius="3" BorderThickness="1" BorderBrush="#fff" Margin="0,10">
+                    <StackPanel>
+                        <Button Content="个人信息" Foreground="#fff" Width="100" Command="{Binding UserInfo}"/>
+                        <Button Content="修改密码" Foreground="#fff" Width="100" Command="{Binding LoginWindowVM.ForgetPassword}"/>
+                        <Button Content="注销" Foreground="#fff" Width="100" Command="{Binding Logout}"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -109,7 +122,6 @@
                         <GradientStop Color="#011a34" Offset="1"/>
                     </LinearGradientBrush>
                 </Grid.Background>
-
             </Grid>
         </Grid>
 

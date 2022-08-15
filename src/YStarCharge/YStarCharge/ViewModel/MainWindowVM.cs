@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YStarCharge.Document;
+using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
@@ -13,39 +14,68 @@ namespace YStarCharge.ViewModel
     {
         public Grid ContentGrid { get; set; }
 
-        private Visibility popup = Visibility.Collapsed;
+        public LoginWindowVM LoginWindowVM { get; } = new LoginWindowVM();
+
+        public event EventHandler WindowClose;
+
+        private Visibility menuPopup = Visibility.Collapsed;
         public Visibility Popup
         {
             get
             {
-                return popup;
+                return menuPopup;
             }
             set
             {
-                if(popup == value)
+                if(menuPopup == value)
                 {
                     return;
                 }
-                popup = value;
+                menuPopup = value;
                 OnPropertyChanged(this, "Popup");
             }
         }
 
-        public ICommand User
+        private bool isOpen;
+        public bool IsOpen
         {
             get
             {
-                return new RelayCommand(obj=> {
-                    UserInfoControl uic = new UserInfoControl();
-                    uic.VerticalAlignment = VerticalAlignment.Top;
-                    ContentGrid.Children.Clear();
-                    ContentGrid.Children.Add(uic);
-                });
+                return isOpen;
+            }
+            set
+            {
+                if(isOpen == value)
+                {
+                    return;
+                }
+                isOpen = value;
+                OnPropertyChanged(this, "IsOpen");
             }
         }
 
+        public ICommand UserManager => new RelayCommand(obj=> {
+            IsOpen = isOpen ? false : true;
+        
+        });
+
+        public ICommand UserInfo => new RelayCommand(obj => {
+            UserInfoControl uic = new UserInfoControl();
+            uic.VerticalAlignment = VerticalAlignment.Top;
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(uic);
+        });
+
+        public ICommand Logout => new RelayCommand(obj=> {
+            //关闭主界面
+            OnWindowClose();
+
+            LoginWindow lw = new LoginWindow();
+            lw.Show();
+        });
+
         public ICommand Detail => new RelayCommand(obj => {
-            Popup = popup == Visibility.Collapsed ? Visibility.Hidden | Visibility.Collapsed : Visibility.Visible | Visibility.Collapsed;
+            Popup = menuPopup == Visibility.Collapsed ? Visibility.Hidden | Visibility.Collapsed : Visibility.Visible | Visibility.Collapsed;
         });
 
         public ICommand ExpendDetial => new RelayCommand(obj => {
@@ -70,5 +100,10 @@ namespace YStarCharge.ViewModel
         public ICommand Close => new RelayCommand(obj => {
             Application.Current.Shutdown();
         });
+
+        private void OnWindowClose()
+        {
+            WindowClose?.Invoke(this,EventArgs.Empty);
+        }
     }
 }

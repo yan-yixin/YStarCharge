@@ -13,11 +13,18 @@ namespace YStarCharge
         {
             InitializeComponent();
 
+            
             viewModel = new MainWindowVM();
             DataContext = viewModel;
             viewModel.ContentGrid = contenGrid;
 
-
+            viewModel.WindowClose += ViewModel_WindowClose;
         }
+
+        private void ViewModel_WindowClose(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
     }
 }
