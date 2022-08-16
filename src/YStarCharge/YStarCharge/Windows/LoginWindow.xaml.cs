@@ -42,7 +42,7 @@ namespace YStarCharge.Windows
             {
                 return;
             }
-            ViewModel.Password = pwdPasswordBox.Password;
+            ViewModel.User.Password = pwdPasswordBox.Password;
         }
     }
 }

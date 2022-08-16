@@ -27,7 +27,11 @@ namespace YStarCharge.Windows
 
         private void Window_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            Close();
+            if ((bool)e.NewValue == false)
+            {
+                Close();
+            }
+            
         }
     }
 }

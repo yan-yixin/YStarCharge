@@ -69,6 +69,7 @@
     <Compile Include="Document\UserInfoControl.xaml.cs">
       <DependentUpon>UserInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ChangePassowrdModel.cs" />
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
     <Compile Include="Model\Income.cs" />
@@ -178,9 +179,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

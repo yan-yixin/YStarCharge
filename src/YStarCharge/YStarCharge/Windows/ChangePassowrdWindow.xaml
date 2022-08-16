@@ -49,11 +49,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Content="原始密码:" Grid.Row="0" Grid.Column="0"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding User.Username}"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Model.OriginPassword}"/>
             <Label Content="新密码:" Grid.Row="1" Grid.Column="0"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewPassword}"/>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Model.NewPassword}"/>
             <Label Content="确认密码:" Grid.Row="2" Grid.Column="0"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding User.Password}"/>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Model.SurePassword}"/>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2" HorizontalAlignment="Center">
                 <Button Content="取消【Esc】"  Style="{StaticResource WindowButton}" 
                         HorizontalAlignment="Left" Margin="10" 
