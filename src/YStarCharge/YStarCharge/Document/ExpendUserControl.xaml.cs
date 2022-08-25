@@ -27,6 +27,7 @@ namespace YStarCharge.Document
             InitializeComponent();
             viewModel = new ExpendControlVM();
             DataContext = viewModel;
+            viewModel.DataGrid = expendDataGrid;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

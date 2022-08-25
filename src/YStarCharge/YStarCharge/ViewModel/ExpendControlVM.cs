@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using YStarCharge.Common;
 using YStarCharge.Model;
 using YStarCharge.Windows;
 
@@ -16,7 +18,7 @@ namespace YStarCharge.ViewModel
     {
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
-        public ListView ContentListView { get; set; }
+        public DataGrid DataGrid { get; set; }
 
         public ExpendFliter Fliter { get; set; } = new ExpendFliter();
 
@@ -76,8 +78,10 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Export => new RelayCommand(obj => {
-            MessageBox.Show("导出数据");
-
+            if (Util.Export(GetDataTable()))
+            {
+                MessageBox.Show("导出成功。", "提示");
+            }
         });
 
         public ICommand Query => new RelayCommand(obj => {
@@ -94,6 +98,40 @@ namespace YStarCharge.ViewModel
             {
                 Expends.Add(ex);
             }
+        }
+
+        private DataTable GetDataTable()
+        {
+            DataTable dt = new DataTable();
+            for (int i = 0; i < DataGrid.Columns.Count; i++)
+            {
+                if (DataGrid.Columns[i].Visibility == Visibility.Visible)//只导出可见列  
+                {
+                    dt.Columns.Add(DataGrid.Columns[i].Header.ToString());//构建表头  
+                }
+            }
+
+            for (int i = 0; i < DataGrid.Items.Count; i++)
+            {
+                int columnsIndex = 0;
+                DataRow row = dt.NewRow();
+                for (int j = 0; j < DataGrid.Columns.Count; j++)
+                {
+                    if (DataGrid.Columns[j].Visibility == Visibility.Visible)
+                    {
+                        if (DataGrid.Items[i] != null && (DataGrid.Columns[j].GetCellContent(DataGrid.Items[i]) as TextBlock) != null)//填充可见列数据  
+                        {
+                            row[columnsIndex] = (DataGrid.Columns[j].GetCellContent(DataGrid.Items[i]) as TextBlock).Text.ToString();
+                        }
+                        else row[columnsIndex] = "";
+
+                        columnsIndex++;
+                    }
+                }
+                dt.Rows.Add(row);
+            }
+
+            return dt;
         }
     }
 }

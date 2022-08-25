@@ -154,9 +154,9 @@
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
                     <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="金额" Width="120" Binding="{Binding Money}"
+                    <DataGridTextColumn Header="金额(元)" Width="120" Binding="{Binding Money}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="项目" Width="120" Binding="{Binding To}" 
+                    <DataGridTextColumn Header="目的" Width="120" Binding="{Binding To}" 
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"   />
                     <DataGridTextColumn Header="备注" Width="240" Binding="{Binding Remark}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
