@@ -1,18 +1,26 @@
-﻿namespace YStarCharge.Model
+﻿using System.ComponentModel;
+
+namespace YStarCharge.Model
 {
-    public class Income
+    public class Income:BaseIncomeExpend, INotifyPropertyChanged
     {
-        public bool IsSelected { get; set; }
-
-        public int Number { get; set; }
-
-        public string CreateAt { get; set; }
-
-        public float Money { get; set; }
-
-        public IncomeFrom From { get; set; }
-
-        public string Remark { get; set; }
+        private IncomeFrom from;
+        public IncomeFrom From
+        {
+            get
+            {
+                return from;
+            }
+            set
+            {
+                if(from == value)
+                {
+                    return;
+                }
+                from = value;
+                OnPropertyChanged(this, "From");
+            }
+        }
     }
 
     public enum IncomeFrom

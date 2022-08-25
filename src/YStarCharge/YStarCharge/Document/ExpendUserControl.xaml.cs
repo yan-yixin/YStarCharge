@@ -21,11 +21,11 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class ExpendUserControl : UserControl
     {
-        private ExpendAndIncomeVM viewModel;
+        private ExpendControlVM viewModel;
         public ExpendUserControl()
         {
             InitializeComponent();
-            viewModel = new ExpendAndIncomeVM();
+            viewModel = new ExpendControlVM();
             DataContext = viewModel;
         }
 

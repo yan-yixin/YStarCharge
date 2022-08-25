@@ -70,11 +70,17 @@
             <StackPanel Grid.Column="0" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <Label Content="开始日期：" VerticalAlignment="Center"/>
-                    <DatePicker Text="{Binding Fliter.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30"  Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding Fliter.StartDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <Label Content="结束日期：" />
-                    <DatePicker Text="{Binding Fliter.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding Fliter.EndDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel  Grid.Column="1" >
@@ -87,8 +93,8 @@
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <Label Content="消费场景：" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource Project}}"
-                          Width="154" Height="30" 
-                          SelectedIndex="0" VerticalContentAlignment="Center"    
+                          Width="154" 
+                          SelectedIndex="0" 
                           SelectedItem="{Binding Fliter.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                 </StackPanel>

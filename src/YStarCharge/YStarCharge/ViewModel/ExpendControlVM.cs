@@ -12,13 +12,13 @@ using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class ExpendAndIncomeVM: NotifyPropertyChanged
+    public sealed class ExpendControlVM: NotifyPropertyChanged
     {
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
         public ListView ContentListView { get; set; }
 
-        public Fliter Fliter { get; set; } = new Fliter();
+        public ExpendFliter Fliter { get; set; } = new ExpendFliter();
 
         public ICommand Add => new RelayCommand(obj => {
             EditExpendWindow editChargeWindow = new EditExpendWindow();
