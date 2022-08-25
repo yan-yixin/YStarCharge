@@ -3,10 +3,89 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:assembly="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:YStarCharge.Windows"
+        xmlns:model="clr-namespace:YStarCharge.Model"
         mc:Ignorable="d"
-        Title="EditIncomeWindow" Height="450" Width="800">
+        Title="EditIncomeWindow" 
+        Height="350" Width="530"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        FontFamily="宋体" FontSize="16">
+    <Window.Resources>
+        <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+            <Setter Property="Width" Value="140"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{StaticResource AppForeground}"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextBlockForeground}"/>
+        </Style>
+        <!--枚举绑定器-->
+        <ObjectDataProvider x:Key="From" MethodName="GetValues" ObjectType="{x:Type assembly:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type Type="model:IncomeFrom"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource WindowHeaderBackground}">
+            <TextBlock Name="titleTextBlock" Text="{Binding Title}" HorizontalAlignment="Center" 
+                       Foreground="{StaticResource AppForeground}"
+                       FontSize="16"/>
+        </Grid>
+
+        <Grid Grid.Row ="1">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                    <GradientStop Color="#253a5b" Offset="0.1"/>
+                    <GradientStop Color="#011a34" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="60"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <Label Content="金额:"/>
+                    <TextBox Text="{Binding Income.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <Label Content="来源:"/>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource From}}" 
+                              Width="140" Height="35" SelectedIndex="0"
+                              SelectedItem="{Binding Income.From,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              VerticalContentAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <Label Content="日期:" />
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding Income.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="40,10">
+                    <Label Content="备注:"/>
+                    <TextBox Text="{Binding Income.Remark,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                             Width="250" Height="60"
+                             TextWrapping="Wrap" VerticalContentAlignment="Top"
+                             AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid  Grid.Row="1" Width="260" HorizontalAlignment="Center">
+                <Button Content="取消【Esc】" Style="{StaticResource WindowButton}" HorizontalAlignment="Left" Click="CloseButton_Click"/>
+                <Button Content="确定【Enter】" Style="{StaticResource WindowButton}" HorizontalAlignment="Right" Click="OkButton_Click"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

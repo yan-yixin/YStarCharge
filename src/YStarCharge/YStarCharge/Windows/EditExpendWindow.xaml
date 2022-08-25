@@ -68,7 +68,10 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="日期:" />
-                    <DatePicker Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30" Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding Expend.CreateAt,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="备注:"/>
