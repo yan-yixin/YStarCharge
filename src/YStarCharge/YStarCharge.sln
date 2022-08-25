@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YStarCharge", "YStarCharge\YStarCharge.csproj", "{81F1A6A0-7487-4BF6-802B-AC3D89570207}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLib", "SqlLib\SqlLib.csproj", "{47EB1F5C-6A91-4215-8910-AC6700BE15B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F1A6A0-7487-4BF6-802B-AC3D89570207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
