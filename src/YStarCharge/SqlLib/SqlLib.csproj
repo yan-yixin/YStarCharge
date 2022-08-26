@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigureHelper.cs" />
+    <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\IController.cs" />
     <Compile Include="IEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

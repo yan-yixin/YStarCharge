@@ -86,9 +86,11 @@
             <StackPanel  Grid.Column="1" >
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <Label Content="金额范围："/>
-                    <TextBox Text="{Binding Fliter.MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="24" Foreground="{StaticResource TextBlockForeground}"/>
-                    <TextBox Text="{Binding Fliter.MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox x:Name="minMoneyTextBox" 
+                             Text="{Binding Fliter.MinMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="&lt;&gt;" Margin="5" FontSize="16" Width="20"/>
+                    <TextBox x:Name="maxMoneyTextBox" 
+                             Text="{Binding Fliter.MaxMoney,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
                 <StackPanel Style="{StaticResource QueryStackPanelStyle}">
                     <Label Content="消费场景：" />

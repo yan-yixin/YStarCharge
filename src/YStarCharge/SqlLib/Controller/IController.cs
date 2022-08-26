@@ -10,6 +10,8 @@ namespace SqlLib.Controller
 
         int Delete(IEntity entity);
 
+        int Delete(int id);
+
         IEntity Query(int id);
 
         DataTable Query();

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace YStarCharge.Model
+﻿namespace YStarCharge.Model
 {
     public class UserAccount:NotifyPropertyChanged
     {
+        public virtual int Id { get; set; }
+
         private string username;
-        public string Username
+        public virtual string Username
         {
             get
             {
@@ -26,7 +23,7 @@ namespace YStarCharge.Model
         }
 
         public string password;
-        public string Password
+        public virtual string Password
         {
             get
             {
@@ -45,7 +42,7 @@ namespace YStarCharge.Model
 
         public string headIcon;
 
-        public string HeadIcon
+        public virtual string HeadIcon
         {
             get
             {
@@ -61,5 +58,7 @@ namespace YStarCharge.Model
                 OnPropertyChanged(this, "HeadIcon");
             }
         }
+
+
     }
 }
