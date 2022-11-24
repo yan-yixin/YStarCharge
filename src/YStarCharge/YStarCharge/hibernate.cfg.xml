@@ -1,0 +1,10 @@
+﻿<hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2">
+	<session-factory name="NHibernate.Test">
+		<property name="connection.driver_class">NHibernate.Driver.SQLite20Driver</property>
+		<property name="connection.connection_string">
+			Data Source=D:\Databases\YStarCharge.db;BinaryGUID=false;
+		</property>
+		<property name="dialect">NHibernate.Dialect.SQLiteDialect</property>
+		<mapping assembly="YStarCharge" />
+	</session-factory>
+</hibernate-configuration>

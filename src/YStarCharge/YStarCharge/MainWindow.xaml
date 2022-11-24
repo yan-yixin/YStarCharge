@@ -29,7 +29,9 @@
                 <Setter Property="Foreground" Value="#bfcce2"/>
                 <Setter Property="Template" Value="{StaticResource ImageButtonTemplete}"/>
             </Style>
-
+            <Style TargetType="TextBlock">
+                <Setter Property="Foreground" Value="#fff"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -42,20 +44,31 @@
             <TextBlock Text="点记账本" Foreground="White" Width="100"  FontSize="24"
                        HorizontalAlignment="Left"  VerticalAlignment="Center"
                        Margin="95,0"/>
-            <Button ToolTip="用户管理" Command="{Binding User}" Margin="100,0">
+            <Button ToolTip="用户管理" Command="{Binding UserManager}" Margin="100,0" 
+                    x:Name="userButton">
                 <Button.Template>
-                    <ControlTemplate>
+                    <ControlTemplate TargetType="Button">
                         <Image Source="Images/user.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
             <Button ToolTip="退出" Command="{Binding Close}" Margin="50,0">
                 <Button.Template>
-                    <ControlTemplate>
+                    <ControlTemplate >
                         <Image Source="Images/close.png" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"/>
                     </ControlTemplate>
                 </Button.Template>
             </Button>
+
+            <Popup IsOpen="{Binding IsOpen}" PlacementTarget="{Binding ElementName=userButton}" HorizontalOffset="-35" >
+                <Border CornerRadius="3" BorderThickness="1" BorderBrush="#fff" Margin="0,10">
+                    <StackPanel>
+                        <Button Content="个人信息" Foreground="#fff" Width="100" Command="{Binding UserInfo}"/>
+                        <Button Content="修改密码" Foreground="#fff" Width="100" Command="{Binding LoginWindowVM.ForgetPassword}"/>
+                        <Button Content="注销" Foreground="#fff" Width="100" Command="{Binding Logout}"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -68,14 +81,47 @@
                     <TextBlock Text="admin" Foreground="White" FontSize="14" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <custom:ImageAndTextButton Content="首页"  ToolTip="首页" ImageSource="Images/home.png"/>
+                <custom:ImageAndTextButton x:Name="expendButton" Content="收支明细" ToolTip="收支明细" ImageSource="Images/charge.png"
+                                           Command="{Binding Detail}">
+                    <custom:ImageAndTextButton.Template>
+                        <ControlTemplate TargetType="custom:ImageAndTextButton">
+                            <StackPanel Orientation="Horizontal" Background="{TemplateBinding Background}">
+                                <Image Source="{TemplateBinding ImageSource}" Width="25" Height="25" Margin="40,0,10,0"/>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Path StrokeThickness="2" Stroke="{StaticResource TextBlockForeground}">
+                                    <Path.Data>
+                                        <GeometryGroup>
+                                            <LineGeometry StartPoint="15,16" EndPoint="21,21"></LineGeometry>
+                                            <LineGeometry StartPoint="21,21" EndPoint="15,26"></LineGeometry>
+                                        </GeometryGroup>
+                                    </Path.Data>
+                                </Path>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="custom:ImageAndTextButton.IsMouseOver" Value="True">
+                                    <Setter Property="custom:ImageAndTextButton.Background" Value="#1a6aa9"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </custom:ImageAndTextButton.Template>
+                </custom:ImageAndTextButton>
+                <StackPanel Margin="20,0" Background="Transparent" Visibility="{Binding Popup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <custom:ImageAndTextButton Content="支出明细" ToolTip="支出明细" ImageSource="Images/charge.png"
+                                           Command="{Binding ExpendDetial}"/>
+                    <custom:ImageAndTextButton Content="收入明细" ToolTip="收入明细" ImageSource="Images/charge.png"
+                                           Command="{Binding IncomeDetial}"/>
+                </StackPanel>
 
-                <custom:ImageAndTextButton Content="收支明细" ToolTip="收支明细" ImageSource="Images/charge.png"
-                                           Command="{Binding Expend}"/>
                 <custom:ImageAndTextButton Content="统计报表" ToolTip="统计报表" ImageSource="Images/report.png"
                                            Command="{Binding Report}"/>
             </StackPanel>
             <Grid Grid.Column="1" x:Name="contenGrid">
-
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#253a5b" Offset="0.1"/>
+                        <GradientStop Color="#011a34" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
             </Grid>
         </Grid>
 

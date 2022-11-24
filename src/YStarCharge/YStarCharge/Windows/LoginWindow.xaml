@@ -49,7 +49,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/username.png" Stretch="Uniform" Width="20" Height="20"/>
-                    <TextBox Grid.Column="1" Text="{Binding UserName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBox Grid.Column="1" Text="{Binding User.Username,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                      VerticalContentAlignment="Center" 
                      FontWeight="Black" BorderThickness="0">
                         <TextBox.Resources>

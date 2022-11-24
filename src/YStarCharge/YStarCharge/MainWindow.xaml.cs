@@ -8,16 +8,23 @@ namespace YStarCharge
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MainWindowViewModel viewModel;
+        private MainWindowVM viewModel;
         public MainWindow()
         {
             InitializeComponent();
 
-            viewModel = new MainWindowViewModel();
+            
+            viewModel = new MainWindowVM();
             DataContext = viewModel;
             viewModel.ContentGrid = contenGrid;
 
-
+            viewModel.WindowClose += ViewModel_WindowClose;
         }
+
+        private void ViewModel_WindowClose(object sender, System.EventArgs e)
+        {
+            Close();
+        }
+
     }
 }

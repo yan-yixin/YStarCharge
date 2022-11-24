@@ -20,11 +20,11 @@ namespace YStarCharge.Windows
     /// </summary>
     public partial class EditExpendWindow : Window
     {
-        public EditExpendWindowViewModel ViewModel;
+        public EditExpendWindowVM ViewModel;
         public EditExpendWindow()
         {
             InitializeComponent();
-            ViewModel = new EditExpendWindowViewModel();
+            ViewModel = new EditExpendWindowVM();
             DataContext = ViewModel;
         }
 

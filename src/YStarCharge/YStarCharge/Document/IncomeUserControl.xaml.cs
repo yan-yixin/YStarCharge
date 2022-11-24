@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using YStarCharge.Model;
 using YStarCharge.ViewModel;
 
 namespace YStarCharge.Document
@@ -20,11 +21,11 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class IncomeUserControl : UserControl
     {
-        private readonly ExpendAndIncomeViewModel viewModel;
+        private readonly IncomeControlVM viewModel;
         public IncomeUserControl()
         {
             InitializeComponent();
-            viewModel = new ExpendAndIncomeViewModel();
+            viewModel = new IncomeControlVM();
             DataContext = viewModel;
         }
 
@@ -36,6 +37,11 @@ namespace YStarCharge.Document
         private void AllSelectCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             viewModel.SetCheckBoxChecked(false);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,13 +39,13 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.15\lib\net45\log4net.dll</HintPath>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\packages\Aspose.Cells.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,7 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonRepository\CommonRepository.cs" />
+    <Compile Include="CommonRepository\ICommonRepository.cs" />
     <Compile Include="Common\AppConfigHelper.cs" />
+    <Compile Include="Common\NHibernateHelper.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="CustomControl\ImageAndTextButton.cs" />
     <Compile Include="Document\ExpendAndIncomeDocument.xaml.cs">
@@ -73,19 +78,44 @@
     <Compile Include="Document\IncomeUserControl.xaml.cs">
       <DependentUpon>IncomeUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Document\StatisticsDoucment.xaml.cs">
+      <DependentUpon>StatisticsDoucment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Document\ChartUserControl.xaml.cs">
+      <DependentUpon>ChartUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Document\UserInfoControl.xaml.cs">
       <DependentUpon>UserInfoControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\ChangePassowrdModel.cs" />
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
+    <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Income.cs" />
-    <Compile Include="Model\Login.cs" />
+    <Compile Include="Model\IncomeExpend.cs" />
+    <Compile Include="Model\StatisticsType.cs" />
+    <Compile Include="Model\TimeUnit.cs" />
+    <Compile Include="Model\UserAccount.cs" />
+    <Compile Include="Model\UserInfo.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModel\EditExpendWindowViewModel.cs" />
-    <Compile Include="ViewModel\ExpendAndIncomeViewModel.cs" />
-    <Compile Include="ViewModel\LoginWindowViewModel.cs" />
-    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordVM.cs" />
+    <Compile Include="ViewModel\ChartUserControlVM.cs" />
+    <Compile Include="ViewModel\EditExpendWindowVM.cs" />
+    <Compile Include="ViewModel\EditIncomeWindowVM.cs" />
+    <Compile Include="ViewModel\ExpendControlVM.cs" />
+    <Compile Include="ViewModel\ICommandVM.cs" />
+    <Compile Include="ViewModel\IncomeControlVM.cs" />
+    <Compile Include="ViewModel\LoginWindowVM.cs" />
+    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\OKCancelVM.cs" />
+    <Compile Include="ViewModel\UserInfoVM.cs" />
+    <Compile Include="Windows\ChangePassowrdWindow.xaml.cs">
+      <DependentUpon>ChangePassowrdWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditIncomeWindow.xaml.cs">
+      <DependentUpon>EditIncomeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
@@ -101,6 +131,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Document\IncomeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Document\StatisticsDoucment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Document\ChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\ChangePassowrdWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\EditExpendWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -147,6 +189,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Windows\EditIncomeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,10 +220,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -215,6 +258,26 @@
     <Resource Include="Images\export.png" />
     <Resource Include="Images\Info.png" />
     <Resource Include="Images\seek.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\HeadPortrait\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Iesi.Collections">
+      <Version>4.0.0.4000</Version>
+    </PackageReference>
+    <PackageReference Include="LiveCharts.Wpf">
+      <Version>0.9.7</Version>
+    </PackageReference>
+    <PackageReference Include="NHibernate">
+      <Version>4.1.2.4000</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hibernate.cfg.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapper\UserAccount.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

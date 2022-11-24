@@ -19,17 +19,12 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class ExpendAndIncomeDocument : UserControl
     { 
-        public ExpendAndIncomeDocument()
+        public ExpendAndIncomeDocument(UserControl control )
         {
             InitializeComponent();
 
-            ExpendUserControl euc = new ExpendUserControl();
             contentGrid.Children.Clear();
-            contentGrid.Children.Add(euc);
-
-            //IncomeUserControl iuc = new IncomeUserControl();
-            //contentGrid.Children.Clear();
-            //contentGrid.Children.Add(iuc);
+            contentGrid.Children.Add(control);
         }
     }
 }

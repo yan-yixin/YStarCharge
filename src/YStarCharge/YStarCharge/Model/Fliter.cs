@@ -1,8 +1,11 @@
-﻿namespace YStarCharge.Model
-{
-    public class Fliter: NotifyPropertyChanged
-    {
+﻿using System;
+using System.ComponentModel;
 
+namespace YStarCharge.Model
+{
+
+    public class BaseFliter : NotifyPropertyChanged
+    {
         private float minMoney;
 
         public float MinMoney
@@ -18,7 +21,7 @@
                     return;
                 }
                 minMoney = value;
-                OnPropertyChanged(this,"MinMoney");
+                OnPropertyChanged(this, "MinMoney");
             }
         }
 
@@ -37,12 +40,12 @@
                     return;
                 }
                 maxMoney = value;
-                OnPropertyChanged(this,"MaxMoney");
+                OnPropertyChanged(this, "MaxMoney");
             }
         }
 
-        private string startDate;
-        public string StartDate
+        private DateTime startDate;
+        public DateTime StartDate
         {
             get
             {
@@ -59,9 +62,9 @@
             }
         }
 
-        private string endDate;
+        private DateTime endDate;
 
-        public string EndDate
+        public DateTime EndDate
         {
             get
             {
@@ -74,10 +77,14 @@
                     return;
                 }
                 endDate = value;
-                OnPropertyChanged(this,"EndDate");
+                OnPropertyChanged(this, "EndDate");
             }
         }
 
+    }
+
+    public class ExpendFliter: BaseFliter, INotifyPropertyChanged
+    {
         private ExpendTo to;
 
         public ExpendTo To
@@ -97,4 +104,28 @@
             }
         }
     }
+
+    public class IncomeFliter : BaseFliter, INotifyPropertyChanged
+    {
+        private IncomeFrom from;
+
+        public IncomeFrom From
+        {
+            get
+            {
+                return from;
+            }
+            set
+            {
+                if (from == value)
+                {
+                    return;
+                }
+                from = value;
+                OnPropertyChanged(this, "From");
+            }
+        }
+    }
+
+
 }

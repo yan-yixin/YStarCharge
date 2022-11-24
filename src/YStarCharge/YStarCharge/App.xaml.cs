@@ -18,5 +18,7 @@ namespace YStarCharge
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
+
+        
     }
 }
