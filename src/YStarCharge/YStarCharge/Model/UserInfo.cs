@@ -1,12 +1,15 @@
-﻿using System;
+﻿using SqlLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace YStarCharge.Model
 {
-    public class UserInfo : NotifyPropertyChanged
+    public class UserInfo : NotifyPropertyChanged,IEntity
     {
+        public int Id { get; set; }
+
         private string username;
         public string Username
         {
@@ -100,5 +103,7 @@ namespace YStarCharge.Model
             }
 
         }
+
+
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using YStarCharge.Common;
+using YStarCharge.Controller;
 using YStarCharge.Model;
 using YStarCharge.Windows;
 
@@ -9,7 +10,7 @@ namespace YStarCharge.ViewModel
 {
     public sealed class LoginWindowVM: NotifyPropertyChanged
     {
-
+        private UserAccountController controller = new UserAccountController();
         public UserAccount User { get; set; } = new UserAccount()
         {
             Username = AppConfigHelper.Username
@@ -40,31 +41,24 @@ namespace YStarCharge.ViewModel
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(User.Password))
+            {
+                Util.NoticeMessageBox("密码不能为空");
+                return;
+            }
+
+            var userTemp = controller.GetAccount(User.Username);
+            if(userTemp == null || userTemp.Password != User.Password)
+            {
+                Util.NoticeMessageBox("用户名或密码不正确");
+                return;
+            }
             //显示主界面
             MainWindow window = new MainWindow();
             window.Show();
 
             //这个界面关闭
             IsWindowClose = false;
-
-            //if (string.IsNullOrWhiteSpace(password))
-            //{
-            //    Util.NoticeMessageBox("密码不能为空");
-            //    return;
-            //}
-
-            //if (username == AppConfigHelper.Username && password == AppConfigHelper.Password)
-            //{
-            //    //显示主界面
-            //    MainWindow window = new MainWindow();
-            //    window.Show();
-
-            //    //这个界面关闭
-            //    IsWindowClose = false;
-            //    return;
-            //}
-            //Util.NoticeMessageBox("用户名或密码不正确");
-            //TODO
         });
 
         public ICommand Register => new RelayCommand(param =>
@@ -77,7 +71,11 @@ namespace YStarCharge.ViewModel
         {
             //TODO
             ChangePassowrdWindow cpw = new ChangePassowrdWindow();
-            cpw.ShowDialog();
+            if(cpw.ShowDialog() == true)
+            {
+                var newPasword = cpw.ViewModel.Model.SurePassword;
+                int ret = controller.Update(User);
+            }
         });
     }
 }

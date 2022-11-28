@@ -73,6 +73,8 @@
     </ApplicationDefinition>
     <Compile Include="Common\AppConfigHelper.cs" />
     <Compile Include="Common\Util.cs" />
+    <Compile Include="Controller\UserAccountController.cs" />
+    <Compile Include="Controller\UserInfoController.cs" />
     <Compile Include="CustomControl\ImageAndTextButton.cs" />
     <Compile Include="Document\ExpendAndIncomeDocument.xaml.cs">
       <DependentUpon>ExpendAndIncomeDocument.xaml</DependentUpon>
@@ -95,7 +97,6 @@
     <Compile Include="Model\ChangePassowrdModel.cs" />
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
-    <Compile Include="Model\IEntity.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\IncomeExpend.cs" />
     <Compile Include="Model\StatisticsType.cs" />
@@ -284,6 +285,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapper\UserAccount.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlLib\SqlLib.csproj">
+      <Project>{47eb1f5c-6a91-4215-8910-ac6700be15b8}</Project>
+      <Name>SqlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

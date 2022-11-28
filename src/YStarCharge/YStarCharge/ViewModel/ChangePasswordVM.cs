@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using YStarCharge.Common;
 using YStarCharge.Model;
 
 namespace YStarCharge.ViewModel
 {
-    public class ChangePasswordVM:NotifyPropertyChanged
+    public class ChangePasswordVM : NotifyPropertyChanged
     {
         public ChangePassowrdModel Model { get; set; } = new ChangePassowrdModel();
 
