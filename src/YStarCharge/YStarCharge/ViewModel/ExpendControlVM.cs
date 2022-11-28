@@ -14,7 +14,7 @@ using YStarCharge.Windows;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class ExpendControlVM: NotifyPropertyChanged, ICommandVM
+    public sealed class ExpendControlVM: NotifyPropertyChanged
     {
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
@@ -84,29 +84,10 @@ namespace YStarCharge.ViewModel
             }
         });
 
-        public ICommand Query => new RelayCommand(obj =>
-        {
-            List<Expend> tempExpends = Expends.ToList();
-            IEnumerable<Expend> result = tempExpends.Where(e => e.CreateAt >= Fliter.StartDate && e.CreateAt <= Fliter.EndDate).
-            Where(ex => ex.Money >= Fliter.MinMoney && ex.Money <= Fliter.MaxMoney && ex.To == Fliter.To);
-            if (result != null)
-            {
-                Expends.Clear();
-                result.ToList().ForEach(r => Expends.Add(r));
-            }
+        public ICommand Query => new RelayCommand(obj => {
+            MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
+            
         });
-
-        public ICommand Refresh => new RelayCommand(obj =>
-        {
-            RefreshData();
-        });
-
-        public ExpendControlVM()
-        {
-            Fliter.StartDate = DateTime.Now;
-            Fliter.EndDate = DateTime.Now;
-            RefreshData();
-        }
 
         public void SetCheckBoxChecked(bool isCheck)
         {
@@ -117,15 +98,6 @@ namespace YStarCharge.ViewModel
             {
                 Expends.Add(ex);
             }
-        }
-
-        public float GetTotalMoney()
-        {
-            if(Expends.Count <= 0)
-            {
-                return 0;
-            }
-            return Expends.ToList().Sum(e => e.Money);
         }
 
         private DataTable GetDataTable()
@@ -161,49 +133,5 @@ namespace YStarCharge.ViewModel
 
             return dt;
         }
-
-        private void RefreshData()
-        {
-            Expend expend = new Expend()
-            {
-                Number = 1,
-                CreateAt = new DateTime(2022,11,20),
-                Money = 153.45f,
-                To = ExpendTo.餐饮,
-
-            };
-            Expend expend1 = new Expend()
-            {
-                Number = 2,
-                CreateAt = new DateTime(2022, 11, 21),
-                Money = 15,
-                To = ExpendTo.其他,
-                Remark = "忘了怎么花的"
-            };
-            Expend expend2 = new Expend()
-            {
-                Number = 3,
-                CreateAt = new DateTime(2022, 11, 19),
-                Money = 15,
-                To = ExpendTo.旅游,
-                Remark = "忘了怎么花的"
-            };
-            Expend expend3 = new Expend()
-            {
-                IsSelected = true,
-                Number = 4,
-                CreateAt = new DateTime(2022, 11, 17),
-                Money = 15,
-                To = ExpendTo.购物,
-                Remark = "忘了怎么花的"
-            };
-            Expends.Clear();
-            Expends.Add(expend);
-            Expends.Add(expend1);
-            Expends.Add(expend2);
-            Expends.Add(expend3);
-        }
     }
-
-
 }

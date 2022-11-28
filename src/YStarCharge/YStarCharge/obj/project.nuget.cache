@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "JSLR9tlSJgVafJDxiQWctkq4+97tf70Q3qzsEksGPW/G68MSwH2A1A3cXGUAt5lBnOjp8jyUlbk4pSrr1yBQNw==",
+  "success": true,
+  "projectFilePath": "E:\\Github\\PointGeAccountBook\\src\\YStarCharge\\YStarCharge\\YStarCharge.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yanyixin224\\.nuget\\packages\\iesi.collections\\4.0.0.4000\\iesi.collections.4.0.0.4000.nupkg.sha512",
+    "C:\\Users\\yanyixin224\\.nuget\\packages\\nhibernate\\4.1.2.4000\\nhibernate.4.1.2.4000.nupkg.sha512"
+  ],
+  "logs": []
+}
