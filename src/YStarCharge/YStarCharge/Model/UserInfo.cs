@@ -1,8 +1,4 @@
 ﻿using SqlLib;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace YStarCharge.Model
 {
@@ -10,21 +6,24 @@ namespace YStarCharge.Model
     {
         public int Id { get; set; }
 
-        private string username;
-        public string Username
+        public string Username { get; set; }
+
+
+        private string name;
+        public string Name
         {
             get
             {
-                return username;
+                return name;
             }
             set
             {
-                if(username == value)
+                if(name == value)
                 {
                     return;
                 }
-                username = value;
-                OnPropertyChanged(this,"Username");
+                name = value;
+                OnPropertyChanged(this,"Name");
             }
         }
 

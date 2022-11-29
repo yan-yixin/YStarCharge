@@ -71,8 +71,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppContext.cs" />
     <Compile Include="Common\AppConfigHelper.cs" />
     <Compile Include="Common\Util.cs" />
+    <Compile Include="Controller\ExpendController.cs" />
+    <Compile Include="Controller\IncomeController.cs" />
     <Compile Include="Controller\UserAccountController.cs" />
     <Compile Include="Controller\UserInfoController.cs" />
     <Compile Include="CustomControl\ImageAndTextButton.cs" />
@@ -279,12 +282,6 @@
     <PackageReference Include="NHibernate">
       <Version>4.1.2.4000</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="hibernate.cfg.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapper\UserAccount.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SqlLib\SqlLib.csproj">

@@ -57,10 +57,10 @@ namespace YStarCharge.Document
                     Values = new ChartValues<float>()
                 };
                 var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
-                var result = expends.Where(e => e.To.ToString() == name);
+                var result = expends.Where(e => e.Direction.ToString() == name);
                 if (result != null)
                 {
-                    ps.Values.Add(result.Sum(r => r.Money));
+                    ps.Values.Add(result.Sum(r => r.Amount));
                 }
                 viewModel.PieChartSeries.Add(ps);
             }
@@ -80,13 +80,13 @@ namespace YStarCharge.Document
             var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
             switch (timeUnit)
             {
-                case TimeUnit.Year:
+                case TimeUnit.年:
                     AppenYearData(colunmseries);
                     break;
-                case TimeUnit.Month:
+                case TimeUnit.月:
                     AppenMonthData(colunmseries);
                     break;
-                case TimeUnit.Day:
+                case TimeUnit.日:
                     AppenDayData(colunmseries);
                     break;
             }
@@ -107,13 +107,13 @@ namespace YStarCharge.Document
 
             switch (timeUnit)
             {
-                case TimeUnit.Year:
+                case TimeUnit.年:
                     AppenYearData(lineSeries);
                     break;
-                case TimeUnit.Month:
+                case TimeUnit.月:
                     AppenMonthData(lineSeries);
                     break;
-                case TimeUnit.Day:
+                case TimeUnit.日:
                     AppenDayData(lineSeries);
                     break;
             }
@@ -129,7 +129,7 @@ namespace YStarCharge.Document
                 var result = expends.Where(e => e.CreateAt.Month == i);
                 if (result != null)
                 {
-                    var money = result.Sum(r => r.Money);
+                    var money = result.Sum(r => r.Amount);
                     series.Values.Add(money);
                 }
             }
@@ -145,7 +145,7 @@ namespace YStarCharge.Document
                 var result = expends.Where(e => e.CreateAt.Month == i);
                 if (result != null)
                 {
-                    var money = result.Sum(r => r.Money);
+                    var money = result.Sum(r => r.Amount);
                     series.Values.Add(money);
                 }
             }
@@ -163,7 +163,7 @@ namespace YStarCharge.Document
                 var result = expends.Where(e => e.CreateAt.Day == i);
                 if (result != null)
                 {
-                    var money = result.Sum(r => r.Money);
+                    var money = result.Sum(r => r.Amount);
                     series.Values.Add(money);
                 }
             }

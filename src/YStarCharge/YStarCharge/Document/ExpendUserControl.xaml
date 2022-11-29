@@ -163,13 +163,13 @@
                             </Style>
                         </DataGridCheckBoxColumn.ElementStyle>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
                     <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt,StringFormat=yyyy-MM-dd}" 
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="金额(元)" Width="120" Binding="{Binding Money}"
+                    <DataGridTextColumn Header="金额(元)" Width="120" Binding="{Binding Amount}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="目的" Width="120" Binding="{Binding To}" 
+                    <DataGridTextColumn Header="目的" Width="120" Binding="{Binding Direction}" 
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"   />
                     <DataGridTextColumn Header="备注" Width="240" Binding="{Binding Remark}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>

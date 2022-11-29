@@ -27,7 +27,7 @@ namespace YStarCharge.ViewModel
             editChargeWindow.ViewModel.Title = "新增";
             if (editChargeWindow.ShowDialog() == true)
             {
-                editChargeWindow.ViewModel.Expend.Number = Expends.Count + 1;
+                editChargeWindow.ViewModel.Expend.Id = Expends.Count + 1;
                 Expends.Add(editChargeWindow.ViewModel.Expend);
             }
         });
@@ -44,9 +44,9 @@ namespace YStarCharge.ViewModel
             editChargeWindow.ViewModel.Title = "编辑";
             var temp = expend;
             editChargeWindow.ViewModel.Expend = new Expend() { 
-                Number = temp.Number,
-                Money = temp.Money,
-                To = temp.To,
+                Id = temp.Id,
+                Amount = temp.Amount,
+                Direction = temp.Direction,
                 Remark = temp.Remark,
                 CreateAt = temp.CreateAt 
             };

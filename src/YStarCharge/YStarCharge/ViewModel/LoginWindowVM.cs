@@ -47,12 +47,13 @@ namespace YStarCharge.ViewModel
                 return;
             }
 
-            var userTemp = controller.GetAccount(User.Username);
+            var userTemp = controller.Get<UserAccount>(User.Username);
             if(userTemp == null || userTemp.Password != User.Password)
             {
                 Util.NoticeMessageBox("用户名或密码不正确");
                 return;
             }
+            AppContext.Instacne.Username = User.Username;
             //显示主界面
             MainWindow window = new MainWindow();
             window.Show();

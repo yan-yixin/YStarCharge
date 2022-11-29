@@ -2,8 +2,8 @@
 {
     public enum TimeUnit
     {
-        Year,
-        Month,
-        Day
+        年,
+        月,
+        日
     }
 }

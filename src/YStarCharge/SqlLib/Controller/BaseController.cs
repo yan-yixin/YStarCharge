@@ -182,30 +182,46 @@ namespace SqlLib.Controller
             return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
         }
 
+        public T Get<T>(string username)
+        {
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                return default;
+            }
+
+            string sql = $"Select * From {GetName()} Where Username = '{username}'";
+            var table = SqlHelper.Instance.ExcuteCommand(sql);
+            if (table == null || table.Rows.Count <= 0)
+            {
+                return default;
+            }
+            var assembly = Assembly.Load("YStarCharge");
+            var t = assembly.CreateInstance($"YStarCharge.Model.{GetName()}") ;
+            Type type = t.GetType();
+            var properties = type.GetProperties();
+            if (properties == null)
+            {
+                return default;
+            }
+            for (int i = 0; i < properties.Length; i++)
+            {
+                var pro = properties[i];
+                if (table.Columns.Contains(pro.Name))
+                {
+                    var value = table.Rows[0][pro.Name];
+                    if (string.IsNullOrWhiteSpace(value.ToString()))
+                    {
+                        value = string.Empty;
+                    }
+                    pro.SetValue(t, value);
+                }
+            }
+            return (T)t;
+        }
+
         protected virtual string GetName()
         {
             return GetType().Name.Replace("Controller", "").Trim();
         }
-
-        //private T FromDataTable<T>(DataTable table) where T :IEntity
-        //{
-        //    if(table == null)
-        //    {
-        //        return default(T);
-        //    }
-        //    Type type = typeof(T);
-        //    for(int i = 0; i < table.Columns.Count; i++)
-        //    {
-        //        var col = table.Columns[i];
-
-        //        var property = type.GetProperty(col.ColumnName);
-        //        if(property == null)
-        //        {
-        //            continue;
-        //        }
-
-        //        property.SetValue(T,table.Rows[0][col.ColumnName]);
-        //    }
-        //}
     }
 }

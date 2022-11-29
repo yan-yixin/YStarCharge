@@ -21,7 +21,7 @@ namespace YStarCharge.ViewModel
             editChargeWindow.ViewModel.Title = "新增";
             if (editChargeWindow.ShowDialog() == true)
             {
-                editChargeWindow.ViewModel.Income.Number = Incomes.Count + 1;
+                editChargeWindow.ViewModel.Income.Id = Incomes.Count + 1;
                 Incomes.Add(editChargeWindow.ViewModel.Income);
             }
         });
@@ -39,9 +39,9 @@ namespace YStarCharge.ViewModel
             var temp = expend;
             editChargeWindow.ViewModel.Income = new Income()
             {
-                Number = temp.Number,
-                Money = temp.Money,
-                From = temp.From,
+                Id = temp.Id,
+                Amount = temp.Amount,
+                Channel = temp.Channel,
                 Remark = temp.Remark,
                 CreateAt = temp.CreateAt
             };
@@ -80,7 +80,7 @@ namespace YStarCharge.ViewModel
         public ICommand Query => new RelayCommand(obj => {
             List<Income> tempIncomes = Incomes.ToList();
             IEnumerable<Income> result = tempIncomes.Where(e => e.CreateAt >= Fliter.StartDate && e.CreateAt <= Fliter.EndDate).
-            Where(ex => ex.Money >= Fliter.MinMoney && ex.Money <= Fliter.MaxMoney && ex.From == Fliter.From);
+            Where(ex => ex.Amount >= Fliter.MinMoney && ex.Amount <= Fliter.MaxMoney && ex.Channel == Fliter.From);
             if (result != null)
             {
                 Incomes.Clear();
@@ -116,26 +116,26 @@ namespace YStarCharge.ViewModel
         {
             Income expend = new Income()
             {
-                Number = 1,
+                Id = 1,
                 CreateAt = DateTime.Now.Date,
-                Money = 15323.45f,
-                From = IncomeFrom.工资
+                Amount = 15323.45f,
+                Channel = IncomeFrom.工资
 
             };
             Income expend1 = new Income()
             {
-                Number = 2,
+                Id = 2,
                 CreateAt = DateTime.Now.Date,
-                Money = 1532,
-                From = IncomeFrom.副业,
+                Amount = 1532,
+                Channel = IncomeFrom.副业,
                 Remark = "忘了怎么花的"
             };
             Income expend2 = new Income()
             {
-                Number = 3,
+                Id = 3,
                 CreateAt = DateTime.Now.Date,
-                Money = 15000,
-                From = IncomeFrom.其他,
+                Amount = 15000,
+                Channel = IncomeFrom.其他,
                 Remark = "忘了怎么花的"
             };
             Incomes.Add(expend);

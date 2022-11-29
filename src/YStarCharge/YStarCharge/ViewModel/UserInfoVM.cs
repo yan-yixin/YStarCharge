@@ -78,7 +78,7 @@ namespace YStarCharge.ViewModel
 
         public UserInfoVM()
         {
-            UserInformation = controller.GetUserInfo("admin");
+            UserInformation = controller.Get<UserInfo>(AppContext.Instacne.Username);
             if (UserInformation == null)
             {
                 UserInformation = new UserInfo();

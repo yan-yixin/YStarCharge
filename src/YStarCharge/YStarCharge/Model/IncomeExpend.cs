@@ -1,9 +1,13 @@
-﻿using System;
+﻿using SqlLib;
+using System;
 
 namespace YStarCharge.Model
 {
-    public class BaseIncomeExpend : NotifyPropertyChanged
+    public class BaseIncomeExpend : NotifyPropertyChanged,IEntity
     {
+
+        public string Username { get; set; }
+
         private bool isSelected;
         public bool IsSelected
         {
@@ -22,21 +26,21 @@ namespace YStarCharge.Model
             }
         }
 
-        private int number;
-        public int Number
+        private int id;
+        public int Id
         {
             get
             {
-                return number;
+                return id;
             }
             set
             {
-                if (number == value)
+                if (id == value)
                 {
                     return;
                 }
-                number = value;
-                OnPropertyChanged(this, "Number");
+                id = value;
+                OnPropertyChanged(this, "Id");
             }
         }
 
@@ -58,21 +62,21 @@ namespace YStarCharge.Model
             }
         }
 
-        private float money;
-        public float Money
+        private float amount;
+        public float Amount
         {
             get
             {
-                return money;
+                return amount;
             }
             set
             {
-                if (money == value)
+                if (amount == value)
                 {
                     return;
                 }
-                money = value;
-                OnPropertyChanged(this, "Money");
+                amount = value;
+                OnPropertyChanged(this, "Amount");
             }
         }
 
@@ -90,5 +94,7 @@ namespace YStarCharge.Model
                 OnPropertyChanged(this, "Remark");
             }
         }
+
+        
     }
 }
