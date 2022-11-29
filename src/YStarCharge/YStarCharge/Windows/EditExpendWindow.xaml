@@ -57,13 +57,13 @@
             <StackPanel Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="金额:"/>
-                    <TextBox Text="{Binding Expend.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Expend.Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="用途:"/>
                     <ComboBox ItemsSource="{Binding Source={StaticResource To}}" 
                               Width="140" Height="35"
-                              SelectedItem="{Binding Expend.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Expend.Direction,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">

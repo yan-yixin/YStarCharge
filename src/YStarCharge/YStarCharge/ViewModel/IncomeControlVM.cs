@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using YStarCharge.Controller;
 using YStarCharge.Model;
 using YStarCharge.Windows;
 
@@ -12,6 +13,8 @@ namespace YStarCharge.ViewModel
 {
     public sealed class IncomeControlVM:NotifyPropertyChanged, ICommandVM
     {
+        private IncomeController controller = new IncomeController();
+
         public ObservableCollection<Income> Incomes { get; set; } = new ObservableCollection<Income>();
 
         public IncomeFliter Fliter { get; set; } = new IncomeFliter();
@@ -22,7 +25,9 @@ namespace YStarCharge.ViewModel
             if (editChargeWindow.ShowDialog() == true)
             {
                 editChargeWindow.ViewModel.Income.Id = Incomes.Count + 1;
+                editChargeWindow.ViewModel.Income.Username = AppContext.Instacne.Username;
                 Incomes.Add(editChargeWindow.ViewModel.Income);
+                controller.Add<Income>();
             }
         });
 
@@ -43,7 +48,8 @@ namespace YStarCharge.ViewModel
                 Amount = temp.Amount,
                 Channel = temp.Channel,
                 Remark = temp.Remark,
-                CreateAt = temp.CreateAt
+                CreateAt = temp.CreateAt,
+                Username = AppContext.Instacne.Username
             };
             if (editChargeWindow.ShowDialog() == true)
             {
@@ -52,6 +58,7 @@ namespace YStarCharge.ViewModel
                 Incomes.RemoveAt(index);
                 editChargeWindow.ViewModel.Income.IsSelected = true;
                 Incomes.Insert(index, editChargeWindow.ViewModel.Income);
+                controller.Update<Income>();
             }
         });
 

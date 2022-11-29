@@ -6,8 +6,6 @@ namespace YStarCharge.Model
     public class BaseIncomeExpend : NotifyPropertyChanged,IEntity
     {
 
-        public string Username { get; set; }
-
         private bool isSelected;
         public bool IsSelected
         {
@@ -43,6 +41,8 @@ namespace YStarCharge.Model
                 OnPropertyChanged(this, "Id");
             }
         }
+
+        public string Username { get; set; }
 
         private DateTime createAt;
         public DateTime CreateAt

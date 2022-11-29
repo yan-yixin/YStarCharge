@@ -58,13 +58,13 @@
             <StackPanel Grid.Row="0">
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="金额:"/>
-                    <TextBox Text="{Binding Income.Money,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBox Text="{Binding Income.Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">
                     <Label Content="来源:"/>
                     <ComboBox ItemsSource="{Binding Source={StaticResource From}}" 
                               Width="140" Height="35" SelectedIndex="0"
-                              SelectedItem="{Binding Income.From,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                              SelectedItem="{Binding Income.Channel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                               VerticalContentAlignment="Center"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="40,10">

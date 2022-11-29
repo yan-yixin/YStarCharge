@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YStarCharge.Common;
+using YStarCharge.Controller;
 using YStarCharge.Model;
 using YStarCharge.Windows;
 
@@ -16,6 +17,7 @@ namespace YStarCharge.ViewModel
 {
     public sealed class ExpendControlVM: NotifyPropertyChanged
     {
+        private ExpendController controller = new ExpendController();
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
         public DataGrid DataGrid { get; set; }
@@ -28,7 +30,10 @@ namespace YStarCharge.ViewModel
             if (editChargeWindow.ShowDialog() == true)
             {
                 editChargeWindow.ViewModel.Expend.Id = Expends.Count + 1;
+                editChargeWindow.ViewModel.Expend.Username = AppContext.Instacne.Username;
                 Expends.Add(editChargeWindow.ViewModel.Expend);
+
+                controller.Insert(editChargeWindow.ViewModel.Expend);
             }
         });
 
@@ -48,7 +53,8 @@ namespace YStarCharge.ViewModel
                 Amount = temp.Amount,
                 Direction = temp.Direction,
                 Remark = temp.Remark,
-                CreateAt = temp.CreateAt 
+                CreateAt = temp.CreateAt.Date,
+                Username = AppContext.Instacne.Username
             };
             if (editChargeWindow.ShowDialog() == true)
             {
@@ -57,6 +63,7 @@ namespace YStarCharge.ViewModel
                 Expends.RemoveAt(index);
                 editChargeWindow.ViewModel.Expend.IsSelected = true;
                 Expends.Insert(index, editChargeWindow.ViewModel.Expend);
+                controller.Update(editChargeWindow.ViewModel.Expend);
             }
         });
 
@@ -69,6 +76,15 @@ namespace YStarCharge.ViewModel
             }
             //无法直接删除，因为会删除不干净
             var tempExpends = Expends.ToList();
+
+            foreach (var ex in tempExpends)
+            {
+                if (ex.IsSelected)
+                {
+                    controller.Delete(ex);
+                }
+            }
+            //重新数据查询
             tempExpends.RemoveAll(te =>te.IsSelected);
             Expends.Clear();
             foreach(var ex in tempExpends)
@@ -85,8 +101,15 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
-            
+            //MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
+            //查询
+            var datatable = controller.Query(AppContext.Instacne.Username);
+            var temp  = controller.ToList(datatable);
+            Expends.Clear();
+            foreach (var ex in temp)
+            {
+                Expends.Add(ex);
+            }
         });
 
         public void SetCheckBoxChecked(bool isCheck)
@@ -133,5 +156,7 @@ namespace YStarCharge.ViewModel
 
             return dt;
         }
+
+
     }
 }

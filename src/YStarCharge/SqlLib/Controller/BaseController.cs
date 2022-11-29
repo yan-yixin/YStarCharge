@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SqlLib.Controller
 {
@@ -30,10 +27,8 @@ namespace SqlLib.Controller
             {
                 var pro = properties[i];
                 var value = pro.GetValue(entity);
-
-                if(pro.Name == "Id")
+                if(pro.Name == "Id" || pro.Name == "IsSelected")
                 {
-                    sb.Append($"{GetMaxId() + 1},");
                     continue;
                 }
                 if(i == properties.Length - 1)
@@ -53,6 +48,10 @@ namespace SqlLib.Controller
                     {
                         sb.Append($"'{value}',");
                     }
+                    else if(pro.PropertyType == typeof(DateTime))
+                    {
+                        sb.Append($"{(DateTime)value:yyyy-MM-dd},");
+                    }
                     else
                     {
                         sb.Append($"{value},");
@@ -63,10 +62,11 @@ namespace SqlLib.Controller
             return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
         }
 
-        public int Add()
+        public int Add<T>()
         {
             //根据配置文件获取字段名
-            Type type = this.GetType();
+            T t = Activator.CreateInstance<T>();
+            Type type = t.GetType();
             var properties = type.GetProperties();
             if (properties == null || properties.Count() <= 0)
             {
@@ -77,7 +77,11 @@ namespace SqlLib.Controller
             sb.Append($"Insert Into {GetName()} Values (");
             foreach (var pro in properties)
             {
-                var value = pro.GetValue(this);
+                var value = pro.GetValue(t);
+                if (pro.Name == "Id" || pro.Name == "IsSelected")
+                {
+                    continue;
+                }
                 sb.Append($"{value},");
             }
 
@@ -113,9 +117,9 @@ namespace SqlLib.Controller
             return string.IsNullOrWhiteSpace(value) ? 0 : int.Parse(value);
         }
 
-        public DataTable Query()
+        public DataTable Query(string username)
         {
-            string sql = $"Select * From {GetName()}";
+            string sql = $"Select * From {GetName()} Where Username = '{username}'";
             return SqlHelper.Instance.ExcuteCommand(sql);
         }
 
@@ -154,10 +158,11 @@ namespace SqlLib.Controller
             return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
         }
 
-        public int Update()
+        public int Update<T>()
         {
             //根据配置文件获取字段名
-            Type type = this.GetType();
+            T t = Activator.CreateInstance<T>();
+            Type type = t.GetType();
             var properties = type.GetProperties();
             if (properties == null || properties.Count() <= 0)
             {
@@ -170,7 +175,7 @@ namespace SqlLib.Controller
             foreach (var pro in properties)
             {
                 var name = pro.Name;
-                var value = pro.GetValue(this);          
+                var value = pro.GetValue(t);          
                 if(name == "Id")
                 {
                     id = int.Parse(value.ToString());
@@ -195,8 +200,7 @@ namespace SqlLib.Controller
             {
                 return default;
             }
-            var assembly = Assembly.Load("YStarCharge");
-            var t = assembly.CreateInstance($"YStarCharge.Model.{GetName()}") ;
+            T t = System.Activator.CreateInstance<T>();
             Type type = t.GetType();
             var properties = type.GetProperties();
             if (properties == null)
@@ -223,5 +227,6 @@ namespace SqlLib.Controller
         {
             return GetType().Name.Replace("Controller", "").Trim();
         }
+
     }
 }

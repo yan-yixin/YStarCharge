@@ -12,11 +12,11 @@ namespace SqlLib.Controller
 
         int Delete(int id);
 
-        DataTable Query();
+        DataTable Query(string username);
 
-        int Add();
+        int Add<T>();
 
-        int Update();
+        int Update<T>();
 
         int GetMaxId();
 
