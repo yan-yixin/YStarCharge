@@ -12,7 +12,8 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        FontFamily="宋体" FontSize="16">
+        FontFamily="宋体" FontSize="16"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
             <Setter Property="Width" Value="140"/>

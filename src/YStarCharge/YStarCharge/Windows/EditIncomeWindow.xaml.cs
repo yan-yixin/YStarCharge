@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using YStarCharge.ViewModel;
 
 namespace YStarCharge.Windows
@@ -27,6 +28,14 @@ namespace YStarCharge.Windows
         {
             DialogResult = true;
             Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.Income.CreateAt == DateTime.MinValue)
+            {
+                ViewModel.Income.CreateAt = DateTime.Now;
+            }
         }
     }
 }

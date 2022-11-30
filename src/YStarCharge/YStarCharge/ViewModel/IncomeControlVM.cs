@@ -27,7 +27,7 @@ namespace YStarCharge.ViewModel
                 editChargeWindow.ViewModel.Income.Id = Incomes.Count + 1;
                 editChargeWindow.ViewModel.Income.Username = AppContext.Instacne.Username;
                 Incomes.Add(editChargeWindow.ViewModel.Income);
-                controller.Add<Income>();
+                controller.Insert(editChargeWindow.ViewModel.Income);
             }
         });
 
@@ -58,7 +58,7 @@ namespace YStarCharge.ViewModel
                 Incomes.RemoveAt(index);
                 editChargeWindow.ViewModel.Income.IsSelected = true;
                 Incomes.Insert(index, editChargeWindow.ViewModel.Income);
-                controller.Update<Income>();
+                controller.Update(editChargeWindow.ViewModel.Income);
             }
         });
 
@@ -71,6 +71,13 @@ namespace YStarCharge.ViewModel
             }
             //无法直接删除，因为会删除不干净
             var tempExpends = Incomes.ToList();
+            foreach (var ex in tempExpends)
+            {
+                if (ex.IsSelected)
+                {
+                    controller.Delete(ex);
+                }
+            }
             tempExpends.RemoveAll(te => te.IsSelected);
             Incomes.Clear();
             foreach (var ex in tempExpends)
@@ -85,27 +92,29 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            List<Income> tempIncomes = Incomes.ToList();
-            IEnumerable<Income> result = tempIncomes.Where(e => e.CreateAt >= Fliter.StartDate && e.CreateAt <= Fliter.EndDate).
-            Where(ex => ex.Amount >= Fliter.MinMoney && ex.Amount <= Fliter.MaxMoney && ex.Channel == Fliter.From);
-            if (result != null)
+            var datatable = controller.Query(AppContext.Instacne.Username);
+            var temp = controller.ToList(datatable);
+            Incomes.Clear();
+            foreach (var ex in temp)
             {
-                Incomes.Clear();
-                result.ToList().ForEach(r => Incomes.Add(r));
+                Incomes.Add(ex);
             }
-
         });
 
         public ICommand Refresh => new RelayCommand(obj=> {
-
-            RefreshData();
+            var datatable = controller.Query(AppContext.Instacne.Username);
+            var temp = controller.ToList(datatable);
+            Incomes.Clear();
+            foreach (var ex in temp)
+            {
+                Incomes.Add(ex);
+            }
         });
 
         public IncomeControlVM()
         {
             Fliter.StartDate = DateTime.Now;
             Fliter.EndDate = DateTime.Now;
-            RefreshData();
         }
 
         public void SetCheckBoxChecked(bool isCheck)
@@ -119,35 +128,6 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        private void RefreshData()
-        {
-            Income expend = new Income()
-            {
-                Id = 1,
-                CreateAt = DateTime.Now.Date,
-                Amount = 15323.45f,
-                Channel = IncomeFrom.工资
-
-            };
-            Income expend1 = new Income()
-            {
-                Id = 2,
-                CreateAt = DateTime.Now.Date,
-                Amount = 1532,
-                Channel = IncomeFrom.副业,
-                Remark = "忘了怎么花的"
-            };
-            Income expend2 = new Income()
-            {
-                Id = 3,
-                CreateAt = DateTime.Now.Date,
-                Amount = 15000,
-                Channel = IncomeFrom.其他,
-                Remark = "忘了怎么花的"
-            };
-            Incomes.Add(expend);
-            Incomes.Add(expend1);
-            Incomes.Add(expend2);
-        }
+      
     }
 }

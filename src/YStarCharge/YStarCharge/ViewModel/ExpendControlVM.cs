@@ -112,6 +112,12 @@ namespace YStarCharge.ViewModel
             }
         });
 
+        public ExpendControlVM()
+        {
+            Fliter.StartDate = DateTime.Now;
+            Fliter.EndDate = DateTime.Now;
+        }
+
         public void SetCheckBoxChecked(bool isCheck)
         {
             var tempExpends = Expends.ToList();

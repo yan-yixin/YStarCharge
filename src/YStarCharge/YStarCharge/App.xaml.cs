@@ -15,11 +15,7 @@ namespace YStarCharge
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            //第一次启动初始化数据库
-            if (!Common.AppConfigHelper.IsInitlize)
-            {
-                //初始话数据库，如果没有表，自动创建表
-            }
+            FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
 
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
