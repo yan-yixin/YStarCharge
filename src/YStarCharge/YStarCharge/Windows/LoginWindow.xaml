@@ -10,7 +10,8 @@
         Icon="../Images/login.png"
         FontFamily="宋体" 
         IsEnabled="{Binding IsWindowClose,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-        IsEnabledChanged="Window_IsEnabledChanged">
+        IsEnabledChanged="Window_IsEnabledChanged"
+        Loaded="Window_Loaded">
     <Window.Resources>
         <Style TargetType="Border" x:Key="BorderStyle">
             <Setter Property="CornerRadius" Value="3"/>
@@ -50,8 +51,9 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/username.png" Stretch="Uniform" Width="20" Height="20"/>
                     <TextBox Grid.Column="1" Text="{Binding User.Username,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                     VerticalContentAlignment="Center" 
-                     FontWeight="Black" BorderThickness="0">
+                     VerticalContentAlignment="Center" Name="usernameTextBox"
+                     FontWeight="Black" BorderThickness="0"
+                     TextChanged="TextBox_TextChanged">
                         <TextBox.Resources>
                             <VisualBrush x:Key="HelpBrush" TileMode="None" Opacity="0.3" Stretch="None" AlignmentX="Left">
                                 <VisualBrush.Visual>

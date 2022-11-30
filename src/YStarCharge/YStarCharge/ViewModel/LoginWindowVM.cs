@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using YStarCharge.Common;
 using YStarCharge.Controller;
 using YStarCharge.Model;
@@ -11,10 +9,7 @@ namespace YStarCharge.ViewModel
     public sealed class LoginWindowVM: NotifyPropertyChanged
     {
         private UserAccountController controller = new UserAccountController();
-        public UserAccount User { get; set; } = new UserAccount()
-        {
-            Username = AppConfigHelper.Username
-        };
+        public UserAccount User { get; set; } = new UserAccount();
 
         private bool isWindowClose = true;
         public bool IsWindowClose

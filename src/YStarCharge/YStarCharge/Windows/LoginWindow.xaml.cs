@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YStarCharge.Common;
 using YStarCharge.ViewModel;
 
 namespace YStarCharge.Windows
@@ -33,9 +34,26 @@ namespace YStarCharge.Windows
             if(!(bool)e.NewValue)
             {
                 Close();
+                if (remeberButton.IsChecked == true)
+                {
+                    Util.SaveUserToLocal(ViewModel.User);
+                }
+                AppConfigHelper.IsRemeberAccount = (bool)remeberButton.IsChecked;
             }
         }
 
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            remeberButton.IsChecked = AppConfigHelper.IsRemeberAccount;
+            if (AppConfigHelper.IsRemeberAccount)
+            {
+                ViewModel.User = Util.GetUserFromLocal();
+                usernameTextBox.Text = ViewModel.User.Username;
+                pwdPasswordBox.Password = ViewModel.User.Password;
+            }
+
+        }
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if(ViewModel == null)
@@ -43,6 +61,16 @@ namespace YStarCharge.Windows
                 return;
             }
             ViewModel.User.Password = pwdPasswordBox.Password;
+        }
+
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (ViewModel == null)
+            {
+                return;
+            }
+            ViewModel.User.Username = usernameTextBox.Text;
         }
     }
 }

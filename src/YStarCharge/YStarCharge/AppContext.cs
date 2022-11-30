@@ -25,5 +25,7 @@
         }
 
         public string Username { get; set; }
+
+        public bool IsRemeberAccount { get; set; }
     }
 }

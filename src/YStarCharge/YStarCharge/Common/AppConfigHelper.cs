@@ -7,20 +7,20 @@ namespace YStarCharge.Common
         public static string Username { get; set; }
         public static string Password { get; set; }
 
-        private static bool initlize;
-        public static bool IsInitlize
+        private static bool isRemeberAccount;
+        public static bool IsRemeberAccount
         {
             get
             {
-                return initlize;
+                return isRemeberAccount;
             }
             set
             {
-                if(initlize == value)
+                if(isRemeberAccount == value)
                 {
                     return;
                 }
-                initlize = value;
+                isRemeberAccount = value;
                 ConfigurationManager.AppSettings.Set("IsInitlize", value.ToString());
             }
         }
@@ -29,7 +29,7 @@ namespace YStarCharge.Common
         {
             Username = ConfigurationManager.AppSettings["username"];
             Password = ConfigurationManager.AppSettings["password"];
-            initlize = bool.Parse(ConfigurationManager.AppSettings["IsInitlize"]);
+            IsRemeberAccount = bool.Parse(ConfigurationManager.AppSettings["IsRemeberAccount"]);
         }
 
         
