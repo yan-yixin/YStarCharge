@@ -100,6 +100,7 @@
     <Compile Include="Model\ChangePassowrdModel.cs" />
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
+    <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\IncomeExpend.cs" />
     <Compile Include="Model\StatisticsType.cs" />

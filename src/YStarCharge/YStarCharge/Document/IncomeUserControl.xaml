@@ -99,7 +99,7 @@
                     <Label Content="收入来源：" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource From}}"
                               Width="154" 
-                          SelectedItem="{Binding Fliter.From,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                          SelectedItem="{Binding Fliter.Channel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                 </StackPanel>
             </StackPanel>

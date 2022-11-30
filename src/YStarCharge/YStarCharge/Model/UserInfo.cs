@@ -27,7 +27,7 @@ namespace YStarCharge.Model
             }
         }
 
-        public string gender;
+        private string gender;
         public string Gender
         {
             get
@@ -46,7 +46,7 @@ namespace YStarCharge.Model
             
         }
 
-        public int age;
+        private int age;
         public int Age
         {
             get
@@ -65,7 +65,7 @@ namespace YStarCharge.Model
 
         }
 
-        public string industry;
+        private string industry;
         public string Industry
         {
             get
@@ -84,7 +84,7 @@ namespace YStarCharge.Model
 
         }
 
-        public string address;
+        private string address;
         public string Address
         {
             get

@@ -3,6 +3,7 @@ using SqlLib.Controller;
 using System;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Text;
 using YStarCharge.Model;
 
 namespace YStarCharge.Controller
@@ -26,7 +27,7 @@ namespace YStarCharge.Controller
             string sql = $"Insert Into {GetName()} " +
                 $"({Amount},{CreateAt},{Direction},{Remark},{Username}) " +
                 $"Values " +
-                $"({entity.Amount},{entity.CreateAt:yyyy-MM-dd},{(int)entity.Direction},'{entity.Remark}','{entity.Username}')";
+                $"({entity.Amount},'{entity.CreateAt}',{(int)entity.Direction},'{entity.Remark}','{entity.Username}')";
             return SqlHelper.Instance.ExecuteNonCommand(sql);
         }
 
@@ -38,17 +39,25 @@ namespace YStarCharge.Controller
             }
             string sql = $"Update {GetName()} Set " +
                 $"{Amount}= {entity.Amount},{Direction} = {(int)entity.Direction},{Remark} = '{entity.Remark}'," +
-                $"{CreateAt}= {entity.CreateAt:yyyy-MM-dd} " +
+                $"{CreateAt}= '{entity.CreateAt}' " +
                 $"Where {Id} = {entity.Id}";
             return SqlHelper.Instance.ExecuteNonCommand(sql);
         }
 
         public DataTable Query(ExpendFliter fliter)
         {
-            string sql = $"Select * From {DataTableName} Where " +
-                $"{CreateAt} Between {fliter.StartDate} And {fliter.EndDate}";
-
-            return SqlHelper.Instance.ExcuteCommand(sql);
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Select * From {DataTableName} Where ");
+            if (fliter.StartDate != fliter.EndDate)
+            {
+                sb.Append($"{CreateAt} Between '{fliter.StartDate}' And '{fliter.EndDate}' And ");
+            }
+            if (fliter.MinMoney != 0 && fliter.MaxMoney != 0)
+            {
+                sb.Append($"{Amount} >= {fliter.MinMoney} And {Amount} <= {fliter.MaxMoney}  And ");
+            }
+            sb.Append($"{Direction} = {(int)fliter.Direction}");
+            return SqlHelper.Instance.ExcuteCommand(sb.ToString());
         }
 
         public ObservableCollection<Expend> ToList(DataTable table)

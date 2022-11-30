@@ -85,44 +85,44 @@ namespace YStarCharge.Model
 
     public class ExpendFliter: BaseFliter, INotifyPropertyChanged
     {
-        private ExpendTo to;
+        private ExpendTo direction;
 
-        public ExpendTo To
+        public ExpendTo Direction
         {
             get
             {
-                return to;
+                return direction;
             }
             set
             {
-                if (to == value)
+                if (direction == value)
                 {
                     return;
                 }
-                to = value;
-                OnPropertyChanged(this, "To");
+                direction = value;
+                OnPropertyChanged(this, "Direction");
             }
         }
     }
 
     public class IncomeFliter : BaseFliter, INotifyPropertyChanged
     {
-        private IncomeFrom from;
+        private IncomeFrom channel;
 
-        public IncomeFrom From
+        public IncomeFrom Channel
         {
             get
             {
-                return from;
+                return channel;
             }
             set
             {
-                if (from == value)
+                if (channel == value)
                 {
                     return;
                 }
-                from = value;
-                OnPropertyChanged(this, "From");
+                channel = value;
+                OnPropertyChanged(this, "Channel");
             }
         }
     }

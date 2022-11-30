@@ -101,9 +101,8 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            //MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
-            //查询
-            var datatable = controller.Query(AppContext.Instacne.Username);
+
+            var datatable = controller.Query(Fliter);
             var temp  = controller.ToList(datatable);
             Expends.Clear();
             foreach (var ex in temp)

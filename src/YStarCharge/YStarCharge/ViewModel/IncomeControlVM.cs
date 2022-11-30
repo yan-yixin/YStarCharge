@@ -92,7 +92,7 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            var datatable = controller.Query(AppContext.Instacne.Username);
+            var datatable = controller.Query(Fliter);
             var temp = controller.ToList(datatable);
             Incomes.Clear();
             foreach (var ex in temp)

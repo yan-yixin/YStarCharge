@@ -14,11 +14,9 @@ namespace SqlLib.Controller
 
         DataTable Query(string username);
 
-        int Add<T>();
-
-        int Update<T>();
-
         int GetMaxId();
+
+        bool IsExist(IEntity entity);
 
     }
 }

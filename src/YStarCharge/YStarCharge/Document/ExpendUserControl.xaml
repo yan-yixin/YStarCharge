@@ -97,7 +97,7 @@
                     <ComboBox ItemsSource="{Binding Source={StaticResource Project}}"
                           Width="154" 
                           SelectedIndex="0" 
-                          SelectedItem="{Binding Fliter.To,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                          SelectedItem="{Binding Fliter.Direction,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                 </StackPanel>
             </StackPanel>

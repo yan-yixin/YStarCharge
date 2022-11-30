@@ -10,7 +10,7 @@ using YStarCharge.Model;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class UserInfoVM:NotifyPropertyChanged
+    public sealed class UserInfoVM : NotifyPropertyChanged
     {
         private UserInfoController controller = new UserInfoController();
 
@@ -25,12 +25,12 @@ namespace YStarCharge.ViewModel
             }
             set
             {
-                if(isReadOnly == value)
+                if (isReadOnly == value)
                 {
                     return;
                 }
                 isReadOnly = value;
-                OnPropertyChanged(this,"IsReadOnly");
+                OnPropertyChanged(this, "IsReadOnly");
             }
         }
 
@@ -43,7 +43,7 @@ namespace YStarCharge.ViewModel
             }
             set
             {
-                if(thickness == value)
+                if (thickness == value)
                 {
                     return;
                 }
@@ -57,12 +57,10 @@ namespace YStarCharge.ViewModel
             Thickness = new Thickness(1);
         });
 
-        public ICommand Sure => new RelayCommand(obj=> {
-
-
-            if(UserInformation.Gender != "男" && UserInformation.Gender != "女")
+        public ICommand Sure => new RelayCommand(obj => {
+            if(UserInformation.Gender.Trim() != "男" && UserInformation.Gender.Trim() != "女")
             {
-                Util.NoticeMessageBox("性别格式不正确，请输入男或者女。");
+                Util.NoticeMessageBox("性别格式不正确，请输入“男”或者“女”。");
                 return;
             }
 
@@ -73,7 +71,14 @@ namespace YStarCharge.ViewModel
             }
             IsReadOnly = true;
             Thickness = new Thickness();
-            controller.Add(UserInformation);
+            if (!controller.IsExist(UserInformation))
+            {
+                controller.Insert(UserInformation);
+            }
+            else
+            {
+                controller.Update(UserInformation);
+            }
         });
 
         public UserInfoVM()

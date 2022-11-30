@@ -62,32 +62,6 @@ namespace SqlLib.Controller
             return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
         }
 
-        public int Add<T>()
-        {
-            //根据配置文件获取字段名
-            T t = Activator.CreateInstance<T>();
-            Type type = t.GetType();
-            var properties = type.GetProperties();
-            if (properties == null || properties.Count() <= 0)
-            {
-                return -1;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Insert Into {GetName()} Values (");
-            foreach (var pro in properties)
-            {
-                var value = pro.GetValue(t);
-                if (pro.Name == "Id" || pro.Name == "IsSelected")
-                {
-                    continue;
-                }
-                sb.Append($"{value},");
-            }
-
-            return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
-        }
-
         public int Delete(IEntity entity)
         {
             if(entity == null)
@@ -158,35 +132,6 @@ namespace SqlLib.Controller
             return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
         }
 
-        public int Update<T>()
-        {
-            //根据配置文件获取字段名
-            T t = Activator.CreateInstance<T>();
-            Type type = t.GetType();
-            var properties = type.GetProperties();
-            if (properties == null || properties.Count() <= 0)
-            {
-                return -1;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Update {type.Name.Replace("Controller","").Trim()} Set (");
-            var id = -1;
-            foreach (var pro in properties)
-            {
-                var name = pro.Name;
-                var value = pro.GetValue(t);          
-                if(name == "Id")
-                {
-                    id = int.Parse(value.ToString());
-                    continue;
-                }
-                sb.Append($"{name} = {value},");
-            }
-            sb.Append($"Where Id = {id}");
-            return SqlHelper.Instance.ExecuteNonCommand(sb.ToString());
-        }
-
         public T Get<T>(string username)
         {
             if (string.IsNullOrWhiteSpace(username))
@@ -223,10 +168,27 @@ namespace SqlLib.Controller
             return (T)t;
         }
 
+        public bool IsExist(IEntity entity)
+        {
+            if(entity == null)
+            {
+                return false;
+            }
+            string sql = $"Select * From {GetName()} Where Id = {entity.Id};";
+            var table = SqlHelper.Instance.ExcuteCommand(sql);
+            if (table == null || table.Rows.Count <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
         protected virtual string GetName()
         {
             return GetType().Name.Replace("Controller", "").Trim();
         }
+
+
 
     }
 }
