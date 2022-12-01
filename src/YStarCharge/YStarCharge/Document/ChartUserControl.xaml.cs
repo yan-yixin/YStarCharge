@@ -29,6 +29,7 @@ namespace YStarCharge.Document
         private SolidColorBrush foreColor = new SolidColorBrush(Color.FromRgb(255,255,255));
         private TimeUnit timeUnit;
         private List<BaseIncomeExpend> Datas;
+        private DateTime date;
         public ChartUserControl()
         {
             InitializeComponent();
@@ -37,10 +38,11 @@ namespace YStarCharge.Document
 
         }
 
-        public ChartUserControl(TimeUnit unit,List<BaseIncomeExpend> datas) : this()
+        public ChartUserControl(TimeUnit unit,List<BaseIncomeExpend> datas,DateTime date) : this()
         {
             timeUnit = unit;
             Datas = datas;
+            this.date = date;
             lineChart.Visibility = Visibility.Hidden;
             columnsChart.Visibility = Visibility.Hidden;
             pieChart.Visibility = Visibility.Hidden;
@@ -155,7 +157,7 @@ namespace YStarCharge.Document
         private void AppenDayData(Series series)
         {
             //根据月显示
-            int maxDay = 31;
+            int maxDay = DateTime.DaysInMonth(date.Year,date.Month);
             var expends = Datas.OrderBy(e => e.CreateAt);
             for (int i = 1; i <= maxDay; i++)
             {
@@ -202,5 +204,7 @@ namespace YStarCharge.Document
             lineChart.Visibility = Visibility.Visible;
             AppendLineChartData();
         }
+
+
     }
 }

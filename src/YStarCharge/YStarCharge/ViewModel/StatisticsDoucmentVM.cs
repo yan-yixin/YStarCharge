@@ -95,7 +95,7 @@ namespace YStarCharge.ViewModel
                 temp.ForEach(ex => Datas.Add(ex));
             }
 
-            ChartUserControl cuc = new ChartUserControl(TimeUnit, Datas);
+            ChartUserControl cuc = new ChartUserControl(TimeUnit, Datas, Date);
             ChartGrid.Children.Clear();
             ChartGrid.Children.Add(cuc);
 
