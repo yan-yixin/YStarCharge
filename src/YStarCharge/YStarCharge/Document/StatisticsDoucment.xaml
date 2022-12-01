@@ -15,16 +15,18 @@
         <Grid  Grid.Row="0" Margin="0,0,0,5">
             <GroupBox Header="查询条件" Foreground="White" BorderThickness="1">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="年份："/>
-                    <TextBox x:Name="yearTextBox" Text="2022" Width="80" Height="20" 
-                             Background="Transparent" 
-                             Foreground="White" TextAlignment="Center" Margin="0,0,10,0"/>
-                    <ComboBox Name="fliterComboBox" Foreground="White" Margin="10,0"/>
-                    <ComboBox Name="expendComboBox" Foreground="White" Margin="10,0,20,0"/>
+                    <TextBlock Text="日期：" VerticalAlignment="Center"/>
+                    <DatePicker IsTodayHighlighted="True"
+                            Width="140" Height="30"  Foreground="{StaticResource AppForeground}" 
+                            DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
+                            Text="{Binding Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </DatePicker>
+                    <ComboBox Name="fliterComboBox" Foreground="White" Margin="10,0" SelectedItem="{Binding TimeUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Name="expendComboBox" Foreground="White" Margin="10,0,20,0" SelectedItem="{Binding IncomeAndExpend,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     <Border CornerRadius="5"  Width="80" Height="30" BorderThickness="1" BorderBrush="White">
                         <Button Content="查询" 
                                 Background="Transparent" Foreground="{StaticResource AppBackground}" 
-                                BorderThickness="0"
+                                BorderThickness="0" Width="80" Height="30"
                                 Command="{Binding Query}"/>
                     </Border>
                 </StackPanel>

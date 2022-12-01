@@ -93,7 +93,7 @@ namespace YStarCharge.ViewModel
 
         public ICommand Query => new RelayCommand(obj => {
             var datatable = controller.Query(Fliter);
-            var temp = controller.ToList(datatable);
+            var temp = controller.ToObservableList(datatable);
             Incomes.Clear();
             foreach (var ex in temp)
             {
@@ -103,7 +103,7 @@ namespace YStarCharge.ViewModel
 
         public ICommand Refresh => new RelayCommand(obj=> {
             var datatable = controller.Query(AppContext.Instacne.Username);
-            var temp = controller.ToList(datatable);
+            var temp = controller.ToObservableList(datatable);
             Incomes.Clear();
             foreach (var ex in temp)
             {

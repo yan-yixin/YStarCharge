@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using YStarCharge.Model;
+using YStarCharge.ViewModel;
 
 namespace YStarCharge.Document
 {
@@ -21,17 +22,21 @@ namespace YStarCharge.Document
     /// </summary>
     public partial class StatisticsDoucment : UserControl
     {
+        private StatisticsDoucmentVM viewModel;
         public StatisticsDoucment()
         {
             InitializeComponent();
+            viewModel = new StatisticsDoucmentVM();
+            DataContext = viewModel;
+            viewModel.ChartGrid = chartGrid;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             fliterComboBox.ItemsSource = Enum.GetNames(typeof(TimeUnit));
-            string[] project = new string[] { "收入","支出"};
-            expendComboBox.ItemsSource = project;
             fliterComboBox.SelectedIndex = 0;
+
+            expendComboBox.ItemsSource = Enum.GetNames(typeof(IncomeAndExpend));
             expendComboBox.SelectedIndex = 0;
         }
     }

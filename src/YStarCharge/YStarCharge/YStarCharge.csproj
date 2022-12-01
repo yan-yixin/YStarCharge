@@ -103,6 +103,7 @@
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\IncomeExpend.cs" />
+    <Compile Include="Model\IncomeAndExpend.cs" />
     <Compile Include="Model\StatisticsType.cs" />
     <Compile Include="Model\TimeUnit.cs" />
     <Compile Include="Model\UserAccount.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="ViewModel\LoginWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\OKCancelVM.cs" />
+    <Compile Include="ViewModel\StatisticsDoucmentVM.cs" />
     <Compile Include="ViewModel\UserInfoVM.cs" />
     <Compile Include="Windows\ChangePassowrdWindow.xaml.cs">
       <DependentUpon>ChangePassowrdWindow.xaml</DependentUpon>

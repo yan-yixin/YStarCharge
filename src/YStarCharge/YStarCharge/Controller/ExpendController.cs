@@ -1,6 +1,7 @@
 ﻿using SqlLib;
 using SqlLib.Controller;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Text;
@@ -60,7 +61,27 @@ namespace YStarCharge.Controller
             return SqlHelper.Instance.ExcuteCommand(sb.ToString());
         }
 
-        public ObservableCollection<Expend> ToList(DataTable table)
+        public DataTable Query(TimeUnit unit, DateTime date)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Select * From {DataTableName} Where ");
+            switch (unit)
+            {
+                case TimeUnit.年:
+                    sb.Append($"Year({CreateAt}) = '{date.Year}'");
+                    break;
+                case TimeUnit.月:
+                    sb.Append($"Month({CreateAt}) = '{date.Month}'");
+                    break;
+                case TimeUnit.日:
+                    sb.Append($"Day({CreateAt}) = '{date.Day}'");
+                    break;
+            }
+            sb.Append($" And {Username} = '{AppContext.Instacne.Username}'");
+            return SqlHelper.Instance.ExcuteCommand(sb.ToString());
+        }
+
+        public ObservableCollection<Expend> ToObservableList(DataTable table)
         {
             ObservableCollection<Expend> expends = new ObservableCollection<Expend>();
             if (table == null || table.Rows.Count <= 0)
@@ -68,6 +89,29 @@ namespace YStarCharge.Controller
                 return expends;
             }
             for(int i =0;i< table.Rows.Count;i++)
+            {
+                var row = table.Rows[i];
+                Expend expend = new Expend();
+                var id = row[Id].ToString();
+                expend.Id = int.Parse(row[Id].ToString());
+                expend.Username = row[Username].ToString();
+                expend.CreateAt = DateTime.Parse(row[CreateAt].ToString());
+                expend.Direction = (ExpendTo)int.Parse(row[Direction].ToString());
+                expend.Amount = float.Parse(row[Amount].ToString());
+                expend.Remark = row[Remark].ToString();
+                expends.Add(expend);
+            }
+            return expends;
+        }
+
+        public List<Expend> ToList(DataTable table)
+        {
+            List<Expend> expends = new List<Expend>();
+            if (table == null || table.Rows.Count <= 0)
+            {
+                return expends;
+            }
+            for (int i = 0; i < table.Rows.Count; i++)
             {
                 var row = table.Rows[i];
                 Expend expend = new Expend();

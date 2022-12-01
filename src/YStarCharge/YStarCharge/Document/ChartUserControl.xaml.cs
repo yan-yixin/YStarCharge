@@ -26,9 +26,9 @@ namespace YStarCharge.Document
     public partial class ChartUserControl : UserControl
     {
         private ChartUserControlVM viewModel;
-        private ExpendControlVM ExpendControlVM = new ExpendControlVM();
         private SolidColorBrush foreColor = new SolidColorBrush(Color.FromRgb(255,255,255));
         private TimeUnit timeUnit;
+        private List<BaseIncomeExpend> Datas;
         public ChartUserControl()
         {
             InitializeComponent();
@@ -36,9 +36,11 @@ namespace YStarCharge.Document
             DataContext = viewModel;
 
         }
-        public ChartUserControl(TimeUnit unit) : this()
+
+        public ChartUserControl(TimeUnit unit,List<BaseIncomeExpend> datas) : this()
         {
             timeUnit = unit;
+            Datas = datas;
             lineChart.Visibility = Visibility.Hidden;
             columnsChart.Visibility = Visibility.Hidden;
             pieChart.Visibility = Visibility.Hidden;
@@ -56,11 +58,10 @@ namespace YStarCharge.Document
                     Foreground = foreColor,
                     Values = new ChartValues<float>()
                 };
-                var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
-                var result = expends.Where(e => e.Direction.ToString() == name);
-                if (result != null)
+                var expends = Datas.OrderBy(e => e.CreateAt);
+                if (expends != null)
                 {
-                    ps.Values.Add(result.Sum(r => r.Amount));
+                    ps.Values.Add(expends.Sum(r => r.Amount));
                 }
                 viewModel.PieChartSeries.Add(ps);
             }
@@ -77,7 +78,7 @@ namespace YStarCharge.Document
                 Values = new ChartValues<float>()
             };
             viewModel.CloumnsChartSerise.Add(colunmseries);
-            var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
+            var expends = Datas.OrderBy(e => e.CreateAt);
             switch (timeUnit)
             {
                 case TimeUnit.年:
@@ -103,7 +104,7 @@ namespace YStarCharge.Document
                 Values = new ChartValues<float>()
             };
             viewModel.LineChartSerise.Add(lineSeries);
-            var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
+            var expends = Datas.OrderBy(e => e.CreateAt);
 
             switch (timeUnit)
             {
@@ -121,7 +122,7 @@ namespace YStarCharge.Document
 
         private void AppenYearData(Series series)
         {
-            var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
+            var expends = Datas.OrderBy(e => e.CreateAt);
             for (int i = 1; i <= 12; i++)
             {
                 viewModel.AxisXLabel.Add(i.ToString());
@@ -137,7 +138,7 @@ namespace YStarCharge.Document
 
         private void AppenMonthData(Series series)
         {
-            var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
+            var expends = Datas.OrderBy(e => e.CreateAt);
             for (int i = 1; i <= 12; i++)
             {
                 viewModel.AxisXLabel.Add(i.ToString());
@@ -155,7 +156,7 @@ namespace YStarCharge.Document
         {
             //根据月显示
             int maxDay = 31;
-            var expends = ExpendControlVM.Expends.OrderBy(e => e.CreateAt);
+            var expends = Datas.OrderBy(e => e.CreateAt);
             for (int i = 1; i <= maxDay; i++)
             {
                 viewModel.AxisXLabel.Add(i.ToString());
