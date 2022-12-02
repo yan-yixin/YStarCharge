@@ -96,7 +96,7 @@ namespace YStarCharge.ViewModel
         public ICommand Export => new RelayCommand(obj => {
             if (Util.Export(GetDataTable()))
             {
-                MessageBox.Show("导出成功。", "提示");
+                Util.NoticeMessageBox("导出成功。");
             }
         });
 
@@ -110,6 +110,16 @@ namespace YStarCharge.ViewModel
                 Expends.Add(ex);
             }
         });
+        public ICommand Refresh => new RelayCommand(obj => {
+            var datatable = controller.Query(AppContext.Instacne.Username);
+            var temp = controller.ToObservableList(datatable);
+            Expends.Clear();
+            foreach (var ex in temp)
+            {
+                Expends.Add(ex);
+            }
+        });
+
 
         public ExpendControlVM()
         {
