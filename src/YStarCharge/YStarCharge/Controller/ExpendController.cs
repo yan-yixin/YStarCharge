@@ -68,13 +68,14 @@ namespace YStarCharge.Controller
             switch (unit)
             {
                 case TimeUnit.年:
-                    sb.Append($"Year({CreateAt}) = '{date.Year}'");
+                    //显示最近十年的
+                    sb.Append($"Year({CreateAt}) Between '{date.Year - 5}' And '{date.Year + 5}'");
                     break;
                 case TimeUnit.月:
-                    sb.Append($"Month({CreateAt}) = '{date.Month}'");
+                    sb.Append($"Year({CreateAt}) = '{date.Year}'");
                     break;
                 case TimeUnit.日:
-                    sb.Append($"Day({CreateAt}) = '{date.Day}'");
+                    sb.Append($"Month({CreateAt}) = '{date.Month}'");
                     break;
             }
             sb.Append($" And {Username} = '{AppContext.Instacne.Username}'");

@@ -58,8 +58,9 @@ namespace YStarCharge.Document
                     Title = name,
                     DataLabels = true,
                     Foreground = foreColor,
-                    Values = new ChartValues<float>()
-                };
+                    Values = new ChartValues<float>(),
+                   
+            };
                 var expends = Datas.OrderBy(e => e.CreateAt);
                 if (expends != null)
                 {
@@ -125,11 +126,11 @@ namespace YStarCharge.Document
         private void AppenYearData(Series series)
         {
             var expends = Datas.OrderBy(e => e.CreateAt);
-            for (int i = 1; i <= 12; i++)
+            for (int i = date.Year - 5; i <= date.Year + 5; i++)
             {
                 viewModel.AxisXLabel.Add(i.ToString());
 
-                var result = expends.Where(e => e.CreateAt.Month == i);
+                var result = expends.Where(e => e.CreateAt.Year == i);
                 if (result != null)
                 {
                     var money = result.Sum(r => r.Amount);
