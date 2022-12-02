@@ -28,7 +28,7 @@ namespace YStarCharge.Controller
             string sql = $"Insert Into {GetName()} " +
                 $"({Amount},{CreateAt},{Channel},{Remark},{Username}) " +
                 $"Values " +
-                $"({entity.Amount},{entity.CreateAt:yyyy-MM-dd},{(int)entity.Channel},'{entity.Remark}','{entity.Username}')";
+                $"({entity.Amount},'{entity.CreateAt}',{(int)entity.Channel},'{entity.Remark}','{entity.Username}')";
             return SqlHelper.Instance.ExecuteNonCommand(sql);
         }
 
