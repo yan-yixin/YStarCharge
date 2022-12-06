@@ -104,6 +104,7 @@
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\IncomeExpend.cs" />
     <Compile Include="Model\IncomeAndExpend.cs" />
+    <Compile Include="Model\Querier.cs" />
     <Compile Include="Model\StatisticsType.cs" />
     <Compile Include="Model\TimeUnit.cs" />
     <Compile Include="Model\UserAccount.cs" />

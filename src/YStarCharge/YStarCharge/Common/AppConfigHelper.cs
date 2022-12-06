@@ -21,7 +21,7 @@ namespace YStarCharge.Common
                     return;
                 }
                 isRemeberAccount = value;
-                ConfigurationManager.AppSettings.Set("IsInitlize", value.ToString());
+                UpdateConfig("IsRemeberAccount", value.ToString());
             }
         }
 
@@ -32,6 +32,14 @@ namespace YStarCharge.Common
             IsRemeberAccount = bool.Parse(ConfigurationManager.AppSettings["IsRemeberAccount"]);
         }
 
+        private static void UpdateConfig(string setName,string setValue)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            config.AppSettings.Settings[setName].Value = setValue;
+
+            config.AppSettings.SectionInformation.ForceSave = true;
+            config.Save(ConfigurationSaveMode.Modified);
+        }
         
     }
 }

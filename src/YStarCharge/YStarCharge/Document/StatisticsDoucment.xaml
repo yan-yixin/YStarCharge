@@ -19,10 +19,10 @@
                     <DatePicker IsTodayHighlighted="True"
                             Width="140" Height="30"  Foreground="{StaticResource AppForeground}" 
                             DisplayDateStart="1999/1/1" BorderBrush="{StaticResource BorderColor}"
-                            Text="{Binding Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            Text="{Binding Querier.Date,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </DatePicker>
-                    <ComboBox Name="fliterComboBox" Foreground="White" Margin="10,0" SelectedItem="{Binding TimeUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                    <ComboBox Name="expendComboBox" Foreground="White" Margin="10,0,20,0" SelectedItem="{Binding IncomeAndExpend,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Name="fliterComboBox" Foreground="White" Margin="10,0" SelectedItem="{Binding Querier.TimeUnit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Name="expendComboBox" Foreground="White" Margin="10,0,20,0" SelectedItem="{Binding Querier.IncomeAndExpend,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                     <Border CornerRadius="5"  Width="80" Height="30" BorderThickness="1" BorderBrush="White">
                         <Button Content="查询" 
                                 Background="Transparent" Foreground="{StaticResource AppBackground}" 

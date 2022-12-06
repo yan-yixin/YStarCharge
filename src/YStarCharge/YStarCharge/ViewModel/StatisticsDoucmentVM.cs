@@ -17,59 +17,7 @@ namespace YStarCharge.ViewModel
 {
     public class StatisticsDoucmentVM : NotifyPropertyChanged
     {
-        private DateTime date;
-        public DateTime Date
-        {
-            get
-            {
-                return date;
-            }
-            set
-            {
-                if(date == value)
-                {
-                    return;
-                }
-                date = value;
-                OnPropertyChanged(this, "Date");
-            }
-        }
-
-        private TimeUnit timeUnit;
-        public TimeUnit TimeUnit
-        {
-            get
-            {
-                return timeUnit;
-            }
-            set
-            {
-                if (timeUnit == value)
-                {
-                    return;
-                }
-                timeUnit = value;
-                OnPropertyChanged(this, "TimeUnit");
-            }
-        }
-
-        private IncomeAndExpend incomeAndExpend;
-        public IncomeAndExpend IncomeAndExpend
-        {
-            get
-            {
-                return incomeAndExpend;
-            }
-            set
-            {
-                if(incomeAndExpend == value)
-                {
-                    return;
-                }
-                incomeAndExpend = value;
-                OnPropertyChanged(this, "IncomeAndExpend");
-            }
-        }
+        public Querier Querier { get; set; } 
 
         public Grid ChartGrid { get; set; }
 
@@ -81,21 +29,21 @@ namespace YStarCharge.ViewModel
 
             DataTable table;
             Datas.Clear();
-            if (IncomeAndExpend == IncomeAndExpend.支出)
+            if (Querier.IncomeAndExpend == IncomeAndExpend.支出)
             {
-                table = expendController.Query(timeUnit, date);
+                table = expendController.Query(Querier.TimeUnit, Querier.Date);
                 var temp = expendController.ToList(table);
 
                 temp.ForEach(ex => Datas.Add(ex));
             }
             else
             {
-                table = incomeController.Query(timeUnit, date);
+                table = incomeController.Query(Querier.TimeUnit, Querier.Date);
                 var temp = incomeController.ToList(table);
                 temp.ForEach(ex => Datas.Add(ex));
             }
 
-            ChartUserControl cuc = new ChartUserControl(TimeUnit, Datas, Date);
+            ChartUserControl cuc = new ChartUserControl(Querier,Datas);
             ChartGrid.Children.Clear();
             ChartGrid.Children.Add(cuc);
 
@@ -104,7 +52,10 @@ namespace YStarCharge.ViewModel
 
         public StatisticsDoucmentVM()
         {
-            Date = DateTime.Now;
+            Querier = new Querier
+            {
+                Date = DateTime.Now
+            };
         }
     }
 }

@@ -27,9 +27,10 @@ namespace YStarCharge.Document
     {
         private ChartUserControlVM viewModel;
         private SolidColorBrush foreColor = new SolidColorBrush(Color.FromRgb(255,255,255));
-        private TimeUnit timeUnit;
-        private List<BaseIncomeExpend> Datas;
-        private DateTime date;
+        public List<BaseIncomeExpend> Datas { get; set; } = new List<BaseIncomeExpend>();
+
+        public Querier Querier { get; set; } = new Querier();
+
         public ChartUserControl()
         {
             InitializeComponent();
@@ -38,11 +39,12 @@ namespace YStarCharge.Document
 
         }
 
-        public ChartUserControl(TimeUnit unit,List<BaseIncomeExpend> datas,DateTime date) : this()
+        public ChartUserControl(Querier querier,List<BaseIncomeExpend> datas) : this()
         {
-            timeUnit = unit;
+            Querier.TimeUnit = querier.TimeUnit;
             Datas = datas;
-            this.date = date;
+            Querier.Date = querier.Date;
+            Querier.IncomeAndExpend = querier.IncomeAndExpend;
             lineChart.Visibility = Visibility.Hidden;
             columnsChart.Visibility = Visibility.Hidden;
             pieChart.Visibility = Visibility.Hidden;
@@ -51,22 +53,73 @@ namespace YStarCharge.Document
         private void AppendPieChartData()
         {
             viewModel.PieChartSeries.Clear();
-            foreach (var name in Enum.GetNames(typeof(ExpendTo)))
+
+            if(Querier.IncomeAndExpend == IncomeAndExpend.支出)
             {
-                PieSeries ps = new PieSeries()
+                foreach (var name in Enum.GetNames(typeof(ExpendTo)))
                 {
-                    Title = name,
-                    DataLabels = true,
-                    Foreground = foreColor,
-                    Values = new ChartValues<float>(),
-                   
-            };
-                var expends = Datas.OrderBy(e => e.CreateAt);
-                if (expends != null)
-                {
-                    ps.Values.Add(expends.Sum(r => r.Amount));
+                    PieSeries ps = new PieSeries()
+                    {
+                        Title = name,
+                        DataLabels = true,
+                        Foreground = foreColor,
+                        Values = new ChartValues<float>(),
+                        LabelPoint = point => string.Format("{0:N}", point.Y)
+                    };
+                    var expends = Datas.Where(e => (e as Expend).Direction.ToString() == name);
+                    var date = Querier.Date;
+                    switch (Querier.TimeUnit)
+                    {
+                        case TimeUnit.年:
+                            expends = expends.Where(e => e.CreateAt.Year == date.Year);
+                            break;
+                        case TimeUnit.月:
+                            expends = expends.Where(e => e.CreateAt.Month == date.Month);
+                            break;
+                        case TimeUnit.日:
+                            expends = expends.Where(e => e.CreateAt.Day == date.Day);
+                            break;
+                    }
+                    if (expends != null)
+                    {
+                        ps.Values.Add(expends.Sum(r => r.Amount));
+                    }
+                    viewModel.PieChartSeries.Add(ps);
                 }
-                viewModel.PieChartSeries.Add(ps);
+            }
+            else
+            {
+                foreach (var name in Enum.GetNames(typeof(IncomeFrom)))
+                {
+                    PieSeries ps = new PieSeries()
+                    {
+                        Title = name,
+                        DataLabels = true,
+                        Foreground = foreColor,
+                        Values = new ChartValues<float>(),
+                        LabelPoint = point => string.Format("{0:N}", point.Y)
+                    };
+                    var expends = Datas.Where(e => (e as Income).Channel.ToString() == name);
+                    var date = Querier.Date;
+                    switch (Querier.TimeUnit)
+                    {
+                        case TimeUnit.年:
+                            expends = expends.Where(e => e.CreateAt.Year == date.Year);
+                            break;
+                        case TimeUnit.月:
+                            expends = expends.Where(e => e.CreateAt.Month == date.Month);
+                            break;
+                        case TimeUnit.日:
+                            expends = expends.Where(e => e.CreateAt.Day == date.Day);
+                            break;
+                    }
+
+                    if (expends != null)
+                    {
+                        ps.Values.Add(expends.Sum(r => r.Amount));
+                    }
+                    viewModel.PieChartSeries.Add(ps);
+                }
             }
         }
 
@@ -82,7 +135,7 @@ namespace YStarCharge.Document
             };
             viewModel.CloumnsChartSerise.Add(colunmseries);
             var expends = Datas.OrderBy(e => e.CreateAt);
-            switch (timeUnit)
+            switch (Querier.TimeUnit)
             {
                 case TimeUnit.年:
                     AppenYearData(colunmseries);
@@ -109,7 +162,7 @@ namespace YStarCharge.Document
             viewModel.LineChartSerise.Add(lineSeries);
             var expends = Datas.OrderBy(e => e.CreateAt);
 
-            switch (timeUnit)
+            switch (Querier.TimeUnit)
             {
                 case TimeUnit.年:
                     AppenYearData(lineSeries);
@@ -126,6 +179,7 @@ namespace YStarCharge.Document
         private void AppenYearData(Series series)
         {
             var expends = Datas.OrderBy(e => e.CreateAt);
+            var date = Querier.Date;
             for (int i = date.Year - 5; i <= date.Year + 5; i++)
             {
                 viewModel.AxisXLabel.Add(i.ToString());
@@ -158,6 +212,7 @@ namespace YStarCharge.Document
         private void AppenDayData(Series series)
         {
             //根据月显示
+            var date = Querier.Date;
             int maxDay = DateTime.DaysInMonth(date.Year,date.Month);
             var expends = Datas.OrderBy(e => e.CreateAt);
             for (int i = 1; i <= maxDay; i++)
