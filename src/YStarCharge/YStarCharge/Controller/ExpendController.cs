@@ -49,7 +49,7 @@ namespace YStarCharge.Controller
         {
             StringBuilder sb = new StringBuilder();
             sb.Append($"Select * From {DataTableName} Where ");
-            if (fliter.StartDate != fliter.EndDate)
+            if (fliter.StartDate != DateTime.Now.Date  && fliter.EndDate != DateTime.Now.Date)
             {
                 sb.Append($"{CreateAt} Between '{fliter.StartDate}' And '{fliter.EndDate}' And ");
             }

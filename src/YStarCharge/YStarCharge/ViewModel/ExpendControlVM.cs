@@ -109,8 +109,20 @@ namespace YStarCharge.ViewModel
             {
                 Expends.Add(ex);
             }
+            //添加总额
+            Expend expend = new Expend()
+            {
+                CreateAt = DateTime.Now,
+                Direction = ExpendTo.其他,
+                Amount = Expends.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Expends.Add(expend);
         });
+
         public ICommand Refresh => new RelayCommand(obj => {
+
+
             var datatable = controller.Query(AppContext.Instacne.Username);
             var temp = controller.ToObservableList(datatable);
             Expends.Clear();
@@ -118,6 +130,14 @@ namespace YStarCharge.ViewModel
             {
                 Expends.Add(ex);
             }
+            Expend expend = new Expend()
+            {
+                CreateAt = DateTime.Now,
+                Direction = ExpendTo.其他,
+                Amount = Expends.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Expends.Add(expend);
         });
 
 

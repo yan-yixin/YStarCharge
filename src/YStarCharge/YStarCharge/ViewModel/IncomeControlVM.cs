@@ -107,6 +107,15 @@ namespace YStarCharge.ViewModel
             {
                 Incomes.Add(ex);
             }
+
+            Income income = new Income()
+            {
+                CreateAt = DateTime.Now,
+                Channel = IncomeFrom.其他,
+                Amount = Incomes.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Incomes.Add(income);
         });
 
         public ICommand Refresh => new RelayCommand(obj=> {
@@ -117,6 +126,14 @@ namespace YStarCharge.ViewModel
             {
                 Incomes.Add(ex);
             }
+            Income income = new Income()
+            {
+                CreateAt = DateTime.Now,
+                Channel = IncomeFrom.其他,
+                Amount = Incomes.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Incomes.Add(income);
         });
 
         public IncomeControlVM()
