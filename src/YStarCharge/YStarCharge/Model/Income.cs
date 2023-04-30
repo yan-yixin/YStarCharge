@@ -27,6 +27,7 @@ namespace YStarCharge.Model
     {
         工资,
         副业,
-        其他
+        其他,
+        全部
     }
 }

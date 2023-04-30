@@ -57,7 +57,11 @@ namespace YStarCharge.Controller
             {
                 sb.Append($"{Amount} >= {fliter.MinMoney} And {Amount} <= {fliter.MaxMoney}  And ");
             }
-            sb.Append($"{Direction} = {(int)fliter.Direction}");
+            if(fliter.Direction != ExpendTo.全部)
+            {
+                sb.Append($"{ Direction} = { (int)fliter.Direction} And ");
+            }
+            sb.Append($"{ Username} = '{AppContext.Instacne.Username}'");
             return SqlHelper.Instance.ExcuteCommand(sb.ToString());
         }
 
@@ -79,6 +83,14 @@ namespace YStarCharge.Controller
                     break;
             }
             sb.Append($" And {Username} = '{AppContext.Instacne.Username}'");
+            return SqlHelper.Instance.ExcuteCommand(sb.ToString());
+        }
+
+        public DataTable Query(ExpendTo to)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Select * From {DataTableName} Where ");
+            sb.Append($"{Direction} = {(int)to} And {Username} = '{AppContext.Instacne.Username}'");
             return SqlHelper.Instance.ExcuteCommand(sb.ToString());
         }
 

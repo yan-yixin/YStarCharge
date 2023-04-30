@@ -29,7 +29,8 @@ namespace YStarCharge.Model
         购物,
         旅游,
         餐饮,
-        其他
+        其他,
+        全部,
     }
 
 

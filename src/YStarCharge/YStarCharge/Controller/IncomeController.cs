@@ -57,7 +57,20 @@ namespace YStarCharge.Controller
             {
                 sb.Append($"{Amount} >= {fliter.MinMoney} And {Amount} <= {fliter.MaxMoney}  And ");
             }
-            sb.Append($"{Channel} = {(int)fliter.Channel} And {Username} = '{AppContext.Instacne.Username}'");
+            if (fliter.Channel != IncomeFrom.全部)
+            {
+                sb.Append($"{ Channel} = { (int)fliter.Channel} And ");
+            }
+            sb.Append($"{Username} = '{AppContext.Instacne.Username}'");
+            //sb.Append($"{Channel} = {(int)fliter.Channel} And {Username} = '{AppContext.Instacne.Username}'");
+            return SqlHelper.Instance.ExcuteCommand(sb.ToString());
+        }
+
+        public DataTable Query(IncomeFrom from)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Select * From {DataTableName} Where ");
+            sb.Append($"{Channel} = {(int)from} And {Username} = '{AppContext.Instacne.Username}'");
             return SqlHelper.Instance.ExcuteCommand(sb.ToString());
         }
 
