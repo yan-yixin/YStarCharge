@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLib", "SqlLib\SqlLib.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveChartDemo", "LiveChartDemo\LiveChartDemo.csproj", "{35686EFE-E70A-4391-9DB2-5769E517392E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YStarCharge.Web", "YStarCharge.Web\YStarCharge.Web.csproj", "{E1FABA5A-8A0A-4957-98C7-C50C5981B0D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YStarCharge.Web", "YStarCharge.Web\YStarCharge.Web.csproj", "{E1FABA5A-8A0A-4957-98C7-C50C5981B0D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +25,10 @@ Global
 		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47EB1F5C-6A91-4215-8910-AC6700BE15B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35686EFE-E70A-4391-9DB2-5769E517392E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35686EFE-E70A-4391-9DB2-5769E517392E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35686EFE-E70A-4391-9DB2-5769E517392E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35686EFE-E70A-4391-9DB2-5769E517392E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E1FABA5A-8A0A-4957-98C7-C50C5981B0D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1FABA5A-8A0A-4957-98C7-C50C5981B0D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1FABA5A-8A0A-4957-98C7-C50C5981B0D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
