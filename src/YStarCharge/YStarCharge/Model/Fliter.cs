@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace YStarCharge.Model
 {
@@ -43,8 +44,8 @@ namespace YStarCharge.Model
             }
         }
 
-        private string startDate;
-        public string StartDate
+        private DateTime startDate;
+        public DateTime StartDate
         {
             get
             {
@@ -61,9 +62,9 @@ namespace YStarCharge.Model
             }
         }
 
-        private string endDate;
+        private DateTime endDate;
 
-        public string EndDate
+        public DateTime EndDate
         {
             get
             {
@@ -84,44 +85,44 @@ namespace YStarCharge.Model
 
     public class ExpendFliter: BaseFliter, INotifyPropertyChanged
     {
-        private ExpendTo to;
+        private ExpendTo direction;
 
-        public ExpendTo To
+        public ExpendTo Direction
         {
             get
             {
-                return to;
+                return direction;
             }
             set
             {
-                if (to == value)
+                if (direction == value)
                 {
                     return;
                 }
-                to = value;
-                OnPropertyChanged(this, "To");
+                direction = value;
+                OnPropertyChanged(this, "Direction");
             }
         }
     }
 
     public class IncomeFliter : BaseFliter, INotifyPropertyChanged
     {
-        private IncomeFrom from;
+        private IncomeFrom channel;
 
-        public IncomeFrom From
+        public IncomeFrom Channel
         {
             get
             {
-                return from;
+                return channel;
             }
             set
             {
-                if (from == value)
+                if (channel == value)
                 {
                     return;
                 }
-                from = value;
-                OnPropertyChanged(this, "From");
+                channel = value;
+                OnPropertyChanged(this, "Channel");
             }
         }
     }

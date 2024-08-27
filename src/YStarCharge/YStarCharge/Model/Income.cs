@@ -4,21 +4,21 @@ namespace YStarCharge.Model
 {
     public class Income:BaseIncomeExpend, INotifyPropertyChanged
     {
-        private IncomeFrom from;
-        public IncomeFrom From
+        private IncomeFrom channel;
+        public IncomeFrom Channel
         {
             get
             {
-                return from;
+                return channel;
             }
             set
             {
-                if(from == value)
+                if(channel == value)
                 {
                     return;
                 }
-                from = value;
-                OnPropertyChanged(this, "From");
+                channel = value;
+                OnPropertyChanged(this, "Channel");
             }
         }
     }
@@ -27,6 +27,7 @@ namespace YStarCharge.Model
     {
         工资,
         副业,
-        其他
+        其他,
+        全部
     }
 }

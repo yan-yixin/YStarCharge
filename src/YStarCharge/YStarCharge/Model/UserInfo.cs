@@ -1,31 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using SqlLib;
 
 namespace YStarCharge.Model
 {
-    public class UserInfo:NotifyPropertyChanged
+    public class UserInfo : NotifyPropertyChanged,IEntity
     {
-        private string username;
-        public string Username
+        public int Id { get; set; }
+
+        public string Username { get; set; }
+
+
+        private string name;
+        public string Name
         {
             get
             {
-                return username;
+                return name;
             }
             set
             {
-                if(username == value)
+                if(name == value)
                 {
                     return;
                 }
-                username = value;
-                OnPropertyChanged(this,"Username");
+                name = value;
+                OnPropertyChanged(this,"Name");
             }
         }
 
-        public string gender;
+        private string gender;
         public string Gender
         {
             get
@@ -44,7 +46,7 @@ namespace YStarCharge.Model
             
         }
 
-        public int age;
+        private int age;
         public int Age
         {
             get
@@ -63,7 +65,7 @@ namespace YStarCharge.Model
 
         }
 
-        public string industry;
+        private string industry;
         public string Industry
         {
             get
@@ -82,7 +84,7 @@ namespace YStarCharge.Model
 
         }
 
-        public string address;
+        private string address;
         public string Address
         {
             get
@@ -100,5 +102,7 @@ namespace YStarCharge.Model
             }
 
         }
+
+
     }
 }

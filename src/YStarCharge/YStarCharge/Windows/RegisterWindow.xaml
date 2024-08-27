@@ -20,5 +20,6 @@
         <TextBlock Grid.Row="0" Text="注册" FontSize="20" 
                    VerticalAlignment="Center" HorizontalAlignment="Center" 
                    Foreground="#fff" FontWeight="Black"/>
+        
     </Grid>
 </Window>

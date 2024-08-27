@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace SqlLib
 {
@@ -22,6 +23,27 @@ namespace SqlLib
         private SqlHelper()
         {
             connection = new SqlConnection();
+        }
+
+        public bool InitlizeDatabase()
+        {
+            var controllerPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Controller");
+            if (!Directory.Exists(controllerPath))
+            {
+                throw new IOException("不存在文件夹Controller");
+            }
+            var controllers =  Directory.GetFiles(controllerPath);
+            if(controllers == null || controllers.Length <= 0)
+            {
+                throw new IOException("不存在任何Controller类。");
+            }
+
+            foreach (var con in controllers)
+            {
+                var contollrer = Path.GetFileNameWithoutExtension(con);
+                
+            }
+            return true;
         }
 
         public int ExecuteNonCommand(string sqlStr)
@@ -64,7 +86,7 @@ namespace SqlLib
             }
             catch (Exception ex)
             {
-                throw new Exception($"关闭数据库出错，{ex}");
+                throw new Exception($"查询数据出错，{ex}");
             }
         }
 
@@ -137,6 +159,8 @@ namespace SqlLib
                 throw new Exception($"关闭数据库出错，{ex}");
             }
         }
+
+       
 
     }
 }

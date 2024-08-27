@@ -1,6 +1,8 @@
-﻿namespace YStarCharge.Model
+﻿using SqlLib;
+
+namespace YStarCharge.Model
 {
-    public class UserAccount:NotifyPropertyChanged
+    public class UserAccount : NotifyPropertyChanged,IEntity
     {
         public virtual int Id { get; set; }
 
@@ -22,7 +24,7 @@
             }
         }
 
-        public string password;
+        private string password;
         public virtual string Password
         {
             get
@@ -40,7 +42,7 @@
             }
         }
 
-        public string headIcon;
+        private string headIcon;
 
         public virtual string HeadIcon
         {

@@ -4,7 +4,7 @@ using YStarCharge.Model;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class EditExpendWindowVM: NotifyPropertyChanged
+    public sealed class EditExpendWindowVM : NotifyPropertyChanged
     {
 
         private string title;
@@ -16,12 +16,12 @@ namespace YStarCharge.ViewModel
             }
             set
             {
-                if(title == value)
+                if (title == value)
                 {
                     return;
                 }
                 title = value;
-                OnPropertyChanged(this,"Title");
+                OnPropertyChanged(this, "Title");
             }
         }
 

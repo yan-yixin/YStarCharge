@@ -9,7 +9,8 @@
         Title="点记账本" Height="768" Width="1280" FontFamily="宋体"
         WindowStyle="None"  
         WindowStartupLocation="CenterScreen"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="../Images/login.png">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

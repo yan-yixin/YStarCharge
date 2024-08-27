@@ -4,21 +4,21 @@ namespace YStarCharge.Model
 {
     public class Expend: BaseIncomeExpend, INotifyPropertyChanged
     {
-        private ExpendTo to;
-        public ExpendTo To
+        private ExpendTo direction;
+        public ExpendTo Direction
         {
             get
             {
-                return to;
+                return direction;
             }
             set
             {
-                if (to == value)
+                if (direction == value)
                 {
                     return;
                 }
-                to = value;
-                OnPropertyChanged(this, "To");
+                direction = value;
+                OnPropertyChanged(this, "Direction");
             }
         }
 
@@ -29,7 +29,8 @@ namespace YStarCharge.Model
         购物,
         旅游,
         餐饮,
-        其他
+        其他,
+        全部,
     }
 
 

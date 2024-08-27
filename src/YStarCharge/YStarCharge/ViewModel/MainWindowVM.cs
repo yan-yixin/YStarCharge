@@ -94,7 +94,9 @@ namespace YStarCharge.ViewModel
         });
 
         public ICommand Report => new RelayCommand(obj => {
-
+            StatisticsDoucment suc = new StatisticsDoucment();
+            ContentGrid.Children.Clear();
+            ContentGrid.Children.Add(suc);
         });
 
         public ICommand Close => new RelayCommand(obj => {

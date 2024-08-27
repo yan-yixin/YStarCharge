@@ -42,6 +42,14 @@
     <Reference Include="Aspose.Cells">
       <HintPath>..\packages\Aspose.Cells.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
@@ -63,11 +71,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommonRepository\CommonRepository.cs" />
-    <Compile Include="CommonRepository\ICommonRepository.cs" />
+    <Compile Include="AppContext.cs" />
     <Compile Include="Common\AppConfigHelper.cs" />
-    <Compile Include="Common\NHibernateHelper.cs" />
     <Compile Include="Common\Util.cs" />
+    <Compile Include="Controller\ExpendController.cs" />
+    <Compile Include="Controller\IncomeController.cs" />
+    <Compile Include="Controller\UserAccountController.cs" />
+    <Compile Include="Controller\UserInfoController.cs" />
     <Compile Include="CustomControl\ImageAndTextButton.cs" />
     <Compile Include="Document\ExpendAndIncomeDocument.xaml.cs">
       <DependentUpon>ExpendAndIncomeDocument.xaml</DependentUpon>
@@ -78,27 +88,40 @@
     <Compile Include="Document\IncomeUserControl.xaml.cs">
       <DependentUpon>IncomeUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Document\StatisticsDoucment.xaml.cs">
+      <DependentUpon>StatisticsDoucment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Document\ChartUserControl.xaml.cs">
+      <DependentUpon>ChartUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Document\UserInfoControl.xaml.cs">
       <DependentUpon>UserInfoControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ChangePassowrdModel.cs" />
     <Compile Include="Model\Expend.cs" />
     <Compile Include="Model\Fliter.cs" />
-    <Compile Include="Model\IEntity.cs" />
+    <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Income.cs" />
     <Compile Include="Model\IncomeExpend.cs" />
+    <Compile Include="Model\IncomeAndExpend.cs" />
+    <Compile Include="Model\Querier.cs" />
+    <Compile Include="Model\StatisticsType.cs" />
+    <Compile Include="Model\TimeUnit.cs" />
     <Compile Include="Model\UserAccount.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\ChangePasswordVM.cs" />
+    <Compile Include="ViewModel\ChartUserControlVM.cs" />
     <Compile Include="ViewModel\EditExpendWindowVM.cs" />
     <Compile Include="ViewModel\EditIncomeWindowVM.cs" />
     <Compile Include="ViewModel\ExpendControlVM.cs" />
+    <Compile Include="ViewModel\ICommandVM.cs" />
     <Compile Include="ViewModel\IncomeControlVM.cs" />
     <Compile Include="ViewModel\LoginWindowVM.cs" />
     <Compile Include="ViewModel\MainWindowVM.cs" />
     <Compile Include="ViewModel\OKCancelVM.cs" />
+    <Compile Include="ViewModel\StatisticsDoucmentVM.cs" />
     <Compile Include="ViewModel\UserInfoVM.cs" />
     <Compile Include="Windows\ChangePassowrdWindow.xaml.cs">
       <DependentUpon>ChangePassowrdWindow.xaml</DependentUpon>
@@ -121,6 +144,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Document\IncomeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Document\StatisticsDoucment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Document\ChartUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +234,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -248,15 +280,18 @@
     <PackageReference Include="Iesi.Collections">
       <Version>4.0.0.4000</Version>
     </PackageReference>
+    <PackageReference Include="LiveCharts.Wpf">
+      <Version>0.9.7</Version>
+    </PackageReference>
     <PackageReference Include="NHibernate">
       <Version>4.1.2.4000</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="hibernate.cfg.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mapper\UserAccount.hbm.xml" />
+    <ProjectReference Include="..\SqlLib\SqlLib.csproj">
+      <Project>{47eb1f5c-6a91-4215-8910-ac6700be15b8}</Project>
+      <Name>SqlLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

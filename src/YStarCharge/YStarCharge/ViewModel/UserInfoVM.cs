@@ -5,13 +5,16 @@ using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using YStarCharge.Common;
+using YStarCharge.Controller;
 using YStarCharge.Model;
 
 namespace YStarCharge.ViewModel
 {
-    public sealed class UserInfoVM:NotifyPropertyChanged
+    public sealed class UserInfoVM : NotifyPropertyChanged
     {
-        public UserInfo UserInformation { get; set; }
+        private UserInfoController controller = new UserInfoController();
+
+        public UserInfo UserInformation { get; set; } = new UserInfo();
 
         private bool isReadOnly = true;
         public bool IsReadOnly
@@ -22,12 +25,12 @@ namespace YStarCharge.ViewModel
             }
             set
             {
-                if(isReadOnly == value)
+                if (isReadOnly == value)
                 {
                     return;
                 }
                 isReadOnly = value;
-                OnPropertyChanged(this,"IsReadOnly");
+                OnPropertyChanged(this, "IsReadOnly");
             }
         }
 
@@ -40,7 +43,7 @@ namespace YStarCharge.ViewModel
             }
             set
             {
-                if(thickness == value)
+                if (thickness == value)
                 {
                     return;
                 }
@@ -49,28 +52,15 @@ namespace YStarCharge.ViewModel
             }
         }
 
-        public UserInfoVM()
-        {
-            UserInformation = new UserInfo()
-            {
-                Username = "admin",
-                gender = "男",
-                Age = 30,
-                Industry = "IT",
-                Address ="北京海淀"
-            };
-        }
-
         public ICommand Edit => new RelayCommand(obj => {
             IsReadOnly = false;
             Thickness = new Thickness(1);
         });
 
-        public ICommand Sure => new RelayCommand(obj=> {
-
-            if(UserInformation.Gender != "男" && UserInformation.Gender != "女")
+        public ICommand Sure => new RelayCommand(obj => {
+            if(UserInformation.Gender.Trim() != "男" && UserInformation.Gender.Trim() != "女")
             {
-                Util.NoticeMessageBox("性别格式不正确，请输入男或者女。");
+                Util.NoticeMessageBox("性别格式不正确，请输入“男”或者“女”。");
                 return;
             }
 
@@ -81,8 +71,23 @@ namespace YStarCharge.ViewModel
             }
             IsReadOnly = true;
             Thickness = new Thickness();
+            if (!controller.IsExist(UserInformation))
+            {
+                controller.Insert(UserInformation);
+            }
+            else
+            {
+                controller.Update(UserInformation);
+            }
         });
 
-         
+        public UserInfoVM()
+        {
+            UserInformation = controller.Get<UserInfo>(AppContext.Instacne.Username);
+            if (UserInformation == null)
+            {
+                UserInformation = new UserInfo();
+            }
+        }
     }
 }

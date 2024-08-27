@@ -22,6 +22,7 @@ namespace YStarCharge.Document
     public partial class ExpendUserControl : UserControl
     {
         private ExpendControlVM viewModel;
+
         public ExpendUserControl()
         {
             InitializeComponent();
@@ -32,43 +33,7 @@ namespace YStarCharge.Document
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Expend expend = new Expend()
-            {
-                Number = 1,
-                CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
-                Money = 153.45f,
-                To = ExpendTo.餐饮,
 
-            };
-            Expend expend1 = new Expend()
-            {
-                Number = 2,
-                CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
-                Money = 15,
-                To = ExpendTo.其他,
-                Remark ="忘了怎么花的"
-            };
-            Expend expend2 = new Expend()
-            {
-                Number = 3,
-                CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
-                Money = 15,
-                To = ExpendTo.旅游,
-                Remark = "忘了怎么花的"
-            };
-            Expend expend3 = new Expend()
-            {
-                IsSelected = true,
-                Number = 4,
-                CreateAt = DateTime.Now.ToString("yyyy-MM-dd"),
-                Money = 15,
-                To = ExpendTo.购物,
-                Remark = "忘了怎么花的"
-            };
-            viewModel.Expends.Add(expend);
-            viewModel.Expends.Add(expend1);
-            viewModel.Expends.Add(expend2);
-            viewModel.Expends.Add(expend3);
         }
 
 

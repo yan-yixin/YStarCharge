@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using YStarCharge.Windows;
 
 namespace YStarCharge
@@ -15,8 +10,12 @@ namespace YStarCharge
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            FrameworkCompatibilityPreferences.KeepTextBoxDisplaySynchronizedWithTextProperty = false;
+
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
+
+        
     }
 }

@@ -7,11 +7,14 @@ using System.Windows;
 using System.IO;
 using Microsoft.Win32;
 using Aspose.Cells;
+using YStarCharge.Model;
+using static System.Environment;
 
 namespace YStarCharge.Common
 {
     internal static class Util
     {
+        private static readonly string UserAccountRemeberPath = Path.Combine(GetFolderPath(SpecialFolder.MyDocuments), "YStarCharge.txt");
         public static void NoticeMessageBox(string content)
         {
             MessageBox.Show(content, "提示", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -87,6 +90,39 @@ namespace YStarCharge.Common
                 return sfd.FileName;
             }
             return "";
+        }
+
+        public static UserAccount GetUserFromLocal()
+        {
+            UserAccount ua = new UserAccount();
+            if (!File.Exists(UserAccountRemeberPath))
+            {
+                return ua;
+            }
+
+            string[] lines = File.ReadAllLines(UserAccountRemeberPath);
+            if(lines == null || lines.Length <= 0)
+            {
+                return ua;
+            }
+            ua.Username = lines[0].Split('=')[1].Trim();
+            ua.Password = lines[1].Split('=')[1].Trim();
+            ua.HeadIcon = lines[2].Split('=')[1].Trim();
+            return ua;
+        }
+
+        public static void SaveUserToLocal(UserAccount userAccount)
+        {
+            if(userAccount == null)
+            {
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Username = {userAccount.Username}");
+            sb.AppendLine($"Password = {userAccount.Password}");
+            sb.AppendLine($"HeadIcon = {userAccount.HeadIcon}");
+
+            File.WriteAllText(UserAccountRemeberPath,sb.ToString());
         }
     }
 }

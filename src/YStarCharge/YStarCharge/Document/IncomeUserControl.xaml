@@ -99,14 +99,14 @@
                     <Label Content="收入来源：" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource From}}"
                               Width="154" 
-                          SelectedItem="{Binding Fliter.From,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                          SelectedItem="{Binding Fliter.Channel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                     </ComboBox>
                 </StackPanel>
             </StackPanel>
 
             <customcontrol:ImageAndTextButton Grid.Column="2" Content="查询" Foreground="#1c1a65"
                                               ImageSource="../Images/delete.png" 
-                                              VerticalAlignment="Bottom" Margin="0,15"
+                                              VerticalAlignment="Bottom" Margin="10,0,10,54.8"
                                               Command="{Binding Query}">
                 <customcontrol:ImageAndTextButton.Template>
                     <ControlTemplate TargetType="customcontrol:ImageAndTextButton">
@@ -117,6 +117,18 @@
                 </customcontrol:ImageAndTextButton.Template>
             </customcontrol:ImageAndTextButton>
 
+            <customcontrol:ImageAndTextButton Grid.Column="2" Content="刷新" Foreground="#1c1a65"
+                                              ImageSource="../Images/delete.png" 
+                                              VerticalAlignment="Bottom" Margin="10,0,10,9.8"
+                                              Command="{Binding Refresh}">
+                <customcontrol:ImageAndTextButton.Template>
+                    <ControlTemplate TargetType="customcontrol:ImageAndTextButton">
+                        <Border   CornerRadius="3" BorderThickness="2" Background="{StaticResource BorderColor}">
+                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </customcontrol:ImageAndTextButton.Template>
+            </customcontrol:ImageAndTextButton>
         </Grid>
         <Grid Grid.Row="1"  Margin="20,0">
             <Grid.RowDefinitions>
@@ -154,13 +166,13 @@
                             </Style>
                         </DataGridCheckBoxColumn.ElementStyle>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                    <DataGridTextColumn Header="序号" Width="60" Binding="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt}"
+                    <DataGridTextColumn Header="日期" Width="180" Binding="{Binding CreateAt,StringFormat=yyyy-MM-dd}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="金额(元)" Width="120" Binding="{Binding Money}"
+                    <DataGridTextColumn Header="金额(元)" Width="120" Binding="{Binding Amount}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>
-                    <DataGridTextColumn Header="来源" Width="120" Binding="{Binding From}" 
+                    <DataGridTextColumn Header="来源" Width="120" Binding="{Binding Channel}" 
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"   />
                     <DataGridTextColumn Header="备注" Width="240" Binding="{Binding Remark}"
                                         ElementStyle="{StaticResource CenterTextBlockStyle}"/>

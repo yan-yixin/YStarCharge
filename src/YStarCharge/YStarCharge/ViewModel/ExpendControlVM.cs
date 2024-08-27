@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using YStarCharge.Common;
+using YStarCharge.Controller;
 using YStarCharge.Model;
 using YStarCharge.Windows;
 
@@ -16,6 +17,7 @@ namespace YStarCharge.ViewModel
 {
     public sealed class ExpendControlVM: NotifyPropertyChanged
     {
+        private ExpendController controller = new ExpendController();
         public ObservableCollection<Expend> Expends { get; set; } = new ObservableCollection<Expend>();
 
         public DataGrid DataGrid { get; set; }
@@ -27,8 +29,11 @@ namespace YStarCharge.ViewModel
             editChargeWindow.ViewModel.Title = "新增";
             if (editChargeWindow.ShowDialog() == true)
             {
-                editChargeWindow.ViewModel.Expend.Number = Expends.Count + 1;
+                editChargeWindow.ViewModel.Expend.Id = Expends.Count + 1;
+                editChargeWindow.ViewModel.Expend.Username = AppContext.Instacne.Username;
                 Expends.Add(editChargeWindow.ViewModel.Expend);
+
+                controller.Insert(editChargeWindow.ViewModel.Expend);
             }
         });
 
@@ -44,11 +49,12 @@ namespace YStarCharge.ViewModel
             editChargeWindow.ViewModel.Title = "编辑";
             var temp = expend;
             editChargeWindow.ViewModel.Expend = new Expend() { 
-                Number = temp.Number,
-                Money = temp.Money,
-                To = temp.To,
+                Id = temp.Id,
+                Amount = temp.Amount,
+                Direction = temp.Direction,
                 Remark = temp.Remark,
-                CreateAt = temp.CreateAt 
+                CreateAt = temp.CreateAt.Date,
+                Username = AppContext.Instacne.Username
             };
             if (editChargeWindow.ShowDialog() == true)
             {
@@ -57,6 +63,7 @@ namespace YStarCharge.ViewModel
                 Expends.RemoveAt(index);
                 editChargeWindow.ViewModel.Expend.IsSelected = true;
                 Expends.Insert(index, editChargeWindow.ViewModel.Expend);
+                controller.Update(editChargeWindow.ViewModel.Expend);
             }
         });
 
@@ -69,6 +76,15 @@ namespace YStarCharge.ViewModel
             }
             //无法直接删除，因为会删除不干净
             var tempExpends = Expends.ToList();
+
+            foreach (var ex in tempExpends)
+            {
+                if (ex.IsSelected)
+                {
+                    controller.Delete(ex);
+                }
+            }
+            //重新数据查询
             tempExpends.RemoveAll(te =>te.IsSelected);
             Expends.Clear();
             foreach(var ex in tempExpends)
@@ -80,14 +96,56 @@ namespace YStarCharge.ViewModel
         public ICommand Export => new RelayCommand(obj => {
             if (Util.Export(GetDataTable()))
             {
-                MessageBox.Show("导出成功。", "提示");
+                Util.NoticeMessageBox("导出成功。");
             }
         });
 
         public ICommand Query => new RelayCommand(obj => {
-            MessageBox.Show($"金额范围：{Fliter.MinMoney}-{Fliter.MaxMoney},日期：{Fliter.StartDate}-{Fliter.EndDate},用于：{Fliter.To}");
-            
+
+            var datatable = controller.Query(Fliter);
+            var temp  = controller.ToObservableList(datatable);
+            Expends.Clear();
+            foreach (var ex in temp)
+            {
+                Expends.Add(ex);
+            }
+            //添加总额
+            Expend expend = new Expend()
+            {
+                CreateAt = DateTime.Now,
+                Direction = ExpendTo.其他,
+                Amount = Expends.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Expends.Add(expend);
         });
+
+        public ICommand Refresh => new RelayCommand(obj => {
+
+
+            var datatable = controller.Query(AppContext.Instacne.Username);
+            var temp = controller.ToObservableList(datatable);
+            Expends.Clear();
+            foreach (var ex in temp)
+            {
+                Expends.Add(ex);
+            }
+            Expend expend = new Expend()
+            {
+                CreateAt = DateTime.Now,
+                Direction = ExpendTo.其他,
+                Amount = Expends.Sum(e => e.Amount),
+                Remark = "总额"
+            };
+            Expends.Add(expend);
+        });
+
+
+        public ExpendControlVM()
+        {
+            Fliter.StartDate = DateTime.Now;
+            Fliter.EndDate = DateTime.Now;
+        }
 
         public void SetCheckBoxChecked(bool isCheck)
         {
@@ -133,5 +191,7 @@ namespace YStarCharge.ViewModel
 
             return dt;
         }
+
+
     }
 }

@@ -12,8 +12,11 @@ namespace SqlLib.Controller
 
         int Delete(int id);
 
-        IEntity Query(int id);
+        DataTable Query(string username);
 
-        DataTable Query();
+        int GetMaxId();
+
+        bool IsExist(IEntity entity);
+
     }
 }

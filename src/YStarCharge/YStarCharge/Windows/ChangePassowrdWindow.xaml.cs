@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using YStarCharge.Model;
 using YStarCharge.ViewModel;
 
 namespace YStarCharge.Windows
@@ -19,16 +20,20 @@ namespace YStarCharge.Windows
     /// </summary>
     public partial class ChangePassowrdWindow : Window
     {
+        public ChangePasswordVM ViewModel { get; }
+
         public ChangePassowrdWindow()
         {
             InitializeComponent();
-            DataContext = new ChangePasswordVM();
+            ViewModel = new ChangePasswordVM(); 
+            DataContext = ViewModel;
         }
 
         private void Window_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if ((bool)e.NewValue == false)
             {
+                DialogResult = true;
                 Close();
             }
             
