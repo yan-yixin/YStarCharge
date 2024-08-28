@@ -12,29 +12,28 @@ namespace YStarCharge.Web.Controllers
 {
     public class IncomesController : Controller
     {
-        private readonly SqlDBContext _context;
+        private readonly IIncomeRepository _Repository;
 
-        public IncomesController(SqlDBContext context)
+        public IncomesController(IIncomeRepository repository)
         {
-            _context = context;
+            _Repository = repository;
         }
 
         // GET: Incomes
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Income.ToListAsync());
+            return View(_Repository.GetIncomes().ToList());
         }
 
         // GET: Incomes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var income = await _context.Income
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var income = _Repository.Get(id);
             if (income == null)
             {
                 return NotFound();
@@ -54,26 +53,25 @@ namespace YStarCharge.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
+        public IActionResult Create([Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(income);
-                await _context.SaveChangesAsync();
+                _Repository.Add(income);
                 return RedirectToAction(nameof(Index));
             }
             return View(income);
         }
 
         // GET: Incomes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var income = await _context.Income.FindAsync(id);
+            var income = _Repository.Get(id);
             if (income == null)
             {
                 return NotFound();
@@ -86,7 +84,7 @@ namespace YStarCharge.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
+        public IActionResult Edit(int id, [Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
         {
             if (id != income.Id)
             {
@@ -97,8 +95,7 @@ namespace YStarCharge.Web.Controllers
             {
                 try
                 {
-                    _context.Update(income);
-                    await _context.SaveChangesAsync();
+                    _Repository.Update(income);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -117,15 +114,14 @@ namespace YStarCharge.Web.Controllers
         }
 
         // GET: Incomes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var income = await _context.Income
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var income = _Repository.Delete(id);
             if (income == null)
             {
                 return NotFound();
@@ -137,21 +133,19 @@ namespace YStarCharge.Web.Controllers
         // POST: Incomes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var income = await _context.Income.FindAsync(id);
+            var income = _Repository.Get(id);
             if (income != null)
             {
-                _context.Income.Remove(income);
+                _Repository.Delete(id);
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool IncomeExists(int id)
         {
-            return _context.Income.Any(e => e.Id == id);
+            return _Repository.GetIncomes().Any(e => e.Id == id);
         }
     }
 }
