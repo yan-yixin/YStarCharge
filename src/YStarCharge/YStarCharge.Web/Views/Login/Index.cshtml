@@ -1,0 +1,36 @@
+﻿@model YStarCharge.Web.Models.UserAccount
+@{
+    ViewData["Title"] = "登录";
+}
+<style type="text/css">
+
+</style>
+<div class="container-fluid m-5">
+    <div class="col-md-4 offset-4 border rounded-3 border-dark p-3">
+        <form asp-controller="Home" asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group d-flex justify-content-center mt-5 mb-3 " >
+                <img class="rounded-circle img-fluid w-25 h-25" asp-for="Icon" src="./images/user.png" />
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="Username" class="control-label small"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <label asp-for="Password" class="control-label small"></label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group m-3">
+                <input type="submit" value="登录" class="btn btn-dark form-control" />
+            </div>
+            <div class="form-group m-3">
+                <a asp-action="Register" class="col-md-3">用户注册</a>
+                <a asp-action="RemeberPassword" class="">忘记密码</a>
+            </div>
+        </form>
+    </div>
+
+</div>
+
