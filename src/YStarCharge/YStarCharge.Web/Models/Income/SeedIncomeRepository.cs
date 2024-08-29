@@ -41,7 +41,7 @@ namespace YStarCharge.Web.Models
             return _SqlDBContext.Incomes.FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<Income> GetIncomes()
+        public IList<Income> GetList()
         {
             return _SqlDBContext.Incomes.ToList();
         }
@@ -61,7 +61,6 @@ namespace YStarCharge.Web.Models
                 income.Remark = t.Remark;
                 income.CreateAt = t.CreateAt;
                 income.Money = t.Money;
-                income.IsSelected = t.IsSelected;
             }
             return income;
         }

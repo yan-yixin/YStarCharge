@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IsSelected)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.CreateAt)
             </th>
             <th>
@@ -34,9 +31,6 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IsSelected)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.CreateAt)
             </td>
             <td>
@@ -49,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Remark)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Id">编辑</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">详情</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">删除</a>
             </td>
         </tr>
 }

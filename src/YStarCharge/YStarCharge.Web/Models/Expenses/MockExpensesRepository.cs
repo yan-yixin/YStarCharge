@@ -7,7 +7,34 @@ namespace YStarCharge.Web.Models
 
         public MockExpensesRepository() {
 
-            _Expenses = new List<Expenses>();
+            _Expenses = new List<Expenses>()
+            {
+                new Expenses()
+                {
+                    Id = 1,
+                    CreateAt = DateTime.Now,
+                    Money = 50,
+                    To = Enums.ExpensesTo.Shopping,
+                    Remark ="买菜"
+                },
+                new Expenses()
+                {
+                    Id = 2,
+                    CreateAt = DateTime.Now,
+                    Money = 1425,
+                    To = Enums.ExpensesTo.Tour,
+                    Remark ="白石山"
+                },
+                new Expenses()
+                {
+                    Id = 3,
+                    CreateAt = DateTime.Now,
+                    Money = 17,
+                    To = Enums.ExpensesTo.Repast,
+                    Remark ="早饭"
+                },
+                
+            };
         }
 
         public Expenses Add(Expenses expenses)
@@ -34,7 +61,7 @@ namespace YStarCharge.Web.Models
             return _Expenses.FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<Expenses> GetIncomes()
+        public IList<Expenses> GetList()
         {
             return _Expenses;
         }
@@ -51,7 +78,6 @@ namespace YStarCharge.Web.Models
             var expense = _Expenses.FirstOrDefault(x => x.Id == t.Id);
             if (expense != null)
             {
-                expense.IsSelected = t.IsSelected;
                 expense.CreateAt = t.CreateAt;
                 expense.Remark = t.Remark;
                 expense.Money = t.Money;

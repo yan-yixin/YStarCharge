@@ -22,7 +22,6 @@ namespace YStarCharge.Web.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult Register()
         {
             return View();

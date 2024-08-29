@@ -8,10 +8,9 @@ namespace YStarCharge.Web.Models
     {
         public int Id { get; set; }
 
-        public bool IsSelected { get; set; }
-
         public DateTime CreateAt { get; set; }
 
+        [Required(ErrorMessage = "请输入金额")]
         [Range(0, 1000000)]
         public float Money { get; set; }
 

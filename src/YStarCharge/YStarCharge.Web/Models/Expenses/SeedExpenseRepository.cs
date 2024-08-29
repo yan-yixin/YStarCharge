@@ -40,7 +40,7 @@ namespace YStarCharge.Web.Models
             return _SqlDBContext.Expenses.FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<Expenses> GetIncomes()
+        public IList<Expenses> GetList()
         {
             return _SqlDBContext.Expenses.ToList();
         }
@@ -57,7 +57,6 @@ namespace YStarCharge.Web.Models
             var expense = _SqlDBContext.Expenses.FirstOrDefault(x => x.Id == t.Id);
             if(expense != null)
             {
-                expense.IsSelected = t.IsSelected;
                 expense.CreateAt = t.CreateAt;
                 expense.Money = t.Money;
                 expense.Remark = t.Remark;

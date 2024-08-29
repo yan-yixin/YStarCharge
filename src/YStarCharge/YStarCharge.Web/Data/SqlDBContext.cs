@@ -16,6 +16,6 @@ namespace YStarCharge.Web.Data
 
         public DbSet<Income> Incomes { get; set; } = default!;
         public DbSet<Expenses> Expenses { get; set; } = default!;
-        public DbSet<YStarCharge.Web.Models.UserInfo> UserInfo { get; set; } = default!;
+        public DbSet<UserInfo> UserInfo { get; set; } = default!;
     }
 }

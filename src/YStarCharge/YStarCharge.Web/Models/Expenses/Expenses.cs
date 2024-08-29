@@ -7,8 +7,6 @@ namespace YStarCharge.Web.Models
     {
         public int Id { get; set; }
 
-        public bool IsSelected { get; set; }
-
         public DateTime CreateAt { get; set; }
 
         [Range(0, 1000000)]

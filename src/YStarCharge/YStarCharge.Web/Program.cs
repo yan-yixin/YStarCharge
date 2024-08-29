@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IIncomeRepository, MockIncomeRepository>();
+builder.Services.AddSingleton<IExpensesRepository, MockExpensesRepository>();
 
 var app = builder.Build();
 

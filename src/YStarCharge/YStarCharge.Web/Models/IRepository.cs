@@ -10,7 +10,7 @@
 
         T Get(int? id);
 
-        IList<T> GetIncomes();
+        IList<T> GetList();
 
         bool IsExist(T t);
     }

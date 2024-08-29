@@ -18,7 +18,7 @@ namespace YStarCharge.Web.Models
             throw new NotImplementedException();
         }
 
-        public IList<UserInfo> GetIncomes()
+        public IList<UserInfo> GetList()
         {
             throw new NotImplementedException();
         }

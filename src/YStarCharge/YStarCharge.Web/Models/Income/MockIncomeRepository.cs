@@ -58,14 +58,15 @@ namespace YStarCharge.Web.Models
             return _Incomes.FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<Income> GetIncomes()
+        public IList<Income> GetList()
         {
             return _Incomes;
         }
 
         public bool IsExist(Income t)
         {
-            return _Incomes.FirstOrDefault(x => x.Id == t.Id) != null;
+            return _Incomes != null && _Incomes.Any(x => x.Id == t.Id);
+
         }
 
         public Income Update(Income income)
