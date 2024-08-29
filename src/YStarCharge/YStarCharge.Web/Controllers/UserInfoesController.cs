@@ -10,22 +10,22 @@ using YStarCharge.Web.Models;
 
 namespace YStarCharge.Web.Controllers
 {
-    public class IncomesController : Controller
+    public class UserInfoesController : Controller
     {
         private readonly SqlDBContext _context;
 
-        public IncomesController(SqlDBContext context)
+        public UserInfoesController(SqlDBContext context)
         {
             _context = context;
         }
 
-        // GET: Incomes
+        // GET: UserInfoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Incomes.ToListAsync());
+            return View(await _context.UserInfo.ToListAsync());
         }
 
-        // GET: Incomes/Details/5
+        // GET: UserInfoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace YStarCharge.Web.Controllers
                 return NotFound();
             }
 
-            var income = await _context.Incomes
+            var userInfo = await _context.UserInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (income == null)
+            if (userInfo == null)
             {
                 return NotFound();
             }
 
-            return View(income);
+            return View(userInfo);
         }
 
-        // GET: Incomes/Create
+        // GET: UserInfoes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Incomes/Create
+        // POST: UserInfoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
+        public async Task<IActionResult> Create([Bind("Id,Username,Name,Gender,Age,Industry,Address")] UserInfo userInfo)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(income);
+                _context.Add(userInfo);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(income);
+            return View(userInfo);
         }
 
-        // GET: Incomes/Edit/5
+        // GET: UserInfoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace YStarCharge.Web.Controllers
                 return NotFound();
             }
 
-            var income = await _context.Incomes.FindAsync(id);
-            if (income == null)
+            var userInfo = await _context.UserInfo.FindAsync(id);
+            if (userInfo == null)
             {
                 return NotFound();
             }
-            return View(income);
+            return View(userInfo);
         }
 
-        // POST: Incomes/Edit/5
+        // POST: UserInfoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IsSelected,CreateAt,Money,Remark")] Income income)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Name,Gender,Age,Industry,Address")] UserInfo userInfo)
         {
-            if (id != income.Id)
+            if (id != userInfo.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace YStarCharge.Web.Controllers
             {
                 try
                 {
-                    _context.Update(income);
+                    _context.Update(userInfo);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!IncomeExists(income.Id))
+                    if (!UserInfoExists(userInfo.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace YStarCharge.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(income);
+            return View(userInfo);
         }
 
-        // GET: Incomes/Delete/5
+        // GET: UserInfoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +124,34 @@ namespace YStarCharge.Web.Controllers
                 return NotFound();
             }
 
-            var income = await _context.Incomes
+            var userInfo = await _context.UserInfo
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (income == null)
+            if (userInfo == null)
             {
                 return NotFound();
             }
 
-            return View(income);
+            return View(userInfo);
         }
 
-        // POST: Incomes/Delete/5
+        // POST: UserInfoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var income = await _context.Incomes.FindAsync(id);
-            if (income != null)
+            var userInfo = await _context.UserInfo.FindAsync(id);
+            if (userInfo != null)
             {
-                _context.Incomes.Remove(income);
+                _context.UserInfo.Remove(userInfo);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool IncomeExists(int id)
+        private bool UserInfoExists(int id)
         {
-            return _context.Incomes.Any(e => e.Id == id);
+            return _context.UserInfo.Any(e => e.Id == id);
         }
     }
 }

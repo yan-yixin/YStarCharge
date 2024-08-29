@@ -37,10 +37,10 @@ namespace YStarCharge.Web.Models
             };
         }
 
-        public bool Add(Income income)
+        public Income Add(Income income)
         {
             _Incomes.Add(income);
-            return true;
+            return income;
         }
 
         public Income Delete(int? id)
@@ -61,6 +61,11 @@ namespace YStarCharge.Web.Models
         public IList<Income> GetIncomes()
         {
             return _Incomes;
+        }
+
+        public bool IsExist(Income t)
+        {
+            return _Incomes.FirstOrDefault(x => x.Id == t.Id) != null;
         }
 
         public Income Update(Income income)

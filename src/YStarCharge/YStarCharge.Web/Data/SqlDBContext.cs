@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using YStarCharge.Web.Models;
-using YStarCharge.Web.Models;
 
 namespace YStarCharge.Web.Data
 {
@@ -15,7 +14,8 @@ namespace YStarCharge.Web.Data
         {
         }
 
-        public DbSet<Income> Income { get; set; } = default!;
+        public DbSet<Income> Incomes { get; set; } = default!;
         public DbSet<Expenses> Expenses { get; set; } = default!;
+        public DbSet<YStarCharge.Web.Models.UserInfo> UserInfo { get; set; } = default!;
     }
 }

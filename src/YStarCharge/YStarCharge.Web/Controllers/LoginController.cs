@@ -7,7 +7,7 @@ namespace YStarCharge.Web.Controllers
     {
         public IActionResult Index()
         {
-            UserAccount userAccount = new UserAccount()
+            Login userAccount = new Login()
             {
                 Id = 1,
                 Username = "admin",
@@ -17,14 +17,18 @@ namespace YStarCharge.Web.Controllers
             return View(userAccount);
         }
 
-        public IActionResult RemeberPassword() 
+        public IActionResult ForgetPassword() 
         {
             return View();
         }
 
+        [HttpPost]
         public IActionResult Register()
         {
             return View();
         }
+
+
+
     }
 }

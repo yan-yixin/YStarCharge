@@ -1,6 +1,6 @@
 ﻿namespace YStarCharge.Web.Models
 {
-    public class UserAccount
+    public class Login
     {
         public int Id { get; set; }
 
